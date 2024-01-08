@@ -19,7 +19,9 @@ public class Member {
     private ArrayList<Partnership> partnershipHistory;
 
     // Setup multiple overloaded constructors for varying amounts of data available when addMember is called
-    public Member(String name, String username, long userID, int numGames, int totalWins, int totalLosses, int winsOnOffence, int winsOnDefence, int lossesOnOffence, int lossesOnDefence, float winLossRate, float averageScore) {
+
+    // This constructor is for an established member
+    public Member(String name, String username, long userID, int numGames, int totalWins, int totalLosses, int winsOnOffence, int winsOnDefence, int lossesOnOffence, int lossesOnDefence, float winLossRate, float averageScore, ArrayList<Tournament> tournaments, ArrayList<Game> gamesPlayed, ArrayList<Partnership> partnershipHistory) {
         this.name = name;
         this.username = username;
         this.userID = userID;
@@ -32,8 +34,8 @@ public class Member {
         this.lossesOnDefence = lossesOnDefence;
         this.winLossRate = winLossRate;
         this.averageScore = averageScore; 
-        this.tournaments = new ArrayList<Tournament>();
-        this.gamesPlayed = new ArrayList<Game>();
-        this.partnershipHistory = new ArrayList<Partnership>();
+        this.tournaments = tournaments;
+        this.gamesPlayed = gamesPlayed;
+        this.partnershipHistory = partnershipHistory;
     }
 }
