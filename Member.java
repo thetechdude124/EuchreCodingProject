@@ -1,5 +1,4 @@
 package EuchreCodingProject;
-
 import java.util.ArrayList;
 public class Member {
     private String name;
@@ -15,14 +14,14 @@ public class Member {
     private int lossesOnDefence;
     private float winLossRate;
     private float averageScore;
-    private ArrayList<Tournament> tournaments;
-    private ArrayList<Game> gamesPlayed;
-    private ArrayList<Partnership> partnershipHistory;
+    private LinkedList<Tournament> tournaments;
+    private LinkedList<Game> gamesPlayed;
+    private LinkedList<Partnership> partnershipHistory;
 
     // Setup multiple overloaded constructors for varying amounts of data available when addMember is called
 
     // This constructor is for an established member
-    public Member(String name, String username, long userID, int numGames, int totalWins, int totalLosses, int winsOnOffence, int winsOnDefence, int lossesOnOffence, int lossesOnDefence, float winLossRate, float averageScore, ArrayList<Tournament> tournaments, ArrayList<Game> gamesPlayed, ArrayList<Partnership> partnershipHistory) {
+    public Member(String name, String username, long userID, int numGames, int totalWins, int totalLosses, int winsOnOffence, int winsOnDefence, int lossesOnOffence, int lossesOnDefence, float winLossRate, float averageScore, LinkedList<Tournament> tournaments, LinkedList<Game> gamesPlayed, LinkedList<Partnership> partnershipHistory) {
         this.name = name;
         this.username = username;
         this.userID = userID;
@@ -55,9 +54,9 @@ public class Member {
         this.lossesOnDefence = 0;
         this.winLossRate = 0;
         this.averageScore = 0; 
-        this.tournaments = new ArrayList<Tournament>();
-        this.gamesPlayed = new ArrayList<Game>();
-        this.partnershipHistory = new ArrayList<Partnership>();
+        this.tournaments = new LinkedList<Tournament>();
+        this.gamesPlayed = new LinkedList<Game>();
+        this.partnershipHistory = new LinkedList<Partnership>();
     }
 
     public String getName() {return name;}
@@ -72,13 +71,14 @@ public class Member {
     public int getLossesOnDefence() {return lossesOnDefence;}
     public float getWinLossRate() {return winLossRate;}
     public float getAverageScore() {return averageScore;}
-    public ArrayList<Tournament> getTournaments() {return tournaments;}
-    public ArrayList<Game> getGamesPlayed() {return gamesPlayed;}
-    public ArrayList<Partnership> getPartnershipHistory() {return partnershipHistory;}
+    public LinkedList<Tournament> getTournaments() {return tournaments;}
+    public LinkedList<Game> getGamesPlayed() {return gamesPlayed;}
+    public LinkedList<Partnership> getPartnershipHistory() {return partnershipHistory;}
 
     public void setName(String name) {this.name = name;}
     public void setUsername(String username) {this.username = username;}
-    public void newGame(boolean win, boolean offence, int score) {
+    public void newGame(Game game, boolean win, boolean offence, int score) {
+        gamesPlayed.add(game);
         numGames++;
         if (win) {
             totalWins++;
@@ -90,5 +90,7 @@ public class Member {
         winLossRate = totalWins / numGames; 
         averageScore = (averageScore*(numGames-1) + score)/numGames;
     } 
+    public void newTournament(Tournament tournament) {tournaments.add(tournament);}
+    public void newPartnership(Partnership partnership) {partnershipHistory.add(partnership);}
 
 }
