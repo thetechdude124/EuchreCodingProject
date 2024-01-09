@@ -1,5 +1,5 @@
 package EuchreCodingProject;
-import java.util.ArrayList;
+import java.util.LinkedList;
 public class Member {
     private String name;
     private String username; 

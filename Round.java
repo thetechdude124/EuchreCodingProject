@@ -52,5 +52,8 @@ public class Round {
     public int getDefenceTricks() {return defenceTricks;}
     public boolean getOffenceWin() {return offenceWin;}
     public int getPointsAwarded() {return pointsAwarded;}
+    public boolean getOnGoing() {return onGoing;}
+
+    
 
 }
