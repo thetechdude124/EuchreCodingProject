@@ -6,6 +6,7 @@ public class Round {
     private Member defencePlayer2;
     private Member dealer;
     private Member trumpEstablisher;
+    private boolean goingAlone; 
     private String trumpSuit;
     private int offenceTricks;
     private int defenceTricks;
@@ -26,13 +27,14 @@ public class Round {
     }
 
     // Completed games
-    public Round(Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer, Member trumpEstablisher, String trumpSuit, int offenceTricks, int defenceTricks, boolean offenceWin, int pointsAwarded) {
+    public Round(Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int offenceTricks, int defenceTricks, boolean offenceWin, int pointsAwarded) {
         this.offencePlayer1 = offencePlayer1;
         this.offencePlayer2 = offencePlayer2;
         this.defencePlayer1 = defencePlayer1;
         this.defencePlayer2 = defencePlayer2;
         this.dealer = dealer;
         this.trumpEstablisher = trumpEstablisher;
+        this.goingAlone = goingAlone;
         this.trumpSuit = trumpSuit;
         this.offenceTricks = offenceTricks;
         this.defenceTricks = defenceTricks;
@@ -47,6 +49,7 @@ public class Round {
     public Member getDefencePlayer2() {return defencePlayer2;}
     public Member getDealer() {return dealer;}
     public Member getTrumpEstablisher() {return trumpEstablisher;}
+    public boolean getGoingAlone() {return goingAlone;}
     public String getTrumpSuit() {return trumpSuit;}
     public int getOffenceTricks() {return offenceTricks;}
     public int getDefenceTricks() {return defenceTricks;}
@@ -54,6 +57,26 @@ public class Round {
     public int getPointsAwarded() {return pointsAwarded;}
     public boolean getOnGoing() {return onGoing;}
 
-    
+    public void establishTrump(Member trumpEstablisher, boolean goingAlone, String trumpSuit) {if(onGoing){this.trumpEstablisher = trumpEstablisher; this.goingAlone = goingAlone; this.trumpSuit = trumpSuit;}}
+    public void addTrick(boolean offenceTrick) {
+        if (offenceTrick) {offenceTricks++;} else {defenceTricks++;}
+        if (offenceTricks + defenceTricks == 5) {endRound();}
+    }
+    public void endRound() {
+        if (onGoing) {
+            if (offenceTricks > defenceTricks) {
+                offenceWin = true; 
+                if (goingAlone) {
+                    if (offenceTricks == 5) {pointsAwarded = 4;} else {pointsAwarded = 2;}
+                } else {
+                    if (offenceTricks == 5) {pointsAwarded = 2;} else {pointsAwarded = 1;}
+                }
+            } else {
+                offenceWin = false;
+                if (defenceTricks == 5) {pointsAwarded = 2;} else {pointsAwarded = 4;}
+            } 
+            onGoing = false;
+        }
+    }
 
 }
