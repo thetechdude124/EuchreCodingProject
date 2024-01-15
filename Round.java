@@ -43,6 +43,7 @@ public class Round {
         this.onGoing = false; 
     }
 
+    // Getters
     public Member getOffencePlayer1() {return offencePlayer1;}
     public Member getOffencePlayer2() {return offencePlayer2;}
     public Member getDefencePlayer1() {return defencePlayer1;}
@@ -57,6 +58,7 @@ public class Round {
     public int getPointsAwarded() {return pointsAwarded;}
     public boolean getOnGoing() {return onGoing;}
 
+    // Methods
     public void establishTrump(Member trumpEstablisher, boolean goingAlone, String trumpSuit) {if(onGoing){this.trumpEstablisher = trumpEstablisher; this.goingAlone = goingAlone; this.trumpSuit = trumpSuit;}}
     public void addTrick(boolean offenceTrick) {
         if (offenceTrick) {offenceTricks++;} else {defenceTricks++;}

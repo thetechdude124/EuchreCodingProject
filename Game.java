@@ -34,6 +34,7 @@ public class Game {
         this.rounds = rounds;
     }
 
+    // Getters
     public Member getPlayer1() {return player1;}
     public Member getPlayer2() {return player2;}
     public Member getPlayer3() {return player3;}
@@ -45,12 +46,12 @@ public class Game {
 
     // Overload addRound for on going and completed rounds
 
-    // on going rounds
+    // Ongoing rounds
     public void addRound(Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer) {
         rounds.add(new Round(offencePlayer1, offencePlayer2, defencePlayer1, defencePlayer2, dealer));
     }
 
-    // completed rounds
+    // Completed rounds
     public void addRound(Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int offenceTricks, int defenceTricks, boolean offenceWin, int pointsAwarded) {
         rounds.add(new Round(offencePlayer1, offencePlayer2, defencePlayer1, defencePlayer2, dealer, trumpEstablisher, goingAlone, trumpSuit, offenceTricks, defenceTricks, offenceWin, pointsAwarded));
     }
