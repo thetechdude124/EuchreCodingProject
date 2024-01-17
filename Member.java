@@ -3,8 +3,8 @@ import java.util.LinkedList;
 public class Member {
     private String name;
     private String username; 
-    private long userID;
-    private long userIDGen = 1000000; 
+    private int userID;
+    private int userIDGen = 1000000; 
     private int numGames;
     private int totalWins;
     private int totalLosses;
@@ -21,7 +21,7 @@ public class Member {
     // Setup multiple overloaded constructors for varying amounts of data available when addMember is called
 
     // This constructor is for an established member
-    public Member(String name, String username, long userID, int numGames, int totalWins, int totalLosses, int winsOnOffence, int winsOnDefence, int lossesOnOffence, int lossesOnDefence, float winLossRate, float averageScore, LinkedList<Tournament> tournaments, LinkedList<Game> gamesPlayed, LinkedList<Partnership> partnershipHistory) {
+    public Member(String name, String username, int userID, int numGames, int totalWins, int totalLosses, int winsOnOffence, int winsOnDefence, int lossesOnOffence, int lossesOnDefence, float winLossRate, float averageScore, LinkedList<Tournament> tournaments, LinkedList<Game> gamesPlayed, LinkedList<Partnership> partnershipHistory) {
         this.name = name;
         this.username = username;
         this.userID = userID;
@@ -62,7 +62,7 @@ public class Member {
     // Getters
     public String getName() {return name;}
     public String getUsername() {return username;}
-    public long getUserID() {return userID;}
+    public int getUserID() {return userID;}
     public int getNumGames() {return numGames;}
     public int getTotalWins() {return totalWins;}
     public int getTotalLosses() {return totalLosses;}
