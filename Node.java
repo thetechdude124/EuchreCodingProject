@@ -14,7 +14,7 @@ public class Node {
         this.next = next;
     }
 
-    public Node(int ID, Partnership partnership, Node next) {
+    public Node(int ID, Partnership partnership, Node previous, Node next) {
         this.ID = ID;
         this.partnership = partnership;
         this.previous = previous;
