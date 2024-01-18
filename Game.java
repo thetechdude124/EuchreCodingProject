@@ -1,6 +1,7 @@
 package EuchreCodingProject;
 import java.util.LinkedList;
 public class Game {
+    private int gameID;
     private Member player1;
     private Member player2; 
     private Member player3;
@@ -35,6 +36,7 @@ public class Game {
     }
 
     // Getters
+    public int getGameID() {return gameID;}
     public Member getPlayer1() {return player1;}
     public Member getPlayer2() {return player2;}
     public Member getPlayer3() {return player3;}
@@ -43,6 +45,8 @@ public class Game {
     public int getDefencePoints() {return defencePoints;}
     public boolean getOnGoing() {return onGoing;}
     public LinkedList<Round> getRounds() {return rounds;}
+
+    public void setGameID(int gameID) {this.gameID = gameID;}
 
     // Overload addRound for on going and completed rounds
 

@@ -116,37 +116,35 @@ public class Statistics {
     }
 
     private Node memberMerge(Node nodeA, Node nodeB, int stat) {
-        Node nodeC;
-        
         if (nodeA.getMember().getStats()[stat] < nodeB.getMember().getStats()[stat]) {
-            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null, null); 
+            node = new Node(nodeA.getID(), nodeA.getMember(), null, null); 
             nodeA = nodeA.getNext();
         } else {
-            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null, null);
+            node = new Node(nodeB.getID(), nodeB.getMember(), null, null);
             nodeB = nodeB.getNext();
         }
 
         while (nodeA != null && nodeB != null) {
             if (nodeA.getMember().getStats()[stat] < nodeB.getMember().getStats()[stat]) {
-                memberAddToEnd(nodeC, nodeA.getID(), nodeA.getMember());
+                memberAddToEnd(node, nodeA.getID(), nodeA.getMember());
                 nodeA = nodeA.getNext();
             } else {
-                memberAddToEnd(nodeC, nodeB.getID(), nodeB.getMember());
+                memberAddToEnd(node, nodeB.getID(), nodeB.getMember());
                 nodeB = nodeB.getNext();
             }
         }
 
         while (nodeA != null) {
-            memberAddToEnd(nodeC, nodeA.getID(), nodeA.getMember());
+            memberAddToEnd(node, nodeA.getID(), nodeA.getMember());
             nodeA = nodeA.getNext();
         }
 
         while (nodeB != null) {
-            memberAddToEnd(nodeC, nodeB.getID(), nodeB.getMember());
+            memberAddToEnd(node, nodeB.getID(), nodeB.getMember());
             nodeB = nodeB.getNext();
         }
 
-        return nodeC;
+        return node;
     }
 
     // This section is for the sorting of any Partnership LinkedLists
@@ -172,38 +170,36 @@ public class Statistics {
         return partnershipMerge(nodeA, nodeB, stat);
     }
 
-    private Node partnershipMerge(Node nodeA, Node nodeB, int stat) {
-        Node nodeC;
-        
+    private Node partnershipMerge(Node nodeA, Node nodeB, int stat) {        
         if (nodeA.getPartnership().getStats()[stat] < nodeB.getPartnership().getStats()[stat]) {
-            nodeC = new Node(nodeA.getID(), nodeA.getPartnership(), null, null); 
+            node = new Node(nodeA.getID(), nodeA.getPartnership(), null, null); 
             nodeA = nodeA.getNext();
         } else {
-            nodeC = new Node(nodeB.getID(), nodeB.getPartnership(), null, null);
+            node = new Node(nodeB.getID(), nodeB.getPartnership(), null, null);
             nodeB = nodeB.getNext();
         }
 
         while (nodeA != null && nodeB != null) {
             if (nodeA.getPartnership().getStats()[stat] < nodeB.getPartnership().getStats()[stat]) {
-                partnershipAddToEnd(nodeC, nodeA.getID(), nodeA.getPartnership());
+                partnershipAddToEnd(node, nodeA.getID(), nodeA.getPartnership());
                 nodeA = nodeA.getNext();
             } else {
-                partnershipAddToEnd(nodeC, nodeB.getID(), nodeB.getPartnership());
+                partnershipAddToEnd(node, nodeB.getID(), nodeB.getPartnership());
                 nodeB = nodeB.getNext();
             }
         }
 
         while (nodeA != null) {
-            partnershipAddToEnd(nodeC, nodeA.getID(), nodeA.getPartnership());
+            partnershipAddToEnd(node, nodeA.getID(), nodeA.getPartnership());
             nodeA = nodeA.getNext();
         }
 
         while (nodeB != null) {
-            partnershipAddToEnd(nodeC, nodeB.getID(), nodeB.getPartnership());
+            partnershipAddToEnd(node, nodeB.getID(), nodeB.getPartnership());
             nodeB = nodeB.getNext();
         }
 
-        return nodeC;
+        return node;
     }
     
 }
