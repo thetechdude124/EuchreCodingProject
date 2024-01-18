@@ -59,6 +59,7 @@ public class Member {
         this.partnershipHistory = new LinkedList<Partnership>();
     }
 
+    // Getters
     public String getName() {return name;}
     public String getUsername() {return username;}
     public long getUserID() {return userID;}
@@ -75,8 +76,11 @@ public class Member {
     public LinkedList<Game> getGamesPlayed() {return gamesPlayed;}
     public LinkedList<Partnership> getPartnershipHistory() {return partnershipHistory;}
 
+    // Setters
     public void setName(String name) {this.name = name;}
     public void setUsername(String username) {this.username = username;}
+    
+    // Methods
     public void newGame(Game game, boolean win, boolean offence, int score) {
         gamesPlayed.add(game);
         numGames++;
