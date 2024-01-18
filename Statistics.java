@@ -97,7 +97,7 @@ public class Statistics {
         while (tempNode.getNext() != null) {
             tempNode = tempNode.getNext();
         } 
-        Node newNode = new Node(ID, data, null);
+        Node newNode = new Node(ID, data, tempNode, null);
         tempNode.setNext(newNode);
     }
 
@@ -119,10 +119,10 @@ public class Statistics {
         Node nodeC;
         
         if (nodeA.getMember().getStats()[stat] < nodeB.getMember().getStats()[stat]) {
-            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null); 
+            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null, null); 
             nodeA = nodeA.getNext();
         } else {
-            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null);
+            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null, null);
             nodeB = nodeB.getNext();
         }
 
@@ -154,7 +154,7 @@ public class Statistics {
         while (tempNode.getNext() != null) {
             tempNode = tempNode.getNext();
         } 
-        Node newNode = new Node(ID, data, null);
+        Node newNode = new Node(ID, data, tempNode, null);
         tempNode.setNext(newNode);
     }
 
@@ -176,10 +176,10 @@ public class Statistics {
         Node nodeC;
         
         if (nodeA.getMember().getStats()[stat] < nodeB.getMember().getStats()[stat]) {
-            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null); 
+            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null, null); 
             nodeA = nodeA.getNext();
         } else {
-            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null);
+            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null, null);
             nodeB = nodeB.getNext();
         }
 
