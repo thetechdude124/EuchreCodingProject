@@ -28,15 +28,15 @@ public class Statistics {
     private Node node;
 
     public Statistics() {
-        this.membersByNumGames = new Node(0, null, null);
-        this.membersByWins = new Node(0, null, null);
-        this.membersByLosses = new Node(0, null, null);
-        this.membersByOWins = new Node(0, null, null);
-        this.membersByDWins = new Node(0, null, null);
-        this.membersByOLosses = new Node(0, null, null);
-        this.membersByDLosses = new Node(0, null, null);
-        this.membersByWLRate = new Node(0, null, null);
-        this.membersByAvgScore = new Node(0, null, null);
+        this.membersByNumGames = new Node(0, null, null, null);
+        this.membersByWins = new Node(0, null, null, null);
+        this.membersByLosses = new Node(0, null, null, null);
+        this.membersByOWins = new Node(0, null, null, null);
+        this.membersByDWins = new Node(0, null, null, null);
+        this.membersByOLosses = new Node(0, null, null, null);
+        this.membersByDLosses = new Node(0, null, null, null);
+        this.membersByWLRate = new Node(0, null, null, null);
+        this.membersByAvgScore = new Node(0, null, null, null);
         this.memberStats = new ArrayList<Node>();
         memberStats.add(membersByNumGames);
         memberStats.add(membersByWins);
@@ -47,15 +47,15 @@ public class Statistics {
         memberStats.add(membersByDLosses);
         memberStats.add(membersByWLRate);
         memberStats.add(membersByAvgScore);
-        this.partnershipsByNumGames = new Node(0, null, null);
-        this.partnershipsByWins = new Node(0, null, null);
-        this.partnershipsByLosses = new Node(0, null, null);
-        this.partnershipsByOWins = new Node(0, null, null);
-        this.partnershipsByDWins = new Node(0, null, null);
-        this.partnershipsByOLosses = new Node(0, null, null);
-        this.partnershipsByDLosses = new Node(0, null, null);
-        this.partnershipsByWLRate = new Node(0, null, null);
-        this.partnershipsByAvgScore = new Node(0, null, null);
+        this.partnershipsByNumGames = new Node(0, null, null, null);
+        this.partnershipsByWins = new Node(0, null, null, null);
+        this.partnershipsByLosses = new Node(0, null, null, null);
+        this.partnershipsByOWins = new Node(0, null, null, null);
+        this.partnershipsByDWins = new Node(0, null, null, null);
+        this.partnershipsByOLosses = new Node(0, null, null, null);
+        this.partnershipsByDLosses = new Node(0, null, null, null);
+        this.partnershipsByWLRate = new Node(0, null, null, null);
+        this.partnershipsByAvgScore = new Node(0, null, null, null);
         this.partnershipStats = new ArrayList<Node>();
         partnershipStats.add(partnershipsByNumGames);
         partnershipStats.add(partnershipsByWins);
@@ -97,7 +97,7 @@ public class Statistics {
         while (tempNode.getNext() != null) {
             tempNode = tempNode.getNext();
         } 
-        Node newNode = new Node(ID, data, null);
+        Node newNode = new Node(ID, data, tempNode, null);
         tempNode.setNext(newNode);
     }
 
@@ -119,10 +119,10 @@ public class Statistics {
         Node nodeC;
         
         if (nodeA.getMember().getStats()[stat] < nodeB.getMember().getStats()[stat]) {
-            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null); 
+            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null, null); 
             nodeA = nodeA.getNext();
         } else {
-            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null);
+            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null, null);
             nodeB = nodeB.getNext();
         }
 
@@ -150,11 +150,11 @@ public class Statistics {
     }
 
     // This section is for the sorting of any Partnership LinkedLists
-    public void partnershipAddToEnd(Node tempNode, int ID, Member data) {  
+    public void partnershipAddToEnd(Node tempNode, int ID, Partnership data) {  
         while (tempNode.getNext() != null) {
             tempNode = tempNode.getNext();
         } 
-        Node newNode = new Node(ID, data, null);
+        Node newNode = new Node(ID, data, tempNode, null);
         tempNode.setNext(newNode);
     }
 
@@ -175,31 +175,31 @@ public class Statistics {
     private Node partnershipMerge(Node nodeA, Node nodeB, int stat) {
         Node nodeC;
         
-        if (nodeA.getMember().getStats()[stat] < nodeB.getMember().getStats()[stat]) {
-            nodeC = new Node(nodeA.getID(), nodeA.getMember(), null); 
+        if (nodeA.getPartnership().getStats()[stat] < nodeB.getPartnership().getStats()[stat]) {
+            nodeC = new Node(nodeA.getID(), nodeA.getPartnership(), null, null); 
             nodeA = nodeA.getNext();
         } else {
-            nodeC = new Node(nodeB.getID(), nodeB.getMember(), null);
+            nodeC = new Node(nodeB.getID(), nodeB.getPartnership(), null, null);
             nodeB = nodeB.getNext();
         }
 
         while (nodeA != null && nodeB != null) {
-            if (nodeA.getMember().getStats()[stat] < nodeB.getMember().getStats()[stat]) {
-                partnershipAddToEnd(nodeC, nodeA.getID(), nodeA.getMember());
+            if (nodeA.getPartnership().getStats()[stat] < nodeB.getPartnership().getStats()[stat]) {
+                partnershipAddToEnd(nodeC, nodeA.getID(), nodeA.getPartnership());
                 nodeA = nodeA.getNext();
             } else {
-                partnershipAddToEnd(nodeC, nodeB.getID(), nodeB.getMember());
+                partnershipAddToEnd(nodeC, nodeB.getID(), nodeB.getPartnership());
                 nodeB = nodeB.getNext();
             }
         }
 
         while (nodeA != null) {
-            partnershipAddToEnd(nodeC, nodeA.getID(), nodeA.getMember());
+            partnershipAddToEnd(nodeC, nodeA.getID(), nodeA.getPartnership());
             nodeA = nodeA.getNext();
         }
 
         while (nodeB != null) {
-            partnershipAddToEnd(nodeC, nodeB.getID(), nodeB.getMember());
+            partnershipAddToEnd(nodeC, nodeB.getID(), nodeB.getPartnership());
             nodeB = nodeB.getNext();
         }
 
