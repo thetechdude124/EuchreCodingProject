@@ -24,7 +24,7 @@ public class Node {
     public int getID() {return ID;}
     public Member getMember() {return member;}
     public Partnership getPartnership() {return partnership;}
-    public Node getPreviosu() {return previous;}
+    public Node getPrevious() {return previous;}
     public Node getNext() {return next;}
 
     public void setData(Member member) {this.member = member;}
