@@ -1,4 +1,3 @@
-package EuchreCodingProject;
 import java.util.ArrayList;
 
 public class Statistics {

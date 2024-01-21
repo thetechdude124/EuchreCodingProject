@@ -1,4 +1,3 @@
-package EuchreCodingProject;
 public class Round {
     private Member offencePlayer1;
     private Member offencePlayer2;

@@ -1,5 +1,3 @@
-package EuchreCodingProject;
-
 public class Node {
     private int ID;
     private Member member;

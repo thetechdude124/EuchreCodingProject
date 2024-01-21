@@ -1,5 +1,3 @@
-package EuchreCodingProject;
-
 public class Partnership extends Member {
     private Member member1;
     private Member member2;

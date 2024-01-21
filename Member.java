@@ -1,4 +1,3 @@
-package EuchreCodingProject;
 import java.util.LinkedList;
 public class Member {
     private String name;
