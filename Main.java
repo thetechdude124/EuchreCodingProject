@@ -6,7 +6,6 @@ public class Main {
 
         Statistics statistics = new Statistics();
 
-
         while (true) {    
             System.out.print("\nEUCHRE DATABASE\nType 'h' for a list of commands.\n> ");
             String cmd = input.nextLine().toLowerCase();
@@ -37,11 +36,11 @@ public class Main {
             // Add member
             else if (cmd.equals("am") || cmd.equals("addmember")) {
                 System.out.print("Enter the full name of the new member:\n> ");
-                String name = input.nextLine();
+                String name = input.nextLine().toLowerCase();
                 System.out.print("Enter a username for the new member:\n> ");
-                String username = input.nextLine();
+                String username = input.nextLine().toLowerCase();
                 
-                System.out.print("Sorry this username is taken.");
+                System.out.println("Sorry this username is taken.");
 
             }
 
@@ -63,7 +62,7 @@ public class Main {
             // Add tournament
             else if (cmd.equals("at") || cmd.equals("addtournament")) {
                 System.out.print("Enter the name of the tournament:\n> ");
-                String name = input.nextLine();
+                String name = input.nextLine().toLowerCase();
                 System.out.print("Choose the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)");
                 int numOfPlayers = Integer.parseInt(input.nextLine());
             }
@@ -73,34 +72,34 @@ public class Main {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
                 System.out.print("Enter the tournament game result:\nPlayer 1:\n> ");
-                String player1 = input.nextLine();
+                String player1 = input.nextLine().toLowerCase();
                 System.out.print("Player 2:\n> ");
-                String player2 = input.nextLine();
+                String player2 = input.nextLine().toLowerCase();
                 System.out.print("Player 3:\n> ");
-                String player3 = input.nextLine();
+                String player3 = input.nextLine().toLowerCase();
                 System.out.print("Player 4:\n> ");
-                String player4 = input.nextLine();
+                String player4 = input.nextLine().toLowerCase();
                 System.out.print("Offense points:\n> ");
-                String offensePoints = input.nextLine();
+                String offensePoints = input.nextLine().toLowerCase();
                 System.out.print("Defense points:\n> ");
-                String defensePoints = input.nextLine();
+                String defensePoints = input.nextLine().toLowerCase();
             }
             
             // GAME
             // Add game (not under tournament)
             else if (cmd.equals("ag") || cmd.equals("addgame")) {
                 System.out.print("Enter the game result:\nPlayer 1:\n> ");
-                String player1 = input.nextLine();
+                String player1 = input.nextLine().toLowerCase();
                 System.out.print("Player 2:\n> ");
-                String player2 = input.nextLine();
+                String player2 = input.nextLine().toLowerCase();
                 System.out.print("Player 3:\n> ");
-                String player3 = input.nextLine();
+                String player3 = input.nextLine().toLowerCase();
                 System.out.print("Player 4:\n> ");
-                String player4 = input.nextLine();
+                String player4 = input.nextLine().toLowerCase();
                 System.out.print("Offense points:\n> ");
-                String offensePoints = input.nextLine();
+                String offensePoints = input.nextLine().toLowerCase();
                 System.out.print("Defense points:\n> ");
-                String defensePoints = input.nextLine();
+                String defensePoints = input.nextLine().toLowerCase();
             }   
             
             // Add round
@@ -113,30 +112,164 @@ public class Main {
             // STATISTICS
             // To statistics
             else if (cmd.equals("s") || cmd.equals("statistics")) {
-                while (true) {
-                    System.out.print(   "\n---------------------STATISTICS---------------------\n" +
-                                        "'w' OR 'wins': Sorts by wins\n" +
-                                        "'l' OR 'losses': Sorts by losses\n" +
-                                        "'ow' OR 'offensivewins': Sorts by offensive wins\n" +
-                                        "'dw' OR 'defensivewins': Sorts by defensive wins\n" +
-                                        "'ol' OR 'offensivelosses': Sorts by offensive losses\n" +
-                                        "'dl' OR 'defensivelosses': Sorts by defensive losses\n" +
-                                        "'wlr' OR 'winlossrate': Sorts by the win/loss rate\n" +
-                                        "'as' OR 'averagescore': Sorts by the average score\n" +
-                                        "'e' OR 'exit': Exits statistics    " +
-                                        "\n----------------------------------------------------\nPlease select which statistics you would like to view:\n> ");
-                    String statscmd = input.nextLine();
+                System.out.print("Would you like to check stats for members or partnerships? (type 'm' or 'p')\n> ");
+                String choice = input.nextLine().toLowerCase();
+                
+                if (choice.equals("m") || choice.equals("members")) {
+                    while (true) {
+                        System.out.print(   "\n---------------------STATISTICS---------------------\n" +
+                                            "'ng' OR 'numberofgames': Sorts by number of games played\n" +
+                                            "'w' OR 'wins': Sorts by wins\n" +
+                                            "'l' OR 'losses': Sorts by losses\n" +
+                                            "'ow' OR 'offensivewins': Sorts by offensive wins\n" +
+                                            "'dw' OR 'defensivewins': Sorts by defensive wins\n" +
+                                            "'ol' OR 'offensivelosses': Sorts by offensive losses\n" +
+                                            "'dl' OR 'defensivelosses': Sorts by defensive losses\n" +
+                                            "'wlr' OR 'winlossrate': Sorts by the win/loss rate\n" +
+                                            "'as' OR 'averagescore': Sorts by the average score\n" +
+                                            "'e' OR 'exit': Exits statistics" +
+                                            "\n----------------------------------------------------\n\nPlease select which statistics you would like to view:\n> ");
+                        String statscmd = input.nextLine().toLowerCase();
+
+                        // Number of games
+                        if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
+                            System.out.println(statistics.getMemberRanksByStat(0));
+                        }
+
+                        // Wins
+                        if (statscmd.equals("w") || statscmd.equals("wins")) {
+                            statistics.getMemberRanksByStat(1);
+                        }
+
+                        // Losses
+                        if (statscmd.equals("l") || statscmd.equals("losses")) {
+                            statistics.getMemberRanksByStat(2);
+                        }
+
+                        // Offensive wins
+                        if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
+                            statistics.getMemberRanksByStat(3);
+                        }
+
+                        // Defensive wins
+                        if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
+                            statistics.getMemberRanksByStat(4);
+                        }
+                        
+                        // Offensive losses
+                        if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
+                            statistics.getMemberRanksByStat(5);
+                        }
+
+                        // Defensive losses
+                        if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
+                            statistics.getMemberRanksByStat(6);
+                        }
+
+                        // Win loss rate
+                        if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
+                            statistics.getMemberRanksByStat(7);
+                        }
+
+                        // Average score
+                        if (statscmd.equals("as") || statscmd.equals("averagescore")) {
+                            statistics.getMemberRanksByStat(8);
+                        }
+                        
+                        // Exit
+                        if (statscmd.equals("e") || statscmd.equals("exit")) {
+                            System.out.println("Exited statistics.");
+                            break;
+                        }
+                    }
+                }
+                
+                else if (choice.equals("p") || choice.equals("partnerships")) {
+                    while (true) {
+                        System.out.print(   "\n---------------------STATISTICS---------------------\n" +
+                                            "'n' OR 'wins': Sorts by number of games played\n" +
+                                            "'w' OR 'wins': Sorts by wins\n" +
+                                            "'l' OR 'losses': Sorts by losses\n" +
+                                            "'ow' OR 'offensivewins': Sorts by offensive wins\n" +
+                                            "'dw' OR 'defensivewins': Sorts by defensive wins\n" +
+                                            "'ol' OR 'offensivelosses': Sorts by offensive losses\n" +
+                                            "'dl' OR 'defensivelosses': Sorts by defensive losses\n" +
+                                            "'wlr' OR 'winlossrate': Sorts by the win/loss rate\n" +
+                                            "'as' OR 'averagescore': Sorts by the average score\n" +
+                                            "'e' OR 'exit': Exits statistics" +
+                                            "\n----------------------------------------------------\n\nPlease select which statistics you would like to view:\n> ");
+                        String statscmd = input.nextLine().toLowerCase();
+
+                        // Number of games
+                        if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
+                            statistics.getMemberRanksByStat(0);
+                        }
+
+                        // Wins
+                        if (statscmd.equals("w") || statscmd.equals("wins")) {
+                            statistics.getMemberRanksByStat(1);
+                        }
+
+                        // Losses
+                        if (statscmd.equals("l") || statscmd.equals("losses")) {
+                            statistics.getMemberRanksByStat(2);
+                        }
+
+                        // Offensive wins
+                        if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
+                            statistics.getMemberRanksByStat(3);
+                        }
+
+                        // Defensive wins
+                        if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
+                            statistics.getMemberRanksByStat(4);
+                        }
+                        
+                        // Offensive losses
+                        if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
+                            statistics.getMemberRanksByStat(5);
+                        }
+
+                        // Defensive losses
+                        if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
+                            statistics.getMemberRanksByStat(6);
+                        }
+
+                        // Win loss rate
+                        if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
+                            statistics.getMemberRanksByStat(7);
+                        }
+
+                        // Average score
+                        if (statscmd.equals("as") || statscmd.equals("averagescore")) {
+                            statistics.getMemberRanksByStat(8);
+                        }
+                        
+                        // Exit
+                        if (statscmd.equals("e") || statscmd.equals("exit")) {
+                            System.out.println("Exited statistics.");
+                            break;
+                        }
+                    }
+                }
+
+                else {
+                    System.out.println("Invalid input.");
                 }
             }
-                
+
+            // EXIT
+            // Exits the program    
             else if (cmd.equals("e") || cmd.equals("exit")) {
                 System.out.print("Exited database.");
+                break;
             }
 
             // Invalid command
             else {
-                System.out.println("Sorry that was an invalid command.");
+                System.out.println("Invalid command.");
             }
         }
+        input.close();
     }
 }
