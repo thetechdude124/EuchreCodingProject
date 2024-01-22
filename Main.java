@@ -125,7 +125,7 @@ public class Main {
                                         "'as' OR 'averagescore': Sorts by the average score\n" +
                                         "'e' OR 'exit': Exits statistics    " +
                                         "\n----------------------------------------------------\nPlease select which statistics you would like to view:\n> ");
-                    String statscmd = input.nextLine().toLowerCase();
+                    String statscmd = input.nextLine();
                 }
             }
                 
