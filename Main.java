@@ -40,8 +40,11 @@ public class Main {
                 System.out.print("Enter a username for the new member:\n> ");
                 String username = input.nextLine().toLowerCase();
                 
+                // method to check if username is taken
+
                 System.out.println("Sorry this username is taken.");
 
+                // print out the information
             }
 
             // Remove member
@@ -49,6 +52,7 @@ public class Main {
                 System.out.print("Enter the ID number of the member being removed:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
                 
+                // method to check if id is real
             }
             
             // View member
@@ -56,6 +60,7 @@ public class Main {
                 System.out.print("Enter the ID number of the member being viewed:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
 
+                // method to check if id is real
             }
             
             // TOURNAMENTS
@@ -71,35 +76,39 @@ public class Main {
             else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
-                System.out.print("Enter the tournament game result:\nPlayer 1:\n> ");
+                System.out.print("Enter the tournament game info:\nPlayer 1 ID:\n> ");
                 String player1 = input.nextLine().toLowerCase();
-                System.out.print("Player 2:\n> ");
+                System.out.print("Player 2 ID:\n> ");
                 String player2 = input.nextLine().toLowerCase();
-                System.out.print("Player 3:\n> ");
+                System.out.print("Player 3 ID:\n> ");
                 String player3 = input.nextLine().toLowerCase();
-                System.out.print("Player 4:\n> ");
+                System.out.print("Player 4 ID:\n> ");
                 String player4 = input.nextLine().toLowerCase();
                 System.out.print("Offense points:\n> ");
                 String offensePoints = input.nextLine().toLowerCase();
                 System.out.print("Defense points:\n> ");
                 String defensePoints = input.nextLine().toLowerCase();
+
+                // print out the information
             }
             
             // GAME
             // Add game (not under tournament)
             else if (cmd.equals("ag") || cmd.equals("addgame")) {
-                System.out.print("Enter the game result:\nPlayer 1:\n> ");
+                System.out.print("Enter the game info:\nPlayer 1 ID:\n> ");
                 String player1 = input.nextLine().toLowerCase();
-                System.out.print("Player 2:\n> ");
+                System.out.print("Player 2 ID:\n> ");
                 String player2 = input.nextLine().toLowerCase();
-                System.out.print("Player 3:\n> ");
+                System.out.print("Player 3 ID:\n> ");
                 String player3 = input.nextLine().toLowerCase();
-                System.out.print("Player 4:\n> ");
+                System.out.print("Player 4 ID:\n> ");
                 String player4 = input.nextLine().toLowerCase();
                 System.out.print("Offense points:\n> ");
                 String offensePoints = input.nextLine().toLowerCase();
                 System.out.print("Defense points:\n> ");
                 String defensePoints = input.nextLine().toLowerCase();
+
+                // print out the information
             }   
             
             // Add round
@@ -107,6 +116,7 @@ public class Main {
                 System.out.print("Please enter the ID number for the game:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
 
+                // method to check if id is real
             }
             
             // STATISTICS
