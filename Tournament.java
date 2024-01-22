@@ -10,7 +10,7 @@ public class Tournament {
 
     // Overload constructor for onGoing and completed games 
 
-    // onGoing games
+    // Ongoing games
     public Tournament(String style) {
         this.tournamentID = tournamentIDGen++;
         this.style = style;
