@@ -226,7 +226,7 @@ public class Main {
                     System.out.print("Choose the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
                     int numOfPlayers = Integer.parseInt(input.nextLine());
 
-                    // NEEDS FINISHING
+                    
                 }
                 
                 // Adds a completed game to the tournament
@@ -321,7 +321,7 @@ public class Main {
                     }
 
                     else {
-
+                        System.out.print("Please enter the ");
                     }
                 }
                 

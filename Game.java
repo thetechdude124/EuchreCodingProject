@@ -6,9 +6,9 @@ public class Game {
     private Member player2; 
     private Member player3;
     private Member player4;
-    private int p1p2Points;
-    private int p3p4Points;
-    private boolean p1p2Win;
+    private int team1Points;
+    private int team2Points;
+    private boolean team1Win;
     private boolean onGoing;
     private HashMap<Integer, Round> rounds;
     private static int roundIDGen;
@@ -27,15 +27,15 @@ public class Game {
     }
 
     // Completed games
-    public Game(Member player1, Member player2, Member player3, Member player4, int p1p2Points, int p3p4Points, HashMap<Integer, Round> rounds) {
+    public Game(Member player1, Member player2, Member player3, Member player4, int team1Points, int team2Points, HashMap<Integer, Round> rounds) {
         this.gameID = gameIDGen++;
         this.player1 = player1;
         this.player2 = player2;
         this.player3 = player3;
         this.player4 = player4; 
-        this.p1p2Points = p1p2Points;
-        this.p3p4Points = p3p4Points;
-        this.p1p2Win = (p1p2Points > p3p4Points) ? true : false; 
+        this.team1Points = team1Points;
+        this.team2Points = team2Points;
+        this.team1Win = (team1Points > team2Points) ? true : false; 
         this.onGoing = false;
         this.rounds = rounds;
     }
@@ -46,9 +46,9 @@ public class Game {
     public Member getPlayer2() {return player2;}
     public Member getPlayer3() {return player3;}
     public Member getPlayer4() {return player4;}
-    public int getp1p2Points() {return p1p2Points;}
-    public int getp3p4Points() {return p3p4Points;}
-    public boolean getp1p2Win() {return p1p2Win;}
+    public int getteam1Points() {return team1Points;}
+    public int getteam2Points() {return team2Points;}
+    public boolean getteam1Win() {return team1Win;}
     public boolean getOnGoing() {return onGoing;}
     public HashMap<Integer, Round> getRounds() {return rounds;}
     public Round getRound(int roundID) {return rounds.get(roundID);}
@@ -56,18 +56,18 @@ public class Game {
     public void setGameID(int gameID) {this.gameID = gameID;}
 
     // Completed rounds
-    public void addRound(boolean p1p2Offence, Member p1p2Player1, Member p1p2Player2, Member p3p4Player1, Member p3p4Player2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int p1p2Tricks, int p3p4Tricks, boolean p1p2Win, int pointsAwarded) {
-        if (p1p2Offence) {rounds.put(roundIDGen, new Round(roundIDGen++, p1p2Player1, p1p2Player2, p3p4Player1, p3p4Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, p1p2Tricks, p3p4Tricks, p1p2Win, pointsAwarded));}
-        else {rounds.put(roundIDGen, new Round(roundIDGen++, p3p4Player1, p3p4Player2, p1p2Player1, p1p2Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, p3p4Tricks, p1p2Tricks, !p1p2Win, pointsAwarded));}
-        if (p1p2Win) {this.p1p2Points += pointsAwarded;}
-        else {this.p3p4Points += pointsAwarded;}
-        if (p1p2Points >= 10) {endGame(true);} 
-        else if (p3p4Points >= 10) {endGame(false);}
+    public void addRound(boolean team1Offence, Member team1Player1, Member team1Player2, Member team2Player1, Member team2Player2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int team1Tricks, int team2Tricks, boolean team1Win, int pointsAwarded) {
+        if (team1Offence) {rounds.put(roundIDGen, new Round(roundIDGen++, team1Player1, team1Player2, team2Player1, team2Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, team1Tricks, team2Tricks, team1Win, pointsAwarded));}
+        else {rounds.put(roundIDGen, new Round(roundIDGen++, team2Player1, team2Player2, team1Player1, team1Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, team2Tricks, team1Tricks, !team1Win, pointsAwarded));}
+        if (team1Win) {this.team1Points += pointsAwarded;}
+        else {this.team2Points += pointsAwarded;}
+        if (team1Points >= 10) {endGame(true);} 
+        else if (team2Points >= 10) {endGame(false);}
     }
 
-    public void endGame(boolean p1p2Win) {
+    public void endGame(boolean team1Win) {
         if (onGoing) {
-            this.p1p2Win = p1p2Win;
+            this.team1Win = team1Win;
             onGoing = false;
         }
     }
