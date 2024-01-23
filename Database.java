@@ -148,7 +148,7 @@ public class Database {
         System.out.println("Rank: |  Stat: |  Name:");
         node = memberStats[stat];
         for (int i = 1; i <= 5; i++) {
-            System.out.println(i + ".    |  " + String.format("%03d", allMembers.get(node.getID()).getStats()[stat]) + "   |  " + allMembers.get(node.getID()).getName());
+            System.out.println(i + ".       " + allMembers.get(node.getID()).getStats()[stat] + "       " + allMembers.get(node.getID()).getName());
             if (node.getNext() == null) {return;}
             node = node.getNext();
         }
@@ -159,7 +159,7 @@ public class Database {
         System.out.println("Rank: |  Stat: |  Name:");
         node = partnershipStats[stat];
         for (int i = 1; i <= 5; i++) {
-            System.out.println(i + ".    |  " + String.format("%03d", allPartnerships.get(node.getID()).getStats()[stat]) + "   |  " + allPartnerships.get(node.getID()).getName());
+            System.out.println(i + ".       " + allPartnerships.get(node.getID()).getStats()[stat] + "       " + allPartnerships.get(node.getID()).getName());
             if (node.getNext() == null) {return;}
             node = node.getNext();
         }
