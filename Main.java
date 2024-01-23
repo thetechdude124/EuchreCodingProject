@@ -44,7 +44,8 @@ public class Main {
 
         //Declare a new scanner and statistics object
         Scanner input = new Scanner(System.in);
-        Statistics statistics = new Statistics();
+
+        Database statistics = new Database();
 
         //Repeat ad nauseum unless the application is quit
         while (true) {    
@@ -83,9 +84,16 @@ public class Main {
                 System.out.print("Enter a username for the new member:\n> ");
                 String username = input.nextLine().toLowerCase();
                 
-                // method to check if username is taken
+                if (true) {
+                    Member newMember = new Member(name, username);
+                    statistics.addMember(newMember);
+                }
 
-                System.out.println("Sorry this username is taken.");
+                else if (true) {
+                    System.out.println("Sorry this username is taken.");
+                }
+
+                // method to check if username is taken
 
                 // print out the information
             }
@@ -95,7 +103,13 @@ public class Main {
                 System.out.print("Enter the ID number of the member being removed:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
                 
-                // method to check if id is real
+                if (statistics.getMember(ID) == null) {
+                    System.out.println("Invalid ID.");
+                }
+
+                else {
+
+                }
             }
             
             // View member
@@ -119,18 +133,123 @@ public class Main {
             else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
-                System.out.print("Enter the tournament game info:\nPlayer 1 ID:\n> ");
-                String player1 = input.nextLine().toLowerCase();
-                System.out.print("Player 2 ID:\n> ");
-                String player2 = input.nextLine().toLowerCase();
-                System.out.print("Player 3 ID:\n> ");
-                String player3 = input.nextLine().toLowerCase();
-                System.out.print("Player 4 ID:\n> ");
-                String player4 = input.nextLine().toLowerCase();
-                System.out.print("Offense points:\n> ");
-                String offensePoints = input.nextLine().toLowerCase();
-                System.out.print("Defense points:\n> ");
-                String defensePoints = input.nextLine().toLowerCase();
+                System.out.println("Enter the tournament game info:");
+                int player1;
+                int player2;
+                int player3;
+                int player4;
+                int offensePoints;
+                int defensePoints;
+
+                while (true) {
+                    System.out.print("Player 1 ID:\n> ");
+                    player1 = Integer.parseInt(input.nextLine());
+    
+                    if (statistics.getMember(player1) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Player 2 ID:\n> ");
+                    player2 = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Player 3 ID:\n> ");
+                    player3 = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Player 4 ID:\n> ");
+                    player4 = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Offense points:\n> ");
+                    offensePoints = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Defense points:\n> ");
+                    defensePoints = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                Game game = new Game(statistics.getMember(player1), statistics.getMember(player2), statistics.getMember(player3), statistics.getMember(player4), offensePoints, defensePoints, null);
 
                 // print out the information
             }
@@ -256,48 +375,47 @@ public class Main {
 
                         // Number of games
                         if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
-                            System.out.println();
                             statistics.getMemberRanksByStat(0);
                         }
 
                         // Wins
                         if (statscmd.equals("w") || statscmd.equals("wins")) {
-                            statistics.getMemberRanksByStat(1);
+                            statistics.getPartnershipRanksByStat(1);
                         }
 
                         // Losses
                         if (statscmd.equals("l") || statscmd.equals("losses")) {
-                            statistics.getMemberRanksByStat(2);
+                            statistics.getPartnershipRanksByStat(2);
                         }
 
                         // Offensive wins
                         if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
-                            statistics.getMemberRanksByStat(3);
+                            statistics.getPartnershipRanksByStat(3);
                         }
 
                         // Defensive wins
                         if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
-                            statistics.getMemberRanksByStat(4);
+                            statistics.getPartnershipRanksByStat(4);
                         }
                         
                         // Offensive losses
                         if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
-                            statistics.getMemberRanksByStat(5);
+                            statistics.getPartnershipRanksByStat(5);
                         }
 
                         // Defensive losses
                         if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
-                            statistics.getMemberRanksByStat(6);
+                            statistics.getPartnershipRanksByStat(6);
                         }
 
                         // Win loss rate
                         if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
-                            statistics.getMemberRanksByStat(7);
+                            statistics.getPartnershipRanksByStat(7);
                         }
 
                         // Average score
                         if (statscmd.equals("as") || statscmd.equals("averagescore")) {
-                            statistics.getMemberRanksByStat(8);
+                            statistics.getPartnershipRanksByStat(8);
                         }
                         
                         // Exit
