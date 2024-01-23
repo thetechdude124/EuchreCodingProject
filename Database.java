@@ -37,7 +37,6 @@ public class Database {
     public Database() {
         this.allMembers = new HashMap<Integer, Member>();
         this.memberStats = new Node[9];
-
         this.allPartnerships = new HashMap<Integer, Partnership>();
         this.partnershipStats = new Node[9];
     }
@@ -111,7 +110,7 @@ public class Database {
     public boolean checkUsername(String username) {
         List<Member> list = new LinkedList<Member>(allMembers.values());
         for (Member i : list) {
-            if (i.getUsername() == username) {return false;}
+            if (i.getUsername().equals(username)) {return false;}
         }
         return true;        // this means this is a unique username
     }
@@ -124,6 +123,22 @@ public class Database {
     public Node getPartnershipRanksByStat(int stat) {
         partnershipStats[stat] = partnershipMergeSort(partnershipStats[stat], partnershipStats.length, stat);
         return partnershipStats[stat];
+    }
+
+    public void printMemberTop5(int stat) {
+        System.out.println("Rank: |  Stat: |  Name:");
+        node = memberStats[stat];
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i + ".    |  " + String.format("%03d", allMembers.get(node.getID()).getStats()[stat]) + "   |  " + allMembers.get(node.getID()).getName());
+        }
+    }
+
+    public void printPartnershipTop5(int stat) {
+        System.out.println("Rank: |  Stat: |  Name:");
+        node = partnershipStats[stat];
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i + ".    |  " + String.format("%03d", allPartnerships.get(node.getID()).getStats()[stat]) + "   |  " + allPartnerships.get(node.getID()).getName());
+        }
     }
 
     private void addToEnd(Node tempNode, int userID) {  
