@@ -225,10 +225,24 @@ public class Main {
                 // TOURNAMENTS
                 // Add tournament
                 else if (cmd.equals("at") || cmd.equals("addtournament")) {
-                    System.out.print("Enter the name of the tournament:\n> ");
-                    String name = input.nextLine().toLowerCase();
-                    System.out.print("Choose the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
-                    int numOfPlayers = Integer.parseInt(input.nextLine());
+                    LinkedList<Member> players = new LinkedList<Member>();
+                    System.out.print("Input the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
+                    int numPlayers = Integer.parseInt(input.nextLine());
+                    for (int i = 0; i < numPlayers; i++) {
+                        while (true) {
+                            System.out.println("Input the member ID of the player to add (any key to exit)");
+                            tempID = Integer.parseInt(input.nextLine());
+                            if (database.getMember(tempID) == null) {
+                                System.out.println("Invalid ID");
+                            } else {
+                                break;
+                            }
+                        }
+                        players.add(database.getMember(tempID));
+                    }
+                    Tournament tempT = new Tournament(players, numPlayers);
+                    database.addTournament(tempT);
+                    System.out.println("This tournament has been successfully added, with ID #" + database.getTournament(tempT.getTournamentID()));
                 }
                 
                 // Adds a completed game to the tournament

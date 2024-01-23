@@ -77,7 +77,7 @@ public class Database {
 
     public void addGame(Game game) {allGames.put(game.getGameID(), game);}
 
-    public void addtournament(Tournament tournament) {allTournaments.put(tournament.getTournamentID(), tournament);}
+    public void addTournament(Tournament tournament) {allTournaments.put(tournament.getTournamentID(), tournament);}
 
     public void removeMember(int userID) {
         if (allMembers.containsKey(userID)) {
