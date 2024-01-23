@@ -22,7 +22,7 @@ public class Main {
         private static String BOLD_TEXT = "\033[0;1m";
 
         //IN DEVELOPMENT FLAG - this disables all animations for development acceleration purposes.
-        private static boolean IN_DEVELOPMENT = true;
+        private static boolean IN_DEVELOPMENT = false;
 
 
     //Function to render "All Commands" menu when necessary
