@@ -1,5 +1,5 @@
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.LinkedList;
 
 public class Database {
@@ -37,7 +37,6 @@ public class Database {
     public Database() {
         this.allMembers = new HashMap<Integer, Member>();
         this.memberStats = new Node[9];
-
         this.allPartnerships = new HashMap<Integer, Partnership>();
         this.partnershipStats = new Node[9];
     }
@@ -58,20 +57,62 @@ public class Database {
 
     public void addMember(Member member) {
         allMembers.put(member.getUserID(), member);
-        for (int i = 0; i <= 9; i++) {
-            memberStats[i] = new Node(member.getUserID(), null, memberStats[i]);
+        for (Node i : memberStats) {
+            i = new Node(member.getUserID(), null, i);
         }
     }
 
     public void addPartnership(Partnership partnership) {
         allPartnerships.put(partnership.getUserID(), partnership);
-        for (int i = 0; i <= 9; i++) {
-            partnershipStats[i] = new Node(partnership.getUserID(), null, partnershipStats[i]);
+        for (Node i : partnershipStats) {
+            i = new Node(partnership.getUserID(), null, i);
         }
     }
 
-    public void checkUsername(String username) {
-        
+    public void removeMember(int userID) {
+        if (allMembers.containsKey(userID)) {
+            allMembers.remove(userID);
+            for (Node i : memberStats) {
+                node = i;
+                if (node != null) {
+                    while (node.getNext() != null) {
+                        if (node.getID() == userID) {
+                            node.getPrevious().setNext(node.getNext());
+                            node.getNext().setPrevious(node.getPrevious());
+                            break;
+                        }
+                        node = node.getNext(); 
+                    }
+                } 
+            }
+        }
+    }
+
+    public void removePartnership(int userID) {
+        if (allPartnerships.containsKey(userID)) {
+            allPartnerships.remove(userID);
+            for (Node i : partnershipStats) {
+                node = i;
+                if (node != null) {
+                    while (node.getNext() != null) {
+                        if (node.getID() == userID) {
+                            node.getPrevious().setNext(node.getNext());
+                            node.getNext().setPrevious(node.getPrevious());
+                            break;
+                        }
+                        node = node.getNext(); 
+                    }
+                } 
+            }
+        }
+    }
+
+    public boolean checkUsername(String username) {
+        List<Member> list = new LinkedList<Member>(allMembers.values());
+        for (Member i : list) {
+            if (i.getUsername().equals(username)) {return false;}
+        }
+        return true;        // this means this is a unique username
     }
 
     public Node getMemberRanksByStat(int stat) {
@@ -84,11 +125,25 @@ public class Database {
         return partnershipStats[stat];
     }
 
+    public void printMemberTop5(int stat) {
+        System.out.println("Rank: |  Stat: |  Name:");
+        node = memberStats[stat];
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i + ".    |  " + String.format("%03d", allMembers.get(node.getID()).getStats()[stat]) + "   |  " + allMembers.get(node.getID()).getName());
+        }
+    }
+
+    public void printPartnershipTop5(int stat) {
+        System.out.println("Rank: |  Stat: |  Name:");
+        node = partnershipStats[stat];
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i + ".    |  " + String.format("%03d", allPartnerships.get(node.getID()).getStats()[stat]) + "   |  " + allPartnerships.get(node.getID()).getName());
+        }
+    }
+
     private void addToEnd(Node tempNode, int userID) {  
         if (tempNode != null) {
-            while (tempNode.getNext() != null) {
-                tempNode = tempNode.getNext();
-            } 
+            while (tempNode.getNext() != null) {tempNode = tempNode.getNext();} 
         }
         Node newNode = new Node(userID, tempNode, null);
         tempNode.setNext(newNode);
