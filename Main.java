@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 //The main class
 public class Main {
@@ -16,8 +17,12 @@ public class Main {
         String BLUE_COLOUR = "\u001B[34m";
         //WHITE - help and administrative commands.
         String WHITE_COLOUR = "\u001B[37m";
-        //PURPLE - all headers.
+        //PURPLE - all headers and command interfaces.
         String PURPLE_COLOUR = "\u001B[35m";
+        
+        //Set bold and plain text markers
+        String PLAIN_TEXT = "\033[0;0m";
+        String BOLD_TEXT = "\033[0;1m";
 
 
         //Display application header.
@@ -26,7 +31,7 @@ public class Main {
         System.out.println(
             """
                 _______   ___  ___  ________  ___  ___  ________  _______           _____ ______   ________  ________   ________  ________  _______   ________         
-                |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
+               |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
                 \\ \\   __/|\\ \\  \\\\\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\|\\  \\ \\   __/|        \\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\\\ \\  \\ \\  \\|\\  \\ \\  \\___|\\ \\   __/|\\ \\  \\|\\  \\       
                  \\ \\  \\_|/_\\ \\  \\\\\\  \\ \\  \\    \\ \\   __  \\ \\   _  _\\ \\  \\_|/__       \\ \\  \\\\|__| \\  \\ \\   __  \\ \\  \\\\ \\  \\ \\   __  \\ \\  \\  __\\ \\  \\_|/_\\ \\   _  _\\      
                   \\ \\  \\_|\\ \\ \\  \\\\\\  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\  \\\\ \\  \\_|\\ \\       \\ \\  \\    \\ \\  \\ \\  \\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\|\\  \\ \\  \\_|\\ \\ \\  \\\\  \\| ___ 
@@ -34,13 +39,24 @@ public class Main {
                     \\|_______|\\|_______|\\|_______|\\|__|\\|__|\\|__|\\|__|\\|_______|        \\|__|     \\|__|\\|__|\\|__|\\|__| \\|__|\\|__|\\|__|\\|_______|\\|_______|\\|__|\\|__\\|__|
             """
         );
-        System.out.println("==============================================================================================================================================================");
+        System.out.println("==============================================================================================================================================================" + DEFAULT_COLOUR);
 
-        System.out.println();
-        System.out.println(DEFAULT_COLOUR + "-------------------------------------------------------------------------------------------------------");
-        System.out.println("Hey there! Welcome to the EUCHRE CLUB MANAGER (ECM), where you can manage your Euchre club with ease.");
-        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("\n");
+        // System.out.println( "-------------------------------------------------------------------------------------------------------\n");
+        try {TimeUnit.SECONDS.sleep(2);}
+        catch (Exception e) {}
+        System.out.println(BOLD_TEXT + "👋 Hey there! Welcome to the EUCHRE CLUB MANAGER (ECM)," + " where you can manage your Euchre club with ease." + PLAIN_TEXT);
         
+        try {TimeUnit.SECONDS.sleep(2);}
+        catch (Exception e) {}
+        System.out.println("\n💡 ECM acts as a repository for all your members, tournaments, games, and player statistics.");
+        System.out.println("📝 Start by adding a few players. Enter your commands next to the 🔍 symbol.\n");
+        try {TimeUnit.SECONDS.sleep(2);}
+        catch (Exception e) {}
+        // System.out.println("-------------------------------------------------------------------------------------------------------");
+
+
+        System.out.println("Before we begin, here's a list of all the commands.");
 
         //Declare a new scanner and statistics object
         Scanner input = new Scanner(System.in);
@@ -50,29 +66,36 @@ public class Main {
         //Repeat ad nauseum unless the application is quit
         while (true) {    
 
-            System.out.print("\nEUCHRE DATABASE\nType 'h' for a list of commands.\n> ");
+            System.out.print("\nWhat would you like to do next? Press 'h' for help. \n\n🔍");
             String cmd = input.nextLine().toLowerCase();
     
             // Help
             if (cmd.equals("h")) {
-                System.out.print(   "\n--------------------------COMMANDS--------------------------\n" +
-                                    "Member:\n" +
-                                    "'am' OR 'addmember': Adds a member to the database\n" +
-                                    "'rm' OR 'removemember': Removes a member from the database\n" +
-                                    "'vm' OR 'viewmember': Searches for a member in the database\n" +
-                                    "\nTournament:\n" +
-                                    "'at' OR 'addtournament': Adds a tournament to the database\n" +
-                                    "'atg' OR 'addtournamentgame': Adds game to the tournament\n" +
-                                    "\nGame:\n" +
-                                    "'ag' OR 'addgame': Adds a game to the database\n" +
-                                    "'ar' OR 'addround': Adds a round to the game\n" +
-                                    "\nStatistics:\n" +
-                                    "'s' OR 'statistics': Go to the statistics commands\n" +
-                                    "\nHelp:\n" +
-                                    "'h' OR 'help': Brings up a commands list\n" +
-                                    "\nExit:\n" +
-                                    "'e' OR 'exit': Exits the database" +
-                                    "\n------------------------------------------------------------\n");
+                System.out.print(   "\n-------------------------- ALL COMMANDS --------------------------\n" +
+
+                                    "\033[0;0m" + "\nMEMBER CLASS:\n\n" + "\033[0;1m" +
+                                    GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
+                                    RED_COLOUR + "'rm' OR 'removemember': Removes a member from the database.\n" +
+                                    BLUE_COLOUR + "'vm' OR 'viewmember': Searches for a member in the database.\n" +
+
+                                    DEFAULT_COLOUR + "\nTOURNAMENT CLASS:\n\n" +
+                                    GREEN_COLOUR + "'at' OR 'addtournament': Adds a tournament to the database.\n" +
+                                    GREEN_COLOUR + "'atg' OR 'addtournamentgame': Adds game to the tournament.\n" +
+
+                                    DEFAULT_COLOUR + "\nGAME CLASS:\n\n" +
+                                    GREEN_COLOUR + "'ag' OR 'addgame': Adds a game to the database.\n" +
+                                    GREEN_COLOUR + "'ar' OR 'addround': Adds a round to the game.\n" +
+
+                                    DEFAULT_COLOUR + "\nSTATISTICS CLASS:\n\n" +
+                                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu to manage data regarding game performance.\n" +
+
+                                    DEFAULT_COLOUR + "\nHELP COMMAND:\n\n" +
+                                    BLUE_COLOUR + "'h' OR 'help': Brings up a commands list.\n" +
+
+                                    DEFAULT_COLOUR + "\nEXIT COMMAND:\n\n" +
+                                    RED_COLOUR + "'e' OR 'exit': Exits the database." +
+
+                                    DEFAULT_COLOUR + "\n------------------------------------------------------------\n");
             }
 
             // MEMBERS
