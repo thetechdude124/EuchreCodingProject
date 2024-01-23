@@ -118,6 +118,7 @@ public class Main {
                 if (database.checkUsername(username)) {
                     Member newMember = new Member(name, username);
                     database.addMember(newMember);
+                    System.out.println("Member successfully added.\n The member ID is: " + newMember.getUserID());
                 }
 
                 else {
@@ -178,7 +179,7 @@ public class Main {
                 // NEEDS FINISHING
             }
             
-            // Add game (under tournament)
+            // Adds a completed game to the tournament
             else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
@@ -197,8 +198,8 @@ public class Main {
             }
             
             // GAME
-            // Add game (not under tournament)
-            else if (cmd.equals("ag") || cmd.equals("addgame")) {
+            // Starts a game
+            else if (cmd.equals("sg") || cmd.equals("startgame")) {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
                 System.out.println("Enter the tournament game info ('e' to exit):");
@@ -206,8 +207,6 @@ public class Main {
                 int player2;
                 int player3;
                 int player4;
-                int offensePoints;
-                int defensePoints;
 
                 while (true) {
                     System.out.print("Player 1 ID:\n> ");
@@ -281,53 +280,36 @@ public class Main {
                     }
                 }
 
-                while (true) {
-                    System.out.print("Offense points:\n> ");
-                    offensePoints = Integer.parseInt(input.nextLine());
-                    
-                    if (database.getMember(player2) == null) {
-                        System.out.println("Invalid ID.");
-                    }
-
-                    else if (cmd.equals("e") || cmd.equals("exit")) {
-                        System.out.print("Exited database.");
-                        break;
-                    }
-
-                    else {
-                        break;
-                    }
-                }
-
-                while (true) {
-                    System.out.print("Defense points:\n> ");
-                    defensePoints = Integer.parseInt(input.nextLine());
-                    
-                    if (database.getMember(player2) == null) {
-                        System.out.println("Invalid ID.");
-                    }
-
-                    else if (cmd.equals("e") || cmd.equals("exit")) {
-                        System.out.print("Exited database.");
-                        break;
-                    }
-
-                    else {
-                        break;
-                    }
-                }
-
-                Game game = new Game(database.getMember(player1), database.getMember(player2), database.getMember(player3), database.getMember(player4), offensePoints, defensePoints, null);
+                Game newGame = new Game(database.getMember(player1), database.getMember(player2), database.getMember(player3), database.getMember(player4));
 
                 // print out the information
-            }   
+            }
+
+            else if (cmd.equals("eg") || cmd.equals("endgame")) {
+                System.out.print("Please enter the ID number for the game:\n> ");
+                int ID = Integer.parseInt(input.nextLine());
+
+                if (database.getGame(ID) == null) {
+                    System.out.println("Invalid ID.");
+                }
+
+                else {
+
+                }
+            }
             
             // Add round
             else if (cmd.equals("ar") || cmd.equals("addround")) {
                 System.out.print("Please enter the ID number for the game:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
 
-                // method to check if id is real
+                if (database.getGame(ID) == null) {
+                    System.out.println("Invalid ID.");
+                }
+
+                else {
+                    
+                }
             }
             
             // STATISTICS
