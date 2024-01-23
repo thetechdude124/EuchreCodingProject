@@ -58,15 +58,53 @@ public class Database {
 
     public void addMember(Member member) {
         allMembers.put(member.getUserID(), member);
-        for (int i = 0; i <= 9; i++) {
-            memberStats[i] = new Node(member.getUserID(), null, memberStats[i]);
+        for (Node i : memberStats) {
+            i = new Node(member.getUserID(), null, i);
         }
     }
 
     public void addPartnership(Partnership partnership) {
         allPartnerships.put(partnership.getUserID(), partnership);
-        for (int i = 0; i <= 9; i++) {
-            partnershipStats[i] = new Node(partnership.getUserID(), null, partnershipStats[i]);
+        for (Node i : partnershipStats) {
+            i = new Node(partnership.getUserID(), null, i);
+        }
+    }
+
+    public void removeMember(int userID) {
+        if (allMembers.containsKey(userID)) {
+            allMembers.remove(userID);
+            for (Node i : memberStats) {
+                node = i;
+                if (node != null) {
+                    while (node.getNext() != null) {
+                        if (node.getID() == userID) {
+                            node.getPrevious().setNext(node.getNext());
+                            node.getNext().setPrevious(node.getPrevious());
+                            break;
+                        }
+                        node = node.getNext(); 
+                    }
+                } 
+            }
+        }
+    }
+
+    public void removePartnership(int userID) {
+        if (allPartnerships.containsKey(userID)) {
+            allPartnerships.remove(userID);
+            for (Node i : partnershipStats) {
+                node = i;
+                if (node != null) {
+                    while (node.getNext() != null) {
+                        if (node.getID() == userID) {
+                            node.getPrevious().setNext(node.getNext());
+                            node.getNext().setPrevious(node.getPrevious());
+                            break;
+                        }
+                        node = node.getNext(); 
+                    }
+                } 
+            }
         }
     }
 
