@@ -31,15 +31,17 @@ public class Main {
                     DEFAULT_COLOUR + BOLD_TEXT + "\nMEMBER CLASS:\n\n" +
                     GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
                     RED_COLOUR + "'rm' OR 'removemember': Removes a member from the database.\n" +
-                    BLUE_COLOUR + "'vm' OR 'viewmember': Searches for a member in the database.\n" +
+                    BLUE_COLOUR + "'vm' OR 'viewmember': Views a member in the database.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nTOURNAMENT CLASS:\n\n" +
                     GREEN_COLOUR + "'at' OR 'addtournament': Adds a tournament to the database.\n" +
+                    GREEN_COLOUR + "'vt' OR 'viewtournament': Views a tournament in the database.\n" +
                     GREEN_COLOUR + "'atg' OR 'addtournamentgame': Adds game to the tournament.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nGAME CLASS:\n\n" +
                     GREEN_COLOUR + "'sg' OR 'startgame': Starts a game and adds it to the database.\n" +
                     GREEN_COLOUR + "'eg' OR 'endgame': Ends a game.\n" +
+                    GREEN_COLOUR + "'vg' OR 'viewgame': Views a game in the database.\n" +
                     GREEN_COLOUR + "'ar' OR 'addround': Adds a round to the game.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nSTATISTICS CLASS:\n\n" +
@@ -244,6 +246,29 @@ public class Main {
 
                     // print out the information
                 }
+
+                // View tournament
+                else if (cmd.equals("vt") || cmd.equals("viewtournament")) {
+                    System.out.print("Enter the ID number of the tournament being viewed:\n> ");
+                    int ID = Integer.parseInt(input.nextLine());
+
+                    if (database.getTournament(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else {
+                        System.out.println( "TOURNAMENT:\n" +
+                                            "\nID: " + database.getTournament(ID) +
+                                            "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
+                                            "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
+                                            "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
+                                            "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName() +
+                                            "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
+                                            "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
+                                            "\nTeam 1 Win: " + database.getGame(ID).getTeam1Win() +
+                                            "\nOngoing: " + database.getGame(ID).getOnGoing());
+                    }
+                }
                 
                 // GAME
                 // Starts a game
@@ -312,6 +337,7 @@ public class Main {
                     // print out the information
                 }
 
+                // End game
                 else if (cmd.equals("eg") || cmd.equals("endgame")) {
                     System.out.print("Please enter the ID number for the game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
@@ -354,11 +380,33 @@ public class Main {
                             }
                         }
 
-                        // SETGAME = Game(database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), team1Points, team2Points, database.getGame(ID).getRounds());
                         database.getGame(ID).setTeam1Points(team1Points);
                         database.getGame(ID).setTeam2Points(team2Points);
                         database.getGame(ID).endGame();
                         System.out.println("Game saved successfully.");
+                    }
+                }
+
+                // View game
+                else if (cmd.equals("vg") || cmd.equals("viewgame")) {
+                    System.out.print("Enter the ID number of the game being viewed:\n> ");
+                    int ID = Integer.parseInt(input.nextLine());
+
+                    if (database.getGame(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else {
+                        System.out.println( "GAME:\n" +
+                                            "\nID: " + database.getGame(ID).getGameID() +
+                                            "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
+                                            "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
+                                            "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
+                                            "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName() +
+                                            "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
+                                            "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
+                                            "\nTeam 1 Win: " + database.getGame(ID).getTeam1Win() +
+                                            "\nOngoing: " + database.getGame(ID).getOnGoing());
                     }
                 }
                 
@@ -389,10 +437,10 @@ public class Main {
                         System.out.println("Enter the game info (any key to exit):");
 
                         while (true) {
-                            System.out.print("Team 1 On Offence:\n> ");
+                            System.out.print("Team 1 on Offence (true/false):\n> ");
                             team1Offence = Boolean.parseBoolean(input.nextLine());
                             
-                            if (team1Points < 0) {
+                            if (team1Offence != true && team1Offence != false) {
                                 System.out.println("Invalid input.");
                             }
     
@@ -401,7 +449,164 @@ public class Main {
                             }
                         }
 
-                        database.getGame(ID).addRound(null, null, null, null, null, null, null, null, null, null, null, null, null);
+                        while (true) {
+                            System.out.print("Team 1 Player 1 (ID):\n> ");
+                            team1Player1 = Integer.parseInt(input.nextLine());
+                            
+                            if (database.getMember(team1Player1) == null) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Team 1 Player 2 (ID):\n> ");
+                            team1Player2 = Integer.parseInt(input.nextLine());
+                            
+                            if (database.getMember(team1Player2) == null) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Team 2 Player 1 (ID):\n> ");
+                            team2Player1 = Integer.parseInt(input.nextLine());
+                            
+                            if (database.getMember(team2Player1) == null) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Team 2 Player 2 (ID):\n> ");
+                            team2Player2 = Integer.parseInt(input.nextLine());
+                            
+                            if (database.getMember(team2Player2) == null) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Dealer (ID):\n> ");
+                            dealer = Integer.parseInt(input.nextLine());
+                            
+                            if (database.getMember(dealer) == null) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Trump Establisher (ID):\n> ");
+                            trumpEstablisher = Integer.parseInt(input.nextLine());
+                            
+                            if (database.getMember(trumpEstablisher) == null) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Going Alone (true/false):\n> ");
+                            goingAlone = Boolean.parseBoolean(input.nextLine());
+                            
+                            if (goingAlone != true && goingAlone != false) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Trump Suit (clubs, spades, hearts, diamonds):\n> ");
+                            trumpSuit = input.nextLine().toLowerCase();
+                            
+                            if (trumpSuit.equals("clubs") || trumpSuit.equals("spades") || trumpSuit.equals("hearts") || trumpSuit.equals("diamonds")) {
+                                break;
+                            }
+    
+                            else {
+                                System.out.println("Invalid input.");
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Team 1 Number of Tricks:\n> ");
+                            team1Tricks = Integer.parseInt(input.nextLine());
+                            
+                            if (team1Tricks < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Team 2 Number of Tricks:\n> ");
+                            team2Tricks = Integer.parseInt(input.nextLine());
+                            
+                            if (team2Tricks < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Team 1 Win (true/false):\n> ");
+                            team1Win = Boolean.parseBoolean(input.nextLine());
+                            
+                            if (team1Win != true && team1Win != false) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Points Awarded:\n> ");
+                            pointsAwarded = Integer.parseInt(input.nextLine());
+                            
+                            if (pointsAwarded < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        System.out.println("Round successfully added.");
+                        database.getGame(ID).addRound(team1Offence, database.getMember(team1Player1), database.getMember(team1Player2), database.getMember(team2Player1), database.getMember(team2Player2), database.getMember(dealer), database.getMember(trumpEstablisher), goingAlone, trumpSuit, team1Tricks, team2Tricks, team1Win, pointsAwarded);
                     }
                 }
                 
