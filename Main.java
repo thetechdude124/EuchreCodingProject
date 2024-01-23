@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -257,16 +258,12 @@ public class Main {
                     }
 
                     else {
-                        System.out.println( "TOURNAMENT:\n" +
-                                            "\nID: " + database.getTournament(ID) +
-                                            "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
-                                            "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
-                                            "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
-                                            "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName() +
-                                            "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
-                                            "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
-                                            "\nTeam 1 Win: " + database.getGame(ID).getTeam1Win() +
-                                            "\nOngoing: " + database.getGame(ID).getOnGoing());
+                        System.out.print(   "TOURNAMENT:\n" +
+                                            "\nID: " + database.getTournament(ID));
+                        LinkedList<Game> games = database.getTournament(ID).getGames();
+                        for (int i = 1; i < database.getTournament(ID).getNumGames() + 1; i++) {
+                            System.out.println("Game " + i + "ID: " + games.get(i - 1).getGameID());
+                        }
                     }
                 }
                 
