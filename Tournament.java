@@ -40,16 +40,19 @@ public class Tournament {
 
     public void setStyle(String style) {this.style  = style;}
     public void setNumGames(int numGames) {this.numGames = numGames;} 
-    public void nextGame(Game newGame) {
+    public int nextGame(Database database, Game newGame) {
         if (onGoing) {
             games.add(newGame);
-            if (newGame.getOnGoing()) {return;}
+            if (newGame.getOnGoing()) {return newGame.getGameID();}
             if (newGame.getTeam1Win()) {players.remove(index); players.remove(index); index += 2;}
             else {index += 2; players.remove(index); players.remove(index);}
             if (index >= players.size()) {index = 0;}
-            if (games.size() == numGames) {onGoing = false;} 
-            nextGame(new Game(players.get(index), players.get(index+1), players.get(index+2), players.get(index+3)));
+            if (games.size() == numGames) {onGoing = false; return -2;} 
+            newGame = new Game(players.get(index), players.get(index+1), players.get(index+2), players.get(index+3));
+            database.addGame(newGame);
+            return nextGame(database, newGame);
         } 
+        return -1;
     }
 
 }

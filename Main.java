@@ -87,6 +87,7 @@ public class Main {
         }
     }
 
+    public static int tempID = -2;
     public static void main(String args[]) {
 
         //Display application header.
@@ -233,18 +234,85 @@ public class Main {
                 
                 // Adds a completed game to the tournament
                 else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
-                    System.out.println("Enter the ID number for the completed game:\n> ");
+                    System.out.println("Enter the ID number for the tournament:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
                     
-                    if (database.getMember(ID) == null) {
+                    if (database.getTournament(ID) == null) {
                         System.out.println("Invalid ID.");
                     }
 
                     else {
-                        System.out.println("Game successfully added.");
+                        Tournament tempT = database.getTournament(ID);
+                        if (tempID >= 0) {
+                            tempID = tempT.nextGame(database, database.getGame(tempID));
+                        } else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
+                        else {
+                            int temp = tempID;
+                            tempID = tempT.nextGame(database, new Game(tempT.getPlayers().get(0), tempT.getPlayers().get(1), tempT.getPlayers().get(2), tempT.getPlayers().get(3)));
+                            if (tempID == temp) {System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");}
+                            else {System.out.println("Game successfully added.");}
+                        }
                     }
 
                     // print out the information
+                }
+
+                else if (cmd.equals("etg") || cmd.equals("endtournamentgame")) {
+                    System.out.println("Enter the ID number for the tournament:\n> ");
+                    int ID = Integer.parseInt(input.nextLine());
+                    
+                    if (database.getTournament(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else {
+                        if (tempID >= 0) {
+                            if (database.getGame(tempID).getOnGoing()) {
+                                int team1Points;
+                                int team2Points;
+                                
+                                System.out.println("Enter the game info (any key to exit):");
+                                
+                                while (true) {
+                                    System.out.print("Team 1 Points:\n> ");
+                                    team1Points = Integer.parseInt(input.nextLine());
+                                    
+                                    if (team1Points < 0) {
+                                        System.out.println("Invalid input.");
+                                    }
+            
+                                    else {
+                                        break;
+                                    }
+                                }
+
+                                while (true) {
+                                    System.out.print("Team 2 Points:\n> ");
+                                    team2Points = Integer.parseInt(input.nextLine());
+                                    
+                                    if (team2Points < 0) {
+                                        System.out.println("Invalid input.");
+                                    }
+            
+                                    else {
+                                        break;
+                                    }
+                                }
+
+                                database.getGame(tempID).setTeam1Points(team1Points);
+                                database.getGame(tempID).setTeam2Points(team2Points);
+                                database.getGame(tempID).endGame();
+                                System.out.println("Game saved successfully.");
+                            } 
+                            
+                            else {
+                                System.out.println("This game has alreday been completed.");
+                            }
+                        } else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
+                        else {
+                            System.out.println("You need to start a game in this tournament before ending it.");
+                        }
+                    }
                 }
 
                 // View tournament
@@ -349,41 +417,47 @@ public class Main {
                     else if (!database.getGame(ID).getOnGoing()) {System.out.println("This game has already been ended and recorded.");}
 
                     else {
-                        int team1Points;
-                        int team2Points;
-                        
-                        System.out.println("Enter the game info (any key to exit):");
-                        
-                        while (true) {
-                            System.out.print("Team 1 Points:\n> ");
-                            team1Points = Integer.parseInt(input.nextLine());
+                        if (database.getGame(tempID).getOnGoing()) {
+                            int team1Points;
+                            int team2Points;
                             
-                            if (team1Points < 0) {
-                                System.out.println("Invalid input.");
-                            }
-    
-                            else {
-                                break;
-                            }
-                        }
-
-                        while (true) {
-                            System.out.print("Team 2 Points:\n> ");
-                            team2Points = Integer.parseInt(input.nextLine());
+                            System.out.println("Enter the game info (any key to exit):");
                             
-                            if (team2Points < 0) {
-                                System.out.println("Invalid input.");
+                            while (true) {
+                                System.out.print("Team 1 Points:\n> ");
+                                team1Points = Integer.parseInt(input.nextLine());
+                                
+                                if (team1Points < 0) {
+                                    System.out.println("Invalid input.");
+                                }
+        
+                                else {
+                                    break;
+                                }
                             }
-    
-                            else {
-                                break;
-                            }
-                        }
 
-                        database.getGame(ID).setTeam1Points(team1Points);
-                        database.getGame(ID).setTeam2Points(team2Points);
-                        database.getGame(ID).endGame();
-                        System.out.println("Game saved successfully.");
+                            while (true) {
+                                System.out.print("Team 2 Points:\n> ");
+                                team2Points = Integer.parseInt(input.nextLine());
+                                
+                                if (team2Points < 0) {
+                                    System.out.println("Invalid input.");
+                                }
+        
+                                else {
+                                    break;
+                                }
+                            }
+
+                            database.getGame(tempID).setTeam1Points(team1Points);
+                            database.getGame(tempID).setTeam2Points(team2Points);
+                            database.getGame(tempID).endGame();
+                            System.out.println("Game saved successfully.");
+                        } 
+                        
+                        else {
+                            System.out.println("This game has alreday been completed.");
+                        }
                     }
                 }
 
@@ -738,17 +812,17 @@ public class Main {
                         }
                     }
 
-                    // EXIT
-                    // Exits the program    
-                    else if (cmd.equals("e") || cmd.equals("exit")) {
-                        System.out.print("Exited database.");
-                        break;
-                    }
+                // EXIT
+                // Exits the program    
+                else if (cmd.equals("e") || cmd.equals("exit")) {
+                    System.out.print("Exited database.");
+                    break;
+                }
 
-                    // Invalid command
-                    else {
-                        System.out.println("Invalid command.");
-                    }
+                // Invalid command
+                else {
+                    System.out.println("Invalid command.");
+                }
             }
             
             //Handle exceptions
