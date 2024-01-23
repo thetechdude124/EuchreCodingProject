@@ -4,13 +4,6 @@ import java.util.concurrent.TimeUnit;
 //The main class
 public class Main {
 
-        // Test cases
-        private Member testMember = new Member("Jiapei Du", "J_D");
-        private Member testMember2 = new Member("Khalil Ramzi", "KRamzi");
-        private Member testMember3 = new Member("Aditya Dewan", "CodingDude");
-        private Member testMember4 = new Member("Yi Li", "Dingo");
-        private Game testGame = new Game(testMember, testMember2, testMember3, testMember4);
-
         //Set all terminal colours beforehand.
         //The scheme is as follows (also set a constant to revert to default terminal style when needed)
         private static String DEFAULT_COLOUR = "\u001B[0m";
@@ -137,7 +130,7 @@ public class Main {
         delay(3);
 
         //Display the menu
-        System.out.println("\nThat being said...here's the menu:");
+        System.out.println("\nThat being said... here's the menu:");
         delay(3);
         renderAllCommands();
 
@@ -363,47 +356,47 @@ public class Main {
 
                             // Number of games
                             if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
-                                System.out.println(database.getMemberRanksByStat(0));
+                                database.printMemberTop5(0);
                             }
 
                             // Wins
                             if (statscmd.equals("w") || statscmd.equals("wins")) {
-                                database.getMemberRanksByStat(1);
+                                database.printMemberTop5(1);
                             }
 
                             // Losses
                             if (statscmd.equals("l") || statscmd.equals("losses")) {
-                                database.getMemberRanksByStat(2);
+                                database.printMemberTop5(2);
                             }
 
                             // Offensive wins
                             if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
-                                database.getMemberRanksByStat(3);
+                                database.printMemberTop5(3);
                             }
 
                             // Defensive wins
                             if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
-                                database.getMemberRanksByStat(4);
+                                database.printMemberTop5(4);
                             }
                             
                             // Offensive losses
                             if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
-                                database.getMemberRanksByStat(5);
+                                database.printMemberTop5(5);
                             }
 
                             // Defensive losses
                             if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
-                                database.getMemberRanksByStat(6);
+                                database.printMemberTop5(6);
                             }
 
                             // Win loss rate
                             if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
-                                database.getMemberRanksByStat(7);
+                                database.printMemberTop5(7);
                             }
 
                             // Average score
                             if (statscmd.equals("as") || statscmd.equals("averagescore")) {
-                                database.getMemberRanksByStat(8);
+                                database.printMemberTop5(8);
                             }
                             
                             // Exit
@@ -425,48 +418,41 @@ public class Main {
 
                             // Number of games
                             if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
-                                database.getMemberRanksByStat(0);
+                                database.printPartnershipTop5(0);
                             }
 
                             // Wins
                             if (statscmd.equals("w") || statscmd.equals("wins")) {
-                                database.getPartnershipRanksByStat(1);
+                                database.printPartnershipTop5(1);
                             }
 
                             // Losses
                             if (statscmd.equals("l") || statscmd.equals("losses")) {
-                                database.getPartnershipRanksByStat(2);
-                            }
+                                database.printPartnershipTop5(2);                            }
 
                             // Offensive wins
                             if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
-                                database.getPartnershipRanksByStat(3);
-                            }
+                                database.printPartnershipTop5(3);                            }
 
                             // Defensive wins
                             if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
-                                database.getPartnershipRanksByStat(4);
-                            }
+                                database.printPartnershipTop5(4);                            }
                             
                             // Offensive losses
                             if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
-                                database.getPartnershipRanksByStat(5);
-                            }
+                                database.printPartnershipTop5(5);                            }
 
                             // Defensive losses
                             if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
-                                database.getPartnershipRanksByStat(6);
-                            }
+                                database.printPartnershipTop5(6);                            }
 
                             // Win loss rate
                             if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
-                                database.getPartnershipRanksByStat(7);
-                            }
+                                database.printPartnershipTop5(7);                            }
 
                             // Average score
                             if (statscmd.equals("as") || statscmd.equals("averagescore")) {
-                                database.getPartnershipRanksByStat(8);
-                            }
+                                database.printPartnershipTop5(8);                            }
                             
                             // Exit
                             if (statscmd.equals("e") || statscmd.equals("exit")) {
