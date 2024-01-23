@@ -22,7 +22,7 @@ public class Main {
         private static String BOLD_TEXT = "\033[0;1m";
 
         //IN DEVELOPMENT FLAG - this disables all animations for development acceleration purposes.
-        private static boolean IN_DEVELOPMENT = false;
+        private static boolean IN_DEVELOPMENT = true;
 
 
     //Function to render "All Commands" menu when necessary
@@ -226,14 +226,15 @@ public class Main {
                 // Add tournament
                 else if (cmd.equals("at") || cmd.equals("addtournament")) {
                     LinkedList<Member> players = new LinkedList<Member>();
-                    System.out.print("Input the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
+                    System.out.print("Enter the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
                     int numPlayers = Integer.parseInt(input.nextLine());
+                    System.out.println("Enter the ID number for each member playing in the tournament.");
                     for (int i = 0; i < numPlayers; i++) {
                         while (true) {
-                            System.out.println("Input the member ID of the player to add (any key to exit)");
+                            System.out.print("Member " + i + " ID (any key to exit):\n> ");
                             tempID = Integer.parseInt(input.nextLine());
                             if (database.getMember(tempID) == null) {
-                                System.out.println("Invalid ID");
+                                System.out.println("Invalid ID.");
                             } else {
                                 break;
                             }
@@ -242,7 +243,7 @@ public class Main {
                     }
                     Tournament tempT = new Tournament(players, numPlayers);
                     database.addTournament(tempT);
-                    System.out.println("This tournament has been successfully added, with ID #" + tempT.getTournamentID());
+                    System.out.println("Tournament successfully started.\nThe ID is: " + tempT.getTournamentID());
                 }
                 
                 // Adds a completed game to the tournament
@@ -341,8 +342,13 @@ public class Main {
                         System.out.print(   "TOURNAMENT:\n" +
                                             "\nID: " + database.getTournament(ID));
                         LinkedList<Game> games = database.getTournament(ID).getGames();
-                        for (int i = 1; i < database.getTournament(ID).getNumGames() + 1; i++) {
-                            System.out.println("Game " + i + "ID: " + games.get(i - 1).getGameID());
+                        if (games == null) {
+                            System.out.println("There are currently no games in this tournament.");
+                        }
+                        else {
+                            for (int i = 0; i < database.getTournament(ID).getNumGames(); i++) {
+                                System.out.println("Game " + (i + 1) + "ID: " + games.get(i).getGameID());
+                            }
                         }
                     }
                 }
