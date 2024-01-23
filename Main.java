@@ -5,11 +5,11 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
         // Test cases
-        Member testMember = new Member("Jiapei Du", "J_D");
-        Member testMember2 = new Member("Khalil Ramzi", "KRamzi");
-        Member testMember3 = new Member("Aditiya Dewan", "CodingDude");
-        Member testMember4 = new Member("Yi Li", "Dingo");
-        Game testGame = new Game(testMember, testMember2, testMember3, testMember4);
+        private Member testMember = new Member("Jiapei Du", "J_D");
+        private Member testMember2 = new Member("Khalil Ramzi", "KRamzi");
+        private Member testMember3 = new Member("Aditya Dewan", "CodingDude");
+        private Member testMember4 = new Member("Yi Li", "Dingo");
+        private Game testGame = new Game(testMember, testMember2, testMember3, testMember4);
 
         //Set all terminal colours beforehand.
         //The scheme is as follows (also set a constant to revert to default terminal style when needed)
@@ -20,9 +20,7 @@ public class Main {
         private static String RED_COLOUR = "\u001B[31m";
         //BLUE - view an object.
         private static String BLUE_COLOUR = "\u001B[34m";
-        //WHITE - help and administrative commands.
-        private static String WHITE_COLOUR = "\u001B[37m";
-        //PURPLE - all headers and command interfaces.
+        //PURPLE - all headers and command interfaces, as well as administrative examples.
         private static String PURPLE_COLOUR = "\u001B[35m";
         
         //Set bold and plain text markers
@@ -79,7 +77,7 @@ public class Main {
         System.out.println(
             """
                 _______   ___  ___  ________  ___  ___  ________  _______           _____ ______   ________  ________   ________  ________  _______   ________         
-               |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
+                |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
                 \\ \\   __/|\\ \\  \\\\\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\|\\  \\ \\   __/|        \\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\\\ \\  \\ \\  \\|\\  \\ \\  \\___|\\ \\   __/|\\ \\  \\|\\  \\       
                  \\ \\  \\_|/_\\ \\  \\\\\\  \\ \\  \\    \\ \\   __  \\ \\   _  _\\ \\  \\_|/__       \\ \\  \\\\|__| \\  \\ \\   __  \\ \\  \\\\ \\  \\ \\   __  \\ \\  \\  __\\ \\  \\_|/_\\ \\   _  _\\      
                   \\ \\  \\_|\\ \\ \\  \\\\\\  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\  \\\\ \\  \\_|\\ \\       \\ \\  \\    \\ \\  \\ \\  \\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\|\\  \\ \\  \\_|\\ \\ \\  \\\\  \\| ___ 
@@ -116,7 +114,7 @@ public class Main {
         delay(3);
 
         //Display the menu
-        System.out.println("\nThat being said....here's the menu:");
+        System.out.println("\nThat being said...here's the menu:");
         delay(3);
         renderAllCommands();
 
@@ -514,7 +512,7 @@ public class Main {
             catch (Exception e) {e.printStackTrace();}
         }
         
-        System.out.println("Goodbye!");
+        System.out.println(" Goodbye!");
         input.close();
     }
 }
