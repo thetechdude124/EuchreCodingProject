@@ -4,13 +4,6 @@ import java.util.concurrent.TimeUnit;
 //The main class
 public class Main {
 
-        // Test cases
-        Member testMember = new Member("Jiapei Du", "J_D");
-        Member testMember2 = new Member("Khalil Ramzi", "KRamzi");
-        Member testMember3 = new Member("Aditiya Dewan", "CodingDude");
-        Member testMember4 = new Member("Yi Li", "Dingo");
-        Game testGame = new Game(testMember, testMember2, testMember3, testMember4);
-
         //Set all terminal colours beforehand.
         //The scheme is as follows (also set a constant to revert to default terminal style when needed)
         private static String DEFAULT_COLOUR = "\u001B[0m";
@@ -20,9 +13,7 @@ public class Main {
         private static String RED_COLOUR = "\u001B[31m";
         //BLUE - view an object.
         private static String BLUE_COLOUR = "\u001B[34m";
-        //WHITE - help and administrative commands.
-        private static String WHITE_COLOUR = "\u001B[37m";
-        //PURPLE - all headers and command interfaces.
+        //PURPLE - all headers and command interfaces, as well as administrative examples.
         private static String PURPLE_COLOUR = "\u001B[35m";
         
         //Set bold and plain text markers
@@ -30,12 +21,12 @@ public class Main {
         private static String BOLD_TEXT = "\033[0;1m";
 
         //IN DEVELOPMENT FLAG - this disables all animations for development acceleration purposes.
-        private static boolean IN_DEVELOPMENT = false;
+        private static boolean IN_DEVELOPMENT = true;
 
 
-    //Function to render "All Commands" table when necessary
+    //Function to render "All Commands" menu when necessary
     public static void renderAllCommands() {
-        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------------------------ ALL COMMANDS ------------------------------------------\n" +
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------- ALL COMMANDS -------------------------\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nMEMBER CLASS:\n\n" +
                     GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
@@ -47,11 +38,12 @@ public class Main {
                     GREEN_COLOUR + "'atg' OR 'addtournamentgame': Adds game to the tournament.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nGAME CLASS:\n\n" +
-                    GREEN_COLOUR + "'ag' OR 'addgame': Adds a game to the database.\n" +
+                    GREEN_COLOUR + "'sg' OR 'startgame': Starts a game and adds it to the database.\n" +
+                    GREEN_COLOUR + "'eg' OR 'endgame': Ends a game.\n" +
                     GREEN_COLOUR + "'ar' OR 'addround': Adds a round to the game.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nSTATISTICS CLASS:\n\n" +
-                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu to manage data regarding game performance.\n" +
+                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nHELP COMMAND:\n\n" +
                     BLUE_COLOUR + "'h' OR 'help': Brings up a commands list.\n" +
@@ -59,7 +51,29 @@ public class Main {
                     DEFAULT_COLOUR + BOLD_TEXT + "\nEXIT COMMAND:\n\n" +
                     RED_COLOUR + "'e' OR 'exit': Exits the database." +
 
-                    PURPLE_COLOUR + "\n--------------------------------------------------------------------------------------------------\n");
+                    PURPLE_COLOUR + "\n---------------------------------------------------------------\n");
+    }
+
+    //Functon to render "Statistics" menu when necessary
+    public static void renderStatistics() {
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n----------------------- STATISTICS -----------------------\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'ng' OR 'numberofgames': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by number of games played.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'w' OR 'wins': "  + PLAIN_TEXT + GREEN_COLOUR + "Sorts by wins.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'l' OR 'losses': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by losses.\n" +
+                            
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'ow' OR 'offensivewins': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by offensive wins.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'dw' OR 'defensivewins': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by defensive wins.\n" +
+                            
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'ol' OR 'offensivelosses': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by offensive losses.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'dl' OR 'defensivelosses': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by defensive losses.\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'wlr' OR 'winlossrate': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by the win/loss rate.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'as' OR 'averagescore': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by the average score.\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + RED_COLOUR + "\n'e' OR 'exit': " + PLAIN_TEXT + RED_COLOUR + "Exits statistics.\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + PURPLE_COLOUR + "\n----------------------------------------------------------\n\n" + DEFAULT_COLOUR);
     }
 
     //Custom "Delay" function for rendering objects to the terminal in an aesthetically pleasing manner
@@ -78,8 +92,8 @@ public class Main {
         System.out.println(PURPLE_COLOUR + "==============================================================================================================================================================");
         System.out.println(
             """
-                _______   ___  ___  ________  ___  ___  ________  _______           _____ ______   ________  ________   ________  ________  _______   ________         
-               |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
+                 _______   ___  ___  ________  ___  ___  ________  _______           _____ ______   ________  ________   ________  ________  _______   ________         
+                |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
                 \\ \\   __/|\\ \\  \\\\\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\|\\  \\ \\   __/|        \\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\\\ \\  \\ \\  \\|\\  \\ \\  \\___|\\ \\   __/|\\ \\  \\|\\  \\       
                  \\ \\  \\_|/_\\ \\  \\\\\\  \\ \\  \\    \\ \\   __  \\ \\   _  _\\ \\  \\_|/__       \\ \\  \\\\|__| \\  \\ \\   __  \\ \\  \\\\ \\  \\ \\   __  \\ \\  \\  __\\ \\  \\_|/_\\ \\   _  _\\      
                   \\ \\  \\_|\\ \\ \\  \\\\\\  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\  \\\\ \\  \\_|\\ \\       \\ \\  \\    \\ \\  \\ \\  \\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\|\\  \\ \\  \\_|\\ \\ \\  \\\\  \\| ___ 
@@ -106,7 +120,7 @@ public class Main {
         delay(2);
 
         //Prior to displaying the help menu, quickly walk through what each of the colours mean.
-        System.out.println(BOLD_TEXT + GREEN_COLOUR + "GREEN" + DEFAULT_COLOUR + " - this is for commands that add items.");
+        System.out.println(BOLD_TEXT + GREEN_COLOUR + "GREEN" + DEFAULT_COLOUR + " - this is for commands that add and/or sort items.");
         delay(2);
         System.out.println(BOLD_TEXT + RED_COLOUR + "RED" + DEFAULT_COLOUR + " - this is for commands that remove items (as well as the exit command).");
         delay(2);
@@ -116,7 +130,7 @@ public class Main {
         delay(3);
 
         //Display the menu
-        System.out.println("\nThat being said....here's the menu:");
+        System.out.println("\nThat being said... here's the menu:");
         delay(3);
         renderAllCommands();
 
@@ -134,10 +148,10 @@ public class Main {
         while (true) {    
             try {
                  
-                System.out.print(PURPLE_COLOUR + "\n-------------------------------------------------------------");
+                System.out.print(DEFAULT_COLOUR + PURPLE_COLOUR + "\n---------------------------------------------------");
                 System.out.print(BOLD_TEXT + "\nWhat would you like to do next? Press 'h' for help." + DEFAULT_COLOUR + "\n🔍 ");
                 String cmd = input.nextLine().toLowerCase();
-                System.out.println(PURPLE_COLOUR + "-------------------------------------------------------------\n" + DEFAULT_COLOUR);
+                System.out.println(PURPLE_COLOUR + "---------------------------------------------------\n" + DEFAULT_COLOUR);
         
                 //For the help command
                 if (cmd.equals("h")) {renderAllCommands();}
@@ -147,9 +161,9 @@ public class Main {
                 else if (cmd.equals("am") || cmd.equals("addmember")) {
 
                     System.out.print("Enter the full name of the new member:\n> ");
-                    String name = input.nextLine().toLowerCase();
+                    String name = input.nextLine();
                     System.out.print("Enter a username for the new member:\n> ");
-                    String username = input.nextLine().toLowerCase();
+                    String username = input.nextLine();
                     
                     if (database.checkUsername(username)) {
                         Member newMember = new Member(name, username);
@@ -217,9 +231,7 @@ public class Main {
                 
                 // Adds a completed game to the tournament
                 else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
-                    System.out.print("Please enter the game number for the tournament:\n> ");
-                    int gameNum = Integer.parseInt(input.nextLine());
-                    System.out.println("Enter the ID number for the game:\n> ");
+                    System.out.println("Enter the ID number for the completed game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
                     
                     if (database.getMember(ID) == null) {
@@ -227,7 +239,7 @@ public class Main {
                     }
 
                     else {
-                        
+                        System.out.println("Game successfully added.");
                     }
 
                     // print out the information
@@ -236,7 +248,7 @@ public class Main {
                 // GAME
                 // Starts a game
                 else if (cmd.equals("sg") || cmd.equals("startgame")) {
-                    System.out.println("Enter the game info ('e' to exit):");
+                    System.out.println("Enter the game info (any key to exit):");
                     int player1;
                     int player2;
                     int player3;
@@ -248,11 +260,6 @@ public class Main {
         
                         if (database.getMember(player1) == null) {
                             System.out.println("Invalid ID.");
-                        }
-
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
                         }
 
                         else {
@@ -268,11 +275,6 @@ public class Main {
                             System.out.println("Invalid ID.");
                         }
 
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
-                        }
-
                         else {
                             break;
                         }
@@ -286,11 +288,6 @@ public class Main {
                             System.out.println("Invalid ID.");
                         }
 
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
-                        }
-
                         else {
                             break;
                         }
@@ -302,11 +299,6 @@ public class Main {
                         
                         if (database.getMember(player2) == null) {
                             System.out.println("Invalid ID.");
-                        }
-
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
                         }
 
                         else {
@@ -324,13 +316,13 @@ public class Main {
                     System.out.print("Please enter the ID number for the game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
 
-                    // if (database.getGame(ID) == null) {
-                    //     System.out.println("Invalid ID.");
-                    // }
+                    if (database.getGame(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
 
-                    // else {
+                    else {
 
-                    // }
+                    }
                 }
                 
                 // Add round
@@ -338,13 +330,13 @@ public class Main {
                     System.out.print("Please enter the ID number for the game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
 
-                    // if (database.getGame(ID) == null) {
-                    //     System.out.println("Invalid ID.");
-                    // }
+                    if (database.getGame(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
 
-                    // else {
+                    else {
                         
-                    // }
+                    }
                 }
                 
                 // STATISTICS
@@ -355,63 +347,56 @@ public class Main {
                     
                     if (choice.equals("m") || choice.equals("members")) {
                         while (true) {
-                            System.out.print(   "\n---------------------STATISTICS---------------------\n" +
-                                                "'ng' OR 'numberofgames': Sorts by number of games played\n" +
-                                                "'w' OR 'wins': Sorts by wins\n" +
-                                                "'l' OR 'losses': Sorts by losses\n" +
-                                                "'ow' OR 'offensivewins': Sorts by offensive wins\n" +
-                                                "'dw' OR 'defensivewins': Sorts by defensive wins\n" +
-                                                "'ol' OR 'offensivelosses': Sorts by offensive losses\n" +
-                                                "'dl' OR 'defensivelosses': Sorts by defensive losses\n" +
-                                                "'wlr' OR 'winlossrate': Sorts by the win/loss rate\n" +
-                                                "'as' OR 'averagescore': Sorts by the average score\n" +
-                                                "'e' OR 'exit': Exits statistics" +
-                                                "\n----------------------------------------------------\n\nPlease select which statistics you would like to view:\n> ");
+
+                            //Render statistics menu
+                            renderStatistics();
+
+                            System.out.print("Please select which statistics you would like to view:\n> ");
                             String statscmd = input.nextLine().toLowerCase();
 
                             // Number of games
                             if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
-                                System.out.println(database.getMemberRanksByStat(0));
+                                database.printMemberTop5(0);
                             }
 
                             // Wins
                             if (statscmd.equals("w") || statscmd.equals("wins")) {
-                                database.getMemberRanksByStat(1);
+                                database.printMemberTop5(1);
                             }
 
                             // Losses
                             if (statscmd.equals("l") || statscmd.equals("losses")) {
-                                database.getMemberRanksByStat(2);
+                                database.printMemberTop5(2);
                             }
 
                             // Offensive wins
                             if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
-                                database.getMemberRanksByStat(3);
+                                database.printMemberTop5(3);
                             }
 
                             // Defensive wins
                             if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
-                                database.getMemberRanksByStat(4);
+                                database.printMemberTop5(4);
                             }
                             
                             // Offensive losses
                             if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
-                                database.getMemberRanksByStat(5);
+                                database.printMemberTop5(5);
                             }
 
                             // Defensive losses
                             if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
-                                database.getMemberRanksByStat(6);
+                                database.printMemberTop5(6);
                             }
 
                             // Win loss rate
                             if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
-                                database.getMemberRanksByStat(7);
+                                database.printMemberTop5(7);
                             }
 
                             // Average score
                             if (statscmd.equals("as") || statscmd.equals("averagescore")) {
-                                database.getMemberRanksByStat(8);
+                                database.printMemberTop5(8);
                             }
                             
                             // Exit
@@ -424,65 +409,50 @@ public class Main {
                     
                     else if (choice.equals("p") || choice.equals("partnerships")) {
                         while (true) {
-                            System.out.print(   "\n---------------------STATISTICS---------------------\n" +
-                                                "'n' OR 'wins': Sorts by number of games played\n" +
-                                                "'w' OR 'wins': Sorts by wins\n" +
-                                                "'l' OR 'losses': Sorts by losses\n" +
-                                                "'ow' OR 'offensivewins': Sorts by offensive wins\n" +
-                                                "'dw' OR 'defensivewins': Sorts by defensive wins\n" +
-                                                "'ol' OR 'offensivelosses': Sorts by offensive losses\n" +
-                                                "'dl' OR 'defensivelosses': Sorts by defensive losses\n" +
-                                                "'wlr' OR 'winlossrate': Sorts by the win/loss rate\n" +
-                                                "'as' OR 'averagescore': Sorts by the average score\n" +
-                                                "'e' OR 'exit': Exits statistics" +
-                                                "\n----------------------------------------------------\n\nPlease select which statistics you would like to view:\n> ");
+
+                            //Render statistics menu
+                            renderStatistics();
+                            System.out.print("Please select which statistics you would like to view:\n> ");
                             
                             String statscmd = input.nextLine().toLowerCase();
 
                             // Number of games
                             if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
-                                database.getMemberRanksByStat(0);
+                                database.printPartnershipTop5(0);
                             }
 
                             // Wins
                             if (statscmd.equals("w") || statscmd.equals("wins")) {
-                                database.getPartnershipRanksByStat(1);
+                                database.printPartnershipTop5(1);
                             }
 
                             // Losses
                             if (statscmd.equals("l") || statscmd.equals("losses")) {
-                                database.getPartnershipRanksByStat(2);
-                            }
+                                database.printPartnershipTop5(2);                            }
 
                             // Offensive wins
                             if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
-                                database.getPartnershipRanksByStat(3);
-                            }
+                                database.printPartnershipTop5(3);                            }
 
                             // Defensive wins
                             if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
-                                database.getPartnershipRanksByStat(4);
-                            }
+                                database.printPartnershipTop5(4);                            }
                             
                             // Offensive losses
                             if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
-                                database.getPartnershipRanksByStat(5);
-                            }
+                                database.printPartnershipTop5(5);                            }
 
                             // Defensive losses
                             if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
-                                database.getPartnershipRanksByStat(6);
-                            }
+                                database.printPartnershipTop5(6);                            }
 
                             // Win loss rate
                             if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
-                                database.getPartnershipRanksByStat(7);
-                            }
+                                database.printPartnershipTop5(7);                            }
 
                             // Average score
                             if (statscmd.equals("as") || statscmd.equals("averagescore")) {
-                                database.getPartnershipRanksByStat(8);
-                            }
+                                database.printPartnershipTop5(8);                            }
                             
                             // Exit
                             if (statscmd.equals("e") || statscmd.equals("exit")) {
