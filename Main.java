@@ -409,6 +409,7 @@ public class Main {
                     }
 
                     Game newGame = new Game(database.getMember(player1), database.getMember(player2), database.getMember(player3), database.getMember(player4));
+                    database.addGame(newGame);
                     System.out.println("Game successfully created.\nThe game ID is: " + newGame.getGameID());
 
                     // print out the information
