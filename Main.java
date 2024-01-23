@@ -56,7 +56,7 @@ public class Main {
 
     //Functon to render "Statistics" menu when necessary
     public static void renderStatistics() {
-        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------- STATISTICS -------------------------\n" +
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n----------------------- STATISTICS -----------------------\n" +
 
                             DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'ng' OR 'numberofgames': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by number of games played.\n" +
                             DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'w' OR 'wins': "  + PLAIN_TEXT + GREEN_COLOUR + "Sorts by wins.\n" +
@@ -73,7 +73,7 @@ public class Main {
 
                             DEFAULT_COLOUR + BOLD_TEXT + RED_COLOUR + "\n'e' OR 'exit': " + PLAIN_TEXT + RED_COLOUR + "Exits statistics.\n" +
 
-                            DEFAULT_COLOUR + BOLD_TEXT + PURPLE_COLOUR + "\n--------------------------------------------------------------\n\n" + DEFAULT_COLOUR);
+                            DEFAULT_COLOUR + BOLD_TEXT + PURPLE_COLOUR + "\n----------------------------------------------------------\n\n" + DEFAULT_COLOUR);
     }
 
     //Custom "Delay" function for rendering objects to the terminal in an aesthetically pleasing manner
