@@ -118,7 +118,7 @@ public class Main {
                 if (database.checkUsername(username)) {
                     Member newMember = new Member(name, username);
                     database.addMember(newMember);
-                    System.out.println("Member successfully added.\n The member ID is: " + newMember.getUserID());
+                    System.out.println("Member successfully added.\nThe member ID is: " + newMember.getUserID());
                 }
 
                 else {
@@ -280,6 +280,7 @@ public class Main {
                     }
                 }
 
+                System.out.println("Game successfully created.");
                 Game newGame = new Game(database.getMember(player1), database.getMember(player2), database.getMember(player3), database.getMember(player4));
 
                 // print out the information
@@ -289,13 +290,13 @@ public class Main {
                 System.out.print("Please enter the ID number for the game:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
 
-                if (database.getGame(ID) == null) {
-                    System.out.println("Invalid ID.");
-                }
+                // if (database.getGame(ID) == null) {
+                //     System.out.println("Invalid ID.");
+                // }
 
-                else {
+                // else {
 
-                }
+                // }
             }
             
             // Add round
@@ -303,13 +304,13 @@ public class Main {
                 System.out.print("Please enter the ID number for the game:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
 
-                if (database.getGame(ID) == null) {
-                    System.out.println("Invalid ID.");
-                }
+                // if (database.getGame(ID) == null) {
+                //     System.out.println("Invalid ID.");
+                // }
 
-                else {
+                // else {
                     
-                }
+                // }
             }
             
             // STATISTICS
