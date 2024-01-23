@@ -238,8 +238,6 @@ public class Main {
                 
                 // Adds a completed game to the tournament
                 else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
-                    System.out.print("Please enter the game number for the tournament:\n> ");
-                    int gameNum = Integer.parseInt(input.nextLine());
                     System.out.println("Enter the ID number for the completed game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
                     
@@ -248,7 +246,7 @@ public class Main {
                     }
 
                     else {
-                        
+                        System.out.println("Game successfully added.");
                     }
 
                     // print out the information
@@ -257,7 +255,7 @@ public class Main {
                 // GAME
                 // Starts a game
                 else if (cmd.equals("sg") || cmd.equals("startgame")) {
-                    System.out.println("Enter the game info ('e' to exit):");
+                    System.out.println("Enter the game info (any key to exit):");
                     int player1;
                     int player2;
                     int player3;
@@ -269,11 +267,6 @@ public class Main {
         
                         if (database.getMember(player1) == null) {
                             System.out.println("Invalid ID.");
-                        }
-
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
                         }
 
                         else {
@@ -289,11 +282,6 @@ public class Main {
                             System.out.println("Invalid ID.");
                         }
 
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
-                        }
-
                         else {
                             break;
                         }
@@ -307,11 +295,6 @@ public class Main {
                             System.out.println("Invalid ID.");
                         }
 
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
-                        }
-
                         else {
                             break;
                         }
@@ -323,11 +306,6 @@ public class Main {
                         
                         if (database.getMember(player2) == null) {
                             System.out.println("Invalid ID.");
-                        }
-
-                        else if (cmd.equals("e") || cmd.equals("exit")) {
-                            System.out.print("Exited database.");
-                            break;
                         }
 
                         else {
