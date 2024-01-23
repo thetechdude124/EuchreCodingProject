@@ -1,5 +1,5 @@
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.LinkedList;
 
 public class Database {
@@ -70,8 +70,14 @@ public class Database {
         }
     }
 
-    public void checkUsername(String username) {
-        
+    public boolean checkUsername(String username) {
+        List<Member> list = new LinkedList<Member>(allMembers.values());
+        for (Member i : list) {
+            if (i.getUsername() == username) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Node getMemberRanksByStat(int stat) {
