@@ -155,7 +155,7 @@ public class Main {
         while (true) {    
             try {
                  
-                System.out.print(PURPLE_COLOUR + "\n---------------------------------------------------");
+                System.out.print(DEFAULT_COLOUR + PURPLE_COLOUR + "\n---------------------------------------------------");
                 System.out.print(BOLD_TEXT + "\nWhat would you like to do next? Press 'h' for help." + DEFAULT_COLOUR + "\n🔍 ");
                 String cmd = input.nextLine().toLowerCase();
                 System.out.println(PURPLE_COLOUR + "---------------------------------------------------\n" + DEFAULT_COLOUR);
