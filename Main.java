@@ -321,7 +321,38 @@ public class Main {
                     }
 
                     else {
-                        System.out.print("Please enter the ");
+                        int team1Points;
+                        int team2Points;
+                        
+                        System.out.println("Enter the game info (any key to exit):");
+                        
+                        while (true) {
+                            System.out.print("Team 1 Points:\n> ");
+                            team1Points = Integer.parseInt(input.nextLine());
+                            
+                            if (team1Points < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        while (true) {
+                            System.out.print("Team 2 Points:\n> ");
+                            team2Points = Integer.parseInt(input.nextLine());
+                            
+                            if (team2Points < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        SETGAME = Game(database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), team1Points, team2Points, database.getGame(ID).getRounds());
                     }
                 }
                 
@@ -335,7 +366,36 @@ public class Main {
                     }
 
                     else {
+                        boolean team1Offence;
+                        int team1Player1;
+                        int team1Player2;
+                        int team2Player1;
+                        int team2Player2;
+                        int dealer;
+                        int trumpEstablisher;
+                        boolean goingAlone;
+                        String trumpSuit;
+                        int team1Tricks;
+                        int team2Tricks;
+                        boolean team1Win;
+                        int pointsAwarded;
                         
+                        System.out.println("Enter the game info (any key to exit):");
+
+                        while (true) {
+                            System.out.print("Team 1 On Offence:\n> ");
+                            team1Offence = Boolean.parseBoolean(input.nextLine());
+                            
+                            if (team1Points < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        database.getGame(ID).addRound(null, null, null, null, null, null, null, null, null, null, null, null, null);
                     }
                 }
                 
