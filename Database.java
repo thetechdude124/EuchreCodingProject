@@ -144,6 +144,7 @@ public class Database {
     }
 
     public void printMemberTop5(int stat) {
+        if (memberStats[stat] == null) {System.out.println("There are no members to print"); return;}
         System.out.println("Rank: |  Stat: |  Name:");
         node = memberStats[stat];
         for (int i = 1; i <= 5; i++) {
@@ -152,6 +153,7 @@ public class Database {
     }
 
     public void printPartnershipTop5(int stat) {
+        if (partnershipStats[stat] == null) {System.out.println("There are no partnerships to print"); return;}
         System.out.println("Rank: |  Stat: |  Name:");
         node = partnershipStats[stat];
         for (int i = 1; i <= 5; i++) {
