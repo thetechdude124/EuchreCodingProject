@@ -242,7 +242,7 @@ public class Main {
                     }
                     Tournament tempT = new Tournament(players, numPlayers);
                     database.addTournament(tempT);
-                    System.out.println("This tournament has been successfully added, with ID #" + database.getTournament(tempT.getTournamentID()));
+                    System.out.println("This tournament has been successfully added, with ID #" + tempT.getTournamentID());
                 }
                 
                 // Adds a completed game to the tournament
