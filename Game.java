@@ -54,6 +54,8 @@ public class Game {
     public Round getRound(int roundID) {return rounds.get(roundID);}
 
     public void setGameID(int gameID) {this.gameID = gameID;}
+    public void setTeam1Points(int team1Points) {this.team1Points = team1Points;}
+    public void setTeam2Points(int team2Points) {this.team2Points = team2Points;}
 
     // Completed rounds
     public void addRound(boolean team1Offence, Member team1Player1, Member team1Player2, Member team2Player1, Member team2Player2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int team1Tricks, int team2Tricks, boolean team1Win, int pointsAwarded) {
@@ -63,6 +65,13 @@ public class Game {
         else {this.team2Points += pointsAwarded;}
         if (team1Points >= 10) {endGame(true);} 
         else if (team2Points >= 10) {endGame(false);}
+    }
+
+    public void endGame() {
+        if (onGoing) {
+            if (team1Points >= 10 || team2Points >= 10) {this.team1Win = (team1Points > team2Points) ? true : false;}
+            onGoing = false;
+        }
     }
 
     public void endGame(boolean team1Win) {

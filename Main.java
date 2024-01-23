@@ -320,6 +320,8 @@ public class Main {
                         System.out.println("Invalid ID.");
                     }
 
+                    else if (!database.getGame(ID).getOnGoing()) {System.out.println("This game has already been ended and recorded.");}
+
                     else {
                         int team1Points;
                         int team2Points;
@@ -352,7 +354,11 @@ public class Main {
                             }
                         }
 
-                        SETGAME = Game(database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), team1Points, team2Points, database.getGame(ID).getRounds());
+                        // SETGAME = Game(database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), team1Points, team2Points, database.getGame(ID).getRounds());
+                        database.getGame(ID).setTeam1Points(team1Points);
+                        database.getGame(ID).setTeam2Points(team2Points);
+                        database.getGame(ID).endGame();
+                        System.out.println("Game saved successfully.");
                     }
                 }
                 
