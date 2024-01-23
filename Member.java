@@ -3,7 +3,7 @@ public class Member {
     private String name;
     private String username; 
     private int userID;
-    private int userIDGen = 0; 
+    private static int userIDGen = 0; 
     private int numGames;
     private int totalWins;
     private int totalLosses;
@@ -24,8 +24,7 @@ public class Member {
     public Member(String name, String username, int numGames, int totalWins, int totalLosses, int winsOnOffence, int winsOnDefence, int lossesOnOffence, int lossesOnDefence, float winLossRate, float averageScore, LinkedList<Tournament> tournaments, LinkedList<Game> gamesPlayed, LinkedList<Partnership> partnershipHistory) {
         this.name = name;
         this.username = username;
-        this.userID = userIDGen;
-        userIDGen++;
+        this.userID = userIDGen++;
         this.numGames = numGames;                       //index0
         this.totalWins = totalWins;                     //index1
         this.totalLosses = totalLosses;                 //index2
@@ -45,8 +44,7 @@ public class Member {
     public Member(String name, String username) {
         this.name = name;
         this.username = username;
-        this.userID = userIDGen;
-        userIDGen++;
+        this.userID = userIDGen++;
         this.numGames = 0;                  //index0
         this.totalWins = 0;                 //index1
         this.totalLosses = 0;               //index2

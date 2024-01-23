@@ -28,12 +28,12 @@ public class Main {
         private static String BOLD_TEXT = "\033[0;1m";
 
         //IN DEVELOPMENT FLAG - this disables all animations for development acceleration purposes.
-        private static boolean IN_DEVELOPMENT = false;
+        private static boolean IN_DEVELOPMENT = true;
 
 
     //Function to render "All Commands" table when necessary
     public static void renderAllCommands() {
-        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------------------------ ALL COMMANDS ------------------------------------------\n" +
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------- ALL COMMANDS -------------------------\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nMEMBER CLASS:\n\n" +
                     GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
@@ -45,11 +45,12 @@ public class Main {
                     GREEN_COLOUR + "'atg' OR 'addtournamentgame': Adds game to the tournament.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nGAME CLASS:\n\n" +
-                    GREEN_COLOUR + "'ag' OR 'addgame': Adds a game to the database.\n" +
+                    GREEN_COLOUR + "'sg' OR 'startgame': Starts a game and adds it to the database.\n" +
+                    GREEN_COLOUR + "'eg' OR 'endgame': Ends a game.\n" +
                     GREEN_COLOUR + "'ar' OR 'addround': Adds a round to the game.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nSTATISTICS CLASS:\n\n" +
-                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu to manage data regarding game performance.\n" +
+                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nHELP COMMAND:\n\n" +
                     BLUE_COLOUR + "'h' OR 'help': Brings up a commands list.\n" +
@@ -57,7 +58,7 @@ public class Main {
                     DEFAULT_COLOUR + BOLD_TEXT + "\nEXIT COMMAND:\n\n" +
                     RED_COLOUR + "'e' OR 'exit': Exits the database." +
 
-                    PURPLE_COLOUR + "\n--------------------------------------------------------------------------------------------------\n");
+                    PURPLE_COLOUR + "\n---------------------------------------------------------------\n");
     }
 
     //Custom "Delay" function for rendering objects to the terminal in an aesthetically pleasing manner
@@ -132,10 +133,10 @@ public class Main {
         while (true) {    
             try {
                  
-                System.out.print(PURPLE_COLOUR + "\n-------------------------------------------------------------");
+                System.out.print(PURPLE_COLOUR + "\n---------------------------------------------------");
                 System.out.print(BOLD_TEXT + "\nWhat would you like to do next? Press 'h' for help." + DEFAULT_COLOUR + "\n🔍 ");
                 String cmd = input.nextLine().toLowerCase();
-                System.out.println(PURPLE_COLOUR + "-------------------------------------------------------------\n" + DEFAULT_COLOUR);
+                System.out.println(PURPLE_COLOUR + "---------------------------------------------------\n" + DEFAULT_COLOUR);
         
                 //For the help command
                 if (cmd.equals("h")) {renderAllCommands();}
@@ -145,9 +146,9 @@ public class Main {
                 else if (cmd.equals("am") || cmd.equals("addmember")) {
 
                     System.out.print("Enter the full name of the new member:\n> ");
-                    String name = input.nextLine().toLowerCase();
+                    String name = input.nextLine();
                     System.out.print("Enter a username for the new member:\n> ");
-                    String username = input.nextLine().toLowerCase();
+                    String username = input.nextLine();
                     
                     if (database.checkUsername(username)) {
                         Member newMember = new Member(name, username);
@@ -217,7 +218,7 @@ public class Main {
                 else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
                     System.out.print("Please enter the game number for the tournament:\n> ");
                     int gameNum = Integer.parseInt(input.nextLine());
-                    System.out.println("Enter the ID number for the game:\n> ");
+                    System.out.println("Enter the ID number for the completed game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
                     
                     if (database.getMember(ID) == null) {
@@ -322,13 +323,13 @@ public class Main {
                     System.out.print("Please enter the ID number for the game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
 
-                    // if (database.getGame(ID) == null) {
-                    //     System.out.println("Invalid ID.");
-                    // }
+                    if (database.getGame(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
 
-                    // else {
+                    else {
 
-                    // }
+                    }
                 }
                 
                 // Add round
@@ -336,13 +337,13 @@ public class Main {
                     System.out.print("Please enter the ID number for the game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
 
-                    // if (database.getGame(ID) == null) {
-                    //     System.out.println("Invalid ID.");
-                    // }
+                    if (database.getGame(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
 
-                    // else {
+                    else {
                         
-                    // }
+                    }
                 }
                 
                 // STATISTICS
@@ -512,7 +513,7 @@ public class Main {
             catch (Exception e) {e.printStackTrace();}
         }
         
-        System.out.println(" Goodbye!");
+        System.out.println("Goodbye!");
         input.close();
     }
 }

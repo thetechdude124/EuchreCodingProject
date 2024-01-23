@@ -32,6 +32,8 @@ public class Database {
     partnershipsByWLRate;       //index7
     partnershipsByAvgScore;     //index8
     */
+    private HashMap<Integer, Game> allGames;
+    private HashMap<Integer, Tournament> allTournaments;
     private Node node;
 
     public Database() {
@@ -39,19 +41,27 @@ public class Database {
         this.memberStats = new Node[9];
         this.allPartnerships = new HashMap<Integer, Partnership>();
         this.partnershipStats = new Node[9];
+        this.allGames = new HashMap<Integer, Game>();
+        this.allTournaments = new HashMap<Integer, Tournament>();
     }
 
     public Member getMember(int userID) {
-        if (allMembers.containsKey(userID)) {
-            return allMembers.get(userID);
-        }
+        if (allMembers.containsKey(userID)) {return allMembers.get(userID);}
         return null;
     }
 
     public Partnership getPartnership(int userID) {
-        if (allMembers.containsKey(userID)) {
-            return allPartnerships.get(userID);
-        }
+        if (allPartnerships.containsKey(userID)) {return allPartnerships.get(userID);}
+        return null;
+    }
+
+    public Game getGame(int gameID) {
+        if (allGames.containsKey(gameID)) {return allGames.get(gameID);}
+        return null;
+    }
+
+    public Tournament getTournament(int tournamentID) {
+        if (allTournaments.containsKey(tournamentID)) {return allTournaments.get(tournamentID);}
         return null;
     }
 
@@ -68,6 +78,10 @@ public class Database {
             i = new Node(partnership.getUserID(), null, i);
         }
     }
+
+    public void addGame(Game game) {allGames.put(game.getGameID(), game);}
+
+    public void addtournament(Tournament tournament) {allTournaments.put(tournament.getTournamentID(), tournament);}
 
     public void removeMember(int userID) {
         if (allMembers.containsKey(userID)) {

@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 public class Tournament {
     private int tournamentID;
-    private int tournamentIDGen = 0;
+    private static int tournamentIDGen = 0;
     private String style;
     private int numGames;
     private LinkedList<Game> games;
