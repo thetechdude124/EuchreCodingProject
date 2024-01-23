@@ -669,18 +669,7 @@ public class Main {
                             }
                         }
 
-                        while (true) {
-                            System.out.print("Team 1 Win (true/false):\n> ");
-                            team1Win = Boolean.parseBoolean(input.nextLine());
-                            
-                            if (team1Win != true && team1Win != false) {
-                                System.out.println("Invalid input.");
-                            }
-    
-                            else {
-                                break;
-                            }
-                        }
+                        team1Win = (team1Tricks > team2Tricks) ? true : false;
 
                         while (true) {
                             System.out.print("Points Awarded:\n> ");

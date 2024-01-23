@@ -6,6 +6,10 @@ public class Game {
     private Member player2; 
     private Member player3;
     private Member player4;
+    private Member[] players;
+    private boolean partners;
+    private Partnership team1;
+    private Partnership team2;
     private int team1Points;
     private int team2Points;
     private boolean team1Win;
@@ -15,24 +19,61 @@ public class Game {
 
     // Overload constructor for ongoing and completed games
 
-    // Ongoing games
+    // Ongoing member games
     public Game(Member player1, Member player2, Member player3, Member player4) {
         this.gameID = gameIDGen++;
+        this.partners = false;
         this.player1 = player1;
         this.player2 = player2;
         this.player3 = player3;
         this.player4 = player4; 
+        this.players = new Member[]{player1, player2, player3, player4};
         this.onGoing = true;
         this.rounds = new HashMap<Integer, Round>();
     }
 
-    // Completed games
+    // Ongoing partner games
+    public Game(Partnership team1, Partnership team2) {
+        this.gameID = gameIDGen++;
+        this.partners = true;
+        this.team1 = team1;
+        this.team2 = team2;
+        this.player1 = team1.getMember1();
+        this.player2 = team1.getMember2();
+        this.player3 = team2.getMember1();
+        this.player4 = team2.getMember2(); 
+        this.players = new Member[]{player1, player2, player3, player4};
+        this.onGoing = true;
+        this.rounds = new HashMap<Integer, Round>();
+    }
+
+    // Completed member games
     public Game(Member player1, Member player2, Member player3, Member player4, int team1Points, int team2Points, HashMap<Integer, Round> rounds) {
         this.gameID = gameIDGen++;
+        this.partners = false;
         this.player1 = player1;
         this.player2 = player2;
         this.player3 = player3;
         this.player4 = player4; 
+        this.players = new Member[]{player1, player2, player3, player4};
+        this.team1Points = team1Points;
+        this.team2Points = team2Points;
+        this.team1Win = (team1Points > team2Points) ? true : false; 
+        this.onGoing = false;
+        this.rounds = rounds;
+    }
+
+    // Completed partner games
+    public Game(Partnership team1, Partnership team2, int team1Points, int team2Points, HashMap<Integer, Round> rounds) {
+        this.gameID = gameIDGen++;
+        this.partners = true;
+        this.team1 = team1;
+        this.team2 = team2;
+        this.player1 = team1.getMember1();
+        this.player2 = team1.getMember2();
+        this.player3 = team2.getMember1();
+        this.player4 = team2.getMember2(); 
+        this.players = new Member[]{player1, player2, player3, player4};
         this.team1Points = team1Points;
         this.team2Points = team2Points;
         this.team1Win = (team1Points > team2Points) ? true : false; 
@@ -46,6 +87,9 @@ public class Game {
     public Member getPlayer2() {return player2;}
     public Member getPlayer3() {return player3;}
     public Member getPlayer4() {return player4;}
+    public Member[] getPlayers() {return players;}
+    public Partnership getTeam1() {return team1;}
+    public Partnership getTeam2() {return team2;}
     public int getTeam1Points() {return team1Points;}
     public int getTeam2Points() {return team2Points;}
     public boolean getTeam1Win() {return team1Win;}
@@ -63,13 +107,18 @@ public class Game {
         else {rounds.put(roundIDGen, new Round(roundIDGen++, team2Player1, team2Player2, team1Player1, team1Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, team2Tricks, team1Tricks, !team1Win, pointsAwarded));}
         if (team1Win) {this.team1Points += pointsAwarded;}
         else {this.team2Points += pointsAwarded;}
-        if (team1Points >= 10) {endGame(true);} 
+        if (team1Points >= 10) {endGame(true);}
         else if (team2Points >= 10) {endGame(false);}
     }
 
     public void endGame() {
         if (onGoing) {
             if (team1Points >= 10 || team2Points >= 10) {this.team1Win = (team1Points > team2Points) ? true : false;}
+            if (partners) {
+                team1.newGame(this, team1Win, onGoing, gameID);
+                team2.newGame(this, team1Win, onGoing, gameID);
+            }
+            for (Member i : players) {i.newGame(this, team1Win, onGoing, gameID);}
             onGoing = false;
         }
     }
@@ -77,6 +126,11 @@ public class Game {
     public void endGame(boolean team1Win) {
         if (onGoing) {
             this.team1Win = team1Win;
+            if (partners) {
+                team1.newGame(this, team1Win, onGoing, gameID);
+                team2.newGame(this, team1Win, onGoing, gameID);
+            }
+            for (Member i : players) {i.newGame(this, team1Win, onGoing, gameID);}
             onGoing = false;
         }
     }
