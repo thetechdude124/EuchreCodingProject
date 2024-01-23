@@ -1,12 +1,54 @@
 import java.util.Scanner;
 
+//The main class
 public class Main {
-    public static void main(String args[]) {
-        Scanner input = new Scanner(System.in);
 
+    public static void main(String args[]) {
+
+        //Set all terminal colours beforehand.
+        //The scheme is as follows (also set a constant to revert to default terminal style when needed)
+        String DEFAULT_COLOUR = "\u001B[0m";
+        //GREEN - add an object.
+        String GREEN_COLOUR = "\u001B[32m";
+        //RED - remove an object.
+        String RED_COLOUR = "\u001B[31m";
+        //BLUE - view an object.
+        String BLUE_COLOUR = "\u001B[34m";
+        //WHITE - help and administrative commands.
+        String WHITE_COLOUR = "\u001B[37m";
+        //PURPLE - all headers.
+        String PURPLE_COLOUR = "\u001B[35m";
+
+
+        //Display application header.
+        System.out.println();
+        System.out.println(PURPLE_COLOUR + "==============================================================================================================================================================");
+        System.out.println(
+            """
+                _______   ___  ___  ________  ___  ___  ________  _______           _____ ______   ________  ________   ________  ________  _______   ________         
+                |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
+                \\ \\   __/|\\ \\  \\\\\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\|\\  \\ \\   __/|        \\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\\\ \\  \\ \\  \\|\\  \\ \\  \\___|\\ \\   __/|\\ \\  \\|\\  \\       
+                 \\ \\  \\_|/_\\ \\  \\\\\\  \\ \\  \\    \\ \\   __  \\ \\   _  _\\ \\  \\_|/__       \\ \\  \\\\|__| \\  \\ \\   __  \\ \\  \\\\ \\  \\ \\   __  \\ \\  \\  __\\ \\  \\_|/_\\ \\   _  _\\      
+                  \\ \\  \\_|\\ \\ \\  \\\\\\  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\  \\\\ \\  \\_|\\ \\       \\ \\  \\    \\ \\  \\ \\  \\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\|\\  \\ \\  \\_|\\ \\ \\  \\\\  \\| ___ 
+                   \\ \\_______\\ \\_______\\ \\_______\\ \\__\\ \\__\\ \\__\\\\ _\\\\ \\_______\\       \\ \\__\\    \\ \\__\\ \\__\\ \\__\\ \\__\\\\ \\__\\ \\__\\ \\__\\ \\_______\\ \\_______\\ \\__\\\\ _\\|\\__\\
+                    \\|_______|\\|_______|\\|_______|\\|__|\\|__|\\|__|\\|__|\\|_______|        \\|__|     \\|__|\\|__|\\|__|\\|__| \\|__|\\|__|\\|__|\\|_______|\\|_______|\\|__|\\|__\\|__|
+            """
+        );
+        System.out.println("==============================================================================================================================================================");
+
+        System.out.println();
+        System.out.println(DEFAULT_COLOUR + "-------------------------------------------------------------------------------------------------------");
+        System.out.println("Hey there! Welcome to the EUCHRE CLUB MANAGER (ECM), where you can manage your Euchre club with ease.");
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        
+
+        //Declare a new scanner and statistics object
+        Scanner input = new Scanner(System.in);
         Statistics statistics = new Statistics();
 
+        //Repeat ad nauseum unless the application is quit
         while (true) {    
+
             System.out.print("\nEUCHRE DATABASE\nType 'h' for a list of commands.\n> ");
             String cmd = input.nextLine().toLowerCase();
     
@@ -35,6 +77,7 @@ public class Main {
             // MEMBERS
             // Add member
             else if (cmd.equals("am") || cmd.equals("addmember")) {
+
                 System.out.print("Enter the full name of the new member:\n> ");
                 String name = input.nextLine().toLowerCase();
                 System.out.print("Enter a username for the new member:\n> ");
@@ -208,10 +251,12 @@ public class Main {
                                             "'as' OR 'averagescore': Sorts by the average score\n" +
                                             "'e' OR 'exit': Exits statistics" +
                                             "\n----------------------------------------------------\n\nPlease select which statistics you would like to view:\n> ");
+                        
                         String statscmd = input.nextLine().toLowerCase();
 
                         // Number of games
                         if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
+                            System.out.println();
                             statistics.getMemberRanksByStat(0);
                         }
 
