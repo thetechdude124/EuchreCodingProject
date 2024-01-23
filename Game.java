@@ -46,9 +46,9 @@ public class Game {
     public Member getPlayer2() {return player2;}
     public Member getPlayer3() {return player3;}
     public Member getPlayer4() {return player4;}
-    public int getteam1Points() {return team1Points;}
-    public int getteam2Points() {return team2Points;}
-    public boolean getteam1Win() {return team1Win;}
+    public int getTeam1Points() {return team1Points;}
+    public int getTeam2Points() {return team2Points;}
+    public boolean getTeam1Win() {return team1Win;}
     public boolean getOnGoing() {return onGoing;}
     public HashMap<Integer, Round> getRounds() {return rounds;}
     public Round getRound(int roundID) {return rounds.get(roundID);}

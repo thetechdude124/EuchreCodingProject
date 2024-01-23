@@ -6,6 +6,7 @@ public class Tournament {
     private int numGames;
     private LinkedList<Game> games;
     private LinkedList<Member> players;
+    private int index = 0;
     private boolean onGoing;
 
     // Overload constructor for onGoing and completed games 
@@ -21,7 +22,7 @@ public class Tournament {
     }
 
     // Completed Games
-    public Tournament(String style, Member[] players, int numGames, LinkedList<Game> games) {
+    public Tournament(String style, LinkedList<Member> players, int numGames, LinkedList<Game> games) {
         this.tournamentID = tournamentIDGen++;
         this.style = style;
         this.numGames = numGames;
@@ -34,15 +35,20 @@ public class Tournament {
     public String getStyle() {return style;}
     public int getNumGames() {return numGames;}
     public LinkedList<Game> getGames() {return games;}
+    public LinkedList<Member> getPlayers() {return players;}
     public boolean getOnGoing() {return onGoing;}
 
     public void setStyle(String style) {this.style  = style;}
-    public void setNumGames(int numGames) {this.numGames = numGames;}
-    public void setGames(LinkedList<Game> games) {this.games = games;}
+    public void setNumGames(int numGames) {this.numGames = numGames;} 
     public void nextGame(Game newGame) {
         if (onGoing) {
             games.add(newGame);
-            if (games.size() == numGames) {onGoing = false;}
+            if (newGame.getOnGoing()) {return;}
+            if (newGame.getTeam1Win()) {players.remove(index); players.remove(index); index += 2;}
+            else {index += 2; players.remove(index); players.remove(index);}
+            if (index >= players.size()) {index = 0;}
+            if (games.size() == numGames) {onGoing = false;} 
+            nextGame(new Game(players.get(index), players.get(index+1), players.get(index+2), players.get(index+3)));
         } 
     }
 
