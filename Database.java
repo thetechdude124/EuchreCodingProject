@@ -2,7 +2,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class Statistics {
+public class Database {
     // Below are custom LinkedLists referred to by their head
     // All the members and partnerships are included in each of the LinkedLists, the purpose of the duplicates is to store sorted members for each stat 
     // There is an array that contains all the stat lists for each member and partnership
@@ -34,7 +34,7 @@ public class Statistics {
     */
     private Node node;
 
-    public Statistics() {
+    public Database() {
         this.allMembers = new HashMap<Integer, Member>();
         this.memberStats = new Node[9];
 
@@ -71,10 +71,6 @@ public class Statistics {
     }
 
     public void checkUsername(String username) {
-        Collection<Member> list = allMembers.values();
-        for (int i = 0; i < allMembers.size(); i++) {
-            allMembers.
-        }
         
     }
 

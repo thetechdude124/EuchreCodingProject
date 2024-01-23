@@ -4,7 +4,7 @@ public class Main {
     public static void main(String args[]) {
         Scanner input = new Scanner(System.in);
 
-        Statistics statistics = new Statistics();
+        Database statistics = new Database();
 
         while (true) {    
             System.out.print("\nEUCHRE DATABASE\nType 'h' for a list of commands.\n> ");
@@ -46,12 +46,10 @@ public class Main {
                 }
 
                 else if (true) {
-                    
+                    System.out.println("Sorry this username is taken.");
                 }
 
                 // method to check if username is taken
-
-                System.out.println("Sorry this username is taken.");
 
                 // print out the information
             }
@@ -61,7 +59,13 @@ public class Main {
                 System.out.print("Enter the ID number of the member being removed:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
                 
-                // method to check if id is real
+                if (statistics.getMember(ID) == null) {
+                    System.out.println("Invalid ID.");
+                }
+
+                else {
+
+                }
             }
             
             // View member
@@ -85,20 +89,123 @@ public class Main {
             else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
-                System.out.print("Enter the tournament game info:\nPlayer 1 ID:\n> ");
-                int player1 = Integer.parseInt(input.nextLine());
-                System.out.print("Player 2 ID:\n> ");
-                int player2 = Integer.parseInt(input.nextLine());
-                System.out.print("Player 3 ID:\n> ");
-                int player3 = Integer.parseInt(input.nextLine());
-                System.out.print("Player 4 ID:\n> ");
-                int player4 = Integer.parseInt(input.nextLine());
-                System.out.print("Offense points:\n> ");
-                int offensePoints = Integer.parseInt(input.nextLine());
-                System.out.print("Defense points:\n> ");
-                int defensePoints = Integer.parseInt(input.nextLine());
+                System.out.println("Enter the tournament game info:");
+                int player1;
+                int player2;
+                int player3;
+                int player4;
+                int offensePoints;
+                int defensePoints;
 
-                Game game = new Game(statistics.getMember(player1), statistics.getMember(player2), statistics.getMember(player3), statistics.getMember(player4));
+                while (true) {
+                    System.out.print("Player 1 ID:\n> ");
+                    player1 = Integer.parseInt(input.nextLine());
+    
+                    if (statistics.getMember(player1) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Player 2 ID:\n> ");
+                    player2 = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Player 3 ID:\n> ");
+                    player3 = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Player 4 ID:\n> ");
+                    player4 = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Offense points:\n> ");
+                    offensePoints = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                while (true) {
+                    System.out.print("Defense points:\n> ");
+                    defensePoints = Integer.parseInt(input.nextLine());
+                    
+                    if (statistics.getMember(player2) == null) {
+                        System.out.println("Invalid ID.");
+                    }
+
+                    else if (cmd.equals("e") || cmd.equals("exit")) {
+                        System.out.print("Exited database.");
+                        break;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
+
+                Game game = new Game(statistics.getMember(player1), statistics.getMember(player2), statistics.getMember(player3), statistics.getMember(player4), offensePoints, defensePoints, null);
 
                 // print out the information
             }
