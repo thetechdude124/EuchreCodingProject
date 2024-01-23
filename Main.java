@@ -6,6 +6,9 @@ public class Main {
 
     public static void main(String args[]) {
 
+        // Test cases
+        Member testMember = new Member("Jiapei Du", "J_D");
+
         //Set all terminal colours beforehand.
         //The scheme is as follows (also set a constant to revert to default terminal style when needed)
         String DEFAULT_COLOUR = "\u001B[0m";
@@ -116,8 +119,6 @@ public class Main {
                     System.out.println("Sorry this username is taken.");
                 }
 
-                // method to check if username is taken
-
                 // print out the information
             }
 
@@ -146,7 +147,17 @@ public class Main {
 
                 else {
                     System.out.println( "MEMBER:\n" +
-                                        "");
+                                        "Name: " + statistics.getMember(ID).getName() +
+                                        "\nID: " + statistics.getMember(ID).getUserID() +
+                                        "\nNumber of Games: " + statistics.getMember(ID).getNumGames() +
+                                        "\nTotal Wins: " + statistics.getMember(ID).getTotalWins() +
+                                        "\nTotal Losses: " + statistics.getMember(ID).getTotalLosses() +
+                                        "\nWins on Offence: " + statistics.getMember(ID).getWinsOnOffence() +
+                                        "\nWins on Defence: " + statistics.getMember(ID).getWinsOnDefence() +
+                                        "\nLosses on Offence: " + statistics.getMember(ID).getLossesOnOffence() +
+                                        "\nLosses on Defence: " + statistics.getMember(ID).getLossesOnDefence() +
+                                        "\nWin/Loss Rate: " + statistics.getMember(ID).getWinLossRate() +
+                                        "\nAverage Score: " + statistics.getMember(ID).getAverageScore());
                 }
             }
             
