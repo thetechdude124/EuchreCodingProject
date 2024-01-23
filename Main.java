@@ -31,7 +31,7 @@ public class Main {
         private static boolean IN_DEVELOPMENT = true;
 
 
-    //Function to render "All Commands" table when necessary
+    //Function to render "All Commands" menu when necessary
     public static void renderAllCommands() {
         System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------- ALL COMMANDS -------------------------\n" +
 
@@ -61,6 +61,28 @@ public class Main {
                     PURPLE_COLOUR + "\n---------------------------------------------------------------\n");
     }
 
+    //Functon to render "Statistics" menu when necessary
+    public static void renderStatistics() {
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------- STATISTICS -------------------------\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'ng' OR 'numberofgames': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by number of games played.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'w' OR 'wins': "  + PLAIN_TEXT + GREEN_COLOUR + "Sorts by wins.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'l' OR 'losses': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by losses.\n" +
+                            
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'ow' OR 'offensivewins': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by offensive wins.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'dw' OR 'defensivewins': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by defensive wins.\n" +
+                            
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'ol' OR 'offensivelosses': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by offensive losses.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'dl' OR 'defensivelosses': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by defensive losses.\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "\n'wlr' OR 'winlossrate': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by the win/loss rate.\n" +
+                            DEFAULT_COLOUR + BOLD_TEXT + GREEN_COLOUR + "'as' OR 'averagescore': " + PLAIN_TEXT + GREEN_COLOUR + "Sorts by the average score.\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + RED_COLOUR + "\n'e' OR 'exit': " + PLAIN_TEXT + RED_COLOUR + "Exits statistics.\n" +
+
+                            DEFAULT_COLOUR + BOLD_TEXT + PURPLE_COLOUR + "\n--------------------------------------------------------------\n\n" + DEFAULT_COLOUR);
+    }
+
     //Custom "Delay" function for rendering objects to the terminal in an aesthetically pleasing manner
     //If in development, do not institute a delay.
     public static void delay(int seconds) {
@@ -77,7 +99,7 @@ public class Main {
         System.out.println(PURPLE_COLOUR + "==============================================================================================================================================================");
         System.out.println(
             """
-                _______   ___  ___  ________  ___  ___  ________  _______           _____ ______   ________  ________   ________  ________  _______   ________         
+                 _______   ___  ___  ________  ___  ___  ________  _______           _____ ______   ________  ________   ________  ________  _______   ________         
                 |\\  ___ \\ |\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\  ___ \\         |\\   _ \\  _   \\|\\   __  \\|\\   ___  \\|\\   __  \\|\\   ____\\|\\  ___ \\ |\\   __  \\        
                 \\ \\   __/|\\ \\  \\\\\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\|\\  \\ \\   __/|        \\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\\\ \\  \\ \\  \\|\\  \\ \\  \\___|\\ \\   __/|\\ \\  \\|\\  \\       
                  \\ \\  \\_|/_\\ \\  \\\\\\  \\ \\  \\    \\ \\   __  \\ \\   _  _\\ \\  \\_|/__       \\ \\  \\\\|__| \\  \\ \\   __  \\ \\  \\\\ \\  \\ \\   __  \\ \\  \\  __\\ \\  \\_|/_\\ \\   _  _\\      
@@ -105,7 +127,7 @@ public class Main {
         delay(2);
 
         //Prior to displaying the help menu, quickly walk through what each of the colours mean.
-        System.out.println(BOLD_TEXT + GREEN_COLOUR + "GREEN" + DEFAULT_COLOUR + " - this is for commands that add items.");
+        System.out.println(BOLD_TEXT + GREEN_COLOUR + "GREEN" + DEFAULT_COLOUR + " - this is for commands that add and/or sort items.");
         delay(2);
         System.out.println(BOLD_TEXT + RED_COLOUR + "RED" + DEFAULT_COLOUR + " - this is for commands that remove items (as well as the exit command).");
         delay(2);
@@ -354,18 +376,11 @@ public class Main {
                     
                     if (choice.equals("m") || choice.equals("members")) {
                         while (true) {
-                            System.out.print(   "\n---------------------STATISTICS---------------------\n" +
-                                                "'ng' OR 'numberofgames': Sorts by number of games played\n" +
-                                                "'w' OR 'wins': Sorts by wins\n" +
-                                                "'l' OR 'losses': Sorts by losses\n" +
-                                                "'ow' OR 'offensivewins': Sorts by offensive wins\n" +
-                                                "'dw' OR 'defensivewins': Sorts by defensive wins\n" +
-                                                "'ol' OR 'offensivelosses': Sorts by offensive losses\n" +
-                                                "'dl' OR 'defensivelosses': Sorts by defensive losses\n" +
-                                                "'wlr' OR 'winlossrate': Sorts by the win/loss rate\n" +
-                                                "'as' OR 'averagescore': Sorts by the average score\n" +
-                                                "'e' OR 'exit': Exits statistics" +
-                                                "\n----------------------------------------------------\n\nPlease select which statistics you would like to view:\n> ");
+
+                            //Render statistics menu
+                            renderStatistics();
+
+                            System.out.print("Please select which statistics you would like to view:\n> ");
                             String statscmd = input.nextLine().toLowerCase();
 
                             // Number of games
@@ -423,18 +438,10 @@ public class Main {
                     
                     else if (choice.equals("p") || choice.equals("partnerships")) {
                         while (true) {
-                            System.out.print(   "\n---------------------STATISTICS---------------------\n" +
-                                                "'n' OR 'wins': Sorts by number of games played\n" +
-                                                "'w' OR 'wins': Sorts by wins\n" +
-                                                "'l' OR 'losses': Sorts by losses\n" +
-                                                "'ow' OR 'offensivewins': Sorts by offensive wins\n" +
-                                                "'dw' OR 'defensivewins': Sorts by defensive wins\n" +
-                                                "'ol' OR 'offensivelosses': Sorts by offensive losses\n" +
-                                                "'dl' OR 'defensivelosses': Sorts by defensive losses\n" +
-                                                "'wlr' OR 'winlossrate': Sorts by the win/loss rate\n" +
-                                                "'as' OR 'averagescore': Sorts by the average score\n" +
-                                                "'e' OR 'exit': Exits statistics" +
-                                                "\n----------------------------------------------------\n\nPlease select which statistics you would like to view:\n> ");
+
+                            //Render statistics menu
+                            renderStatistics();
+                            System.out.print("Please select which statistics you would like to view:\n> ");
                             
                             String statscmd = input.nextLine().toLowerCase();
 
