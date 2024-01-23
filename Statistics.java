@@ -1,4 +1,6 @@
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Statistics {
     // Below are custom LinkedLists referred to by their head
@@ -66,6 +68,14 @@ public class Statistics {
         for (int i = 0; i <= 9; i++) {
             partnershipStats[i] = new Node(partnership.getUserID(), null, partnershipStats[i]);
         }
+    }
+
+    public void checkUsername(String username) {
+        Collection<Member> list = allMembers.values();
+        for (int i = 0; i < allMembers.size(); i++) {
+            allMembers.
+        }
+        
     }
 
     public Node getMemberRanksByStat(int stat) {

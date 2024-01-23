@@ -40,6 +40,15 @@ public class Main {
                 System.out.print("Enter a username for the new member:\n> ");
                 String username = input.nextLine().toLowerCase();
                 
+                if (true) {
+                    Member newMember = new Member(name, username);
+                    statistics.addMember(newMember);
+                }
+
+                else if (true) {
+                    
+                }
+
                 // method to check if username is taken
 
                 System.out.println("Sorry this username is taken.");
@@ -77,17 +86,19 @@ public class Main {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
                 System.out.print("Enter the tournament game info:\nPlayer 1 ID:\n> ");
-                String player1 = input.nextLine().toLowerCase();
+                int player1 = Integer.parseInt(input.nextLine());
                 System.out.print("Player 2 ID:\n> ");
-                String player2 = input.nextLine().toLowerCase();
+                int player2 = Integer.parseInt(input.nextLine());
                 System.out.print("Player 3 ID:\n> ");
-                String player3 = input.nextLine().toLowerCase();
+                int player3 = Integer.parseInt(input.nextLine());
                 System.out.print("Player 4 ID:\n> ");
-                String player4 = input.nextLine().toLowerCase();
+                int player4 = Integer.parseInt(input.nextLine());
                 System.out.print("Offense points:\n> ");
-                String offensePoints = input.nextLine().toLowerCase();
+                int offensePoints = Integer.parseInt(input.nextLine());
                 System.out.print("Defense points:\n> ");
-                String defensePoints = input.nextLine().toLowerCase();
+                int defensePoints = Integer.parseInt(input.nextLine());
+
+                Game game = new Game(statistics.getMember(player1), statistics.getMember(player2), statistics.getMember(player3), statistics.getMember(player4));
 
                 // print out the information
             }
@@ -212,47 +223,47 @@ public class Main {
 
                         // Number of games
                         if (statscmd.equals("ng") || statscmd.equals("numberofgames")) {
-                            statistics.getMemberRanksByStat(0);
+                            statistics.getPartnershipRanksByStat(0);
                         }
 
                         // Wins
                         if (statscmd.equals("w") || statscmd.equals("wins")) {
-                            statistics.getMemberRanksByStat(1);
+                            statistics.getPartnershipRanksByStat(1);
                         }
 
                         // Losses
                         if (statscmd.equals("l") || statscmd.equals("losses")) {
-                            statistics.getMemberRanksByStat(2);
+                            statistics.getPartnershipRanksByStat(2);
                         }
 
                         // Offensive wins
                         if (statscmd.equals("ow") || statscmd.equals("offensivewins")) {
-                            statistics.getMemberRanksByStat(3);
+                            statistics.getPartnershipRanksByStat(3);
                         }
 
                         // Defensive wins
                         if (statscmd.equals("dw") || statscmd.equals("defensivewins")) {
-                            statistics.getMemberRanksByStat(4);
+                            statistics.getPartnershipRanksByStat(4);
                         }
                         
                         // Offensive losses
                         if (statscmd.equals("ol") || statscmd.equals("offensivelosses")) {
-                            statistics.getMemberRanksByStat(5);
+                            statistics.getPartnershipRanksByStat(5);
                         }
 
                         // Defensive losses
                         if (statscmd.equals("dl") || statscmd.equals("defensivelosses")) {
-                            statistics.getMemberRanksByStat(6);
+                            statistics.getPartnershipRanksByStat(6);
                         }
 
                         // Win loss rate
                         if (statscmd.equals("wlr") || statscmd.equals("winlossrate")) {
-                            statistics.getMemberRanksByStat(7);
+                            statistics.getPartnershipRanksByStat(7);
                         }
 
                         // Average score
                         if (statscmd.equals("as") || statscmd.equals("averagescore")) {
-                            statistics.getMemberRanksByStat(8);
+                            statistics.getPartnershipRanksByStat(8);
                         }
                         
                         // Exit
