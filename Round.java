@@ -1,4 +1,5 @@
 public class Round {
+    private int roundID;
     private Member offencePlayer1;
     private Member offencePlayer2;
     private Member defencePlayer1;
@@ -16,7 +17,8 @@ public class Round {
     // Overload the constructors for ongoing and completed games
 
     // Ongoing games
-    public Round(Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer) {
+    public Round(int roundID, Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer) {
+        this.roundID = roundID;
         this.offencePlayer1 = offencePlayer1;
         this.offencePlayer2 = offencePlayer2;
         this.defencePlayer1 = defencePlayer1;
@@ -26,7 +28,8 @@ public class Round {
     }
 
     // Completed games
-    public Round(Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int offenceTricks, int defenceTricks, boolean offenceWin, int pointsAwarded) {
+    public Round(int roundID, Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int offenceTricks, int defenceTricks, boolean offenceWin, int pointsAwarded) {
+        this.roundID = roundID;
         this.offencePlayer1 = offencePlayer1;
         this.offencePlayer2 = offencePlayer2;
         this.defencePlayer1 = defencePlayer1;
@@ -43,6 +46,7 @@ public class Round {
     }
 
     // Getters
+    public int getRoundID() {return roundID;}
     public Member getOffencePlayer1() {return offencePlayer1;}
     public Member getOffencePlayer2() {return offencePlayer2;}
     public Member getDefencePlayer1() {return defencePlayer1;}
