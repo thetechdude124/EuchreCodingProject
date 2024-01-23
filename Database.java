@@ -111,11 +111,9 @@ public class Database {
     public boolean checkUsername(String username) {
         List<Member> list = new LinkedList<Member>(allMembers.values());
         for (Member i : list) {
-            if (i.getUsername() == username) {
-                return false;
-            }
+            if (i.getUsername() == username) {return false;}
         }
-        return true;
+        return true;        // this means this is a unique username
     }
 
     public Node getMemberRanksByStat(int stat) {
@@ -130,9 +128,7 @@ public class Database {
 
     private void addToEnd(Node tempNode, int userID) {  
         if (tempNode != null) {
-            while (tempNode.getNext() != null) {
-                tempNode = tempNode.getNext();
-            } 
+            while (tempNode.getNext() != null) {tempNode = tempNode.getNext();} 
         }
         Node newNode = new Node(userID, tempNode, null);
         tempNode.setNext(newNode);
