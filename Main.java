@@ -131,7 +131,7 @@ public class Main {
                 }
 
                 else {
-
+                    // remove member method
                 }
             }
             
@@ -140,7 +140,14 @@ public class Main {
                 System.out.print("Enter the ID number of the member being viewed:\n> ");
                 int ID = Integer.parseInt(input.nextLine());
 
-                // method to check if id is real
+                if (statistics.getMember(ID) == null) {
+                    System.out.println("Invalid ID.");
+                }
+
+                else {
+                    System.out.println( "MEMBER:\n" +
+                                        "");
+                }
             }
             
             // TOURNAMENTS
@@ -148,12 +155,33 @@ public class Main {
             else if (cmd.equals("at") || cmd.equals("addtournament")) {
                 System.out.print("Enter the name of the tournament:\n> ");
                 String name = input.nextLine().toLowerCase();
-                System.out.print("Choose the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)");
+                System.out.print("Choose the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
                 int numOfPlayers = Integer.parseInt(input.nextLine());
+
+                // NEEDS FINISHING
             }
             
             // Add game (under tournament)
             else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
+                System.out.print("Please enter the game number for the tournament:\n> ");
+                int gameNum = Integer.parseInt(input.nextLine());
+                System.out.println("Enter the ID number for the game:\n> ");
+                int ID = Integer.parseInt(input.nextLine());
+                
+                if (statistics.getMember(ID) == null) {
+                    System.out.println("Invalid ID.");
+                }
+
+                else {
+                    // remove member method
+                }
+
+                // print out the information
+            }
+            
+            // GAME
+            // Add game (not under tournament)
+            else if (cmd.equals("ag") || cmd.equals("addgame")) {
                 System.out.print("Please enter the game number for the tournament:\n> ");
                 int gameNum = Integer.parseInt(input.nextLine());
                 System.out.println("Enter the tournament game info:");
@@ -273,25 +301,6 @@ public class Main {
                 }
 
                 Game game = new Game(statistics.getMember(player1), statistics.getMember(player2), statistics.getMember(player3), statistics.getMember(player4), offensePoints, defensePoints, null);
-
-                // print out the information
-            }
-            
-            // GAME
-            // Add game (not under tournament)
-            else if (cmd.equals("ag") || cmd.equals("addgame")) {
-                System.out.print("Enter the game info:\nPlayer 1 ID:\n> ");
-                String player1 = input.nextLine().toLowerCase();
-                System.out.print("Player 2 ID:\n> ");
-                String player2 = input.nextLine().toLowerCase();
-                System.out.print("Player 3 ID:\n> ");
-                String player3 = input.nextLine().toLowerCase();
-                System.out.print("Player 4 ID:\n> ");
-                String player4 = input.nextLine().toLowerCase();
-                System.out.print("Offense points:\n> ");
-                String offensePoints = input.nextLine().toLowerCase();
-                System.out.print("Defense points:\n> ");
-                String defensePoints = input.nextLine().toLowerCase();
 
                 // print out the information
             }   
