@@ -4,13 +4,6 @@ import java.util.concurrent.TimeUnit;
 //The main class
 public class Main {
 
-        // Test cases
-        Member testMember = new Member("Jiapei Du", "J_D");
-        Member testMember2 = new Member("Khalil Ramzi", "KRamzi");
-        Member testMember3 = new Member("Aditiya Dewan", "CodingDude");
-        Member testMember4 = new Member("Yi Li", "Dingo");
-        Game testGame = new Game(testMember, testMember2, testMember3, testMember4);
-
         //Set all terminal colours beforehand.
         //The scheme is as follows (also set a constant to revert to default terminal style when needed)
         private static String DEFAULT_COLOUR = "\u001B[0m";
@@ -35,7 +28,7 @@ public class Main {
 
     //Function to render "All Commands" table when necessary
     public static void renderAllCommands() {
-        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n-------------------------- ALL COMMANDS --------------------------\n" +
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------- ALL COMMANDS -------------------------\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nMEMBER CLASS:\n\n" +
                     GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
@@ -60,7 +53,7 @@ public class Main {
                     DEFAULT_COLOUR + BOLD_TEXT + "\nEXIT COMMAND:\n\n" +
                     RED_COLOUR + "'e' OR 'exit': Exits the database." +
 
-                    PURPLE_COLOUR + "\n-----------------------------------------------------------------\n");
+                    PURPLE_COLOUR + "\n---------------------------------------------------------------\n");
     }
 
     //Custom "Delay" function for rendering objects to the terminal in an aesthetically pleasing manner
@@ -135,10 +128,10 @@ public class Main {
         while (true) {    
             try {
                  
-                System.out.print(PURPLE_COLOUR + "\n-------------------------------------------------------------");
+                System.out.print(PURPLE_COLOUR + "\n---------------------------------------------------");
                 System.out.print(BOLD_TEXT + "\nWhat would you like to do next? Press 'h' for help." + DEFAULT_COLOUR + "\n🔍 ");
                 String cmd = input.nextLine().toLowerCase();
-                System.out.println(PURPLE_COLOUR + "-------------------------------------------------------------\n" + DEFAULT_COLOUR);
+                System.out.println(PURPLE_COLOUR + "---------------------------------------------------\n" + DEFAULT_COLOUR);
         
                 //For the help command
                 if (cmd.equals("h")) {renderAllCommands();}
@@ -148,9 +141,9 @@ public class Main {
                 else if (cmd.equals("am") || cmd.equals("addmember")) {
 
                     System.out.print("Enter the full name of the new member:\n> ");
-                    String name = input.nextLine().toLowerCase();
+                    String name = input.nextLine();
                     System.out.print("Enter a username for the new member:\n> ");
-                    String username = input.nextLine().toLowerCase();
+                    String username = input.nextLine();
                     
                     if (database.checkUsername(username)) {
                         Member newMember = new Member(name, username);
@@ -220,7 +213,7 @@ public class Main {
                 else if (cmd.equals("atg") || cmd.equals("addtournamentgame")) {
                     System.out.print("Please enter the game number for the tournament:\n> ");
                     int gameNum = Integer.parseInt(input.nextLine());
-                    System.out.println("Enter the ID number for the game:\n> ");
+                    System.out.println("Enter the ID number for the completed game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
                     
                     if (database.getMember(ID) == null) {
@@ -325,13 +318,13 @@ public class Main {
                     System.out.print("Please enter the ID number for the game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
 
-                    // if (database.getGame(ID) == null) {
-                    //     System.out.println("Invalid ID.");
-                    // }
+                    if (database.getGame(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
 
-                    // else {
+                    else {
 
-                    // }
+                    }
                 }
                 
                 // Add round
@@ -339,13 +332,13 @@ public class Main {
                     System.out.print("Please enter the ID number for the game:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
 
-                    // if (database.getGame(ID) == null) {
-                    //     System.out.println("Invalid ID.");
-                    // }
+                    if (database.getGame(ID) == null) {
+                        System.out.println("Invalid ID.");
+                    }
 
-                    // else {
+                    else {
                         
-                    // }
+                    }
                 }
                 
                 // STATISTICS
