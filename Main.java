@@ -229,8 +229,6 @@ public class Main {
                     String name = input.nextLine().toLowerCase();
                     System.out.print("Choose the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
                     int numOfPlayers = Integer.parseInt(input.nextLine());
-
-                    
                 }
                 
                 // Adds a completed game to the tournament
