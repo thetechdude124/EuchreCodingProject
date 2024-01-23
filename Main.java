@@ -30,12 +30,12 @@ public class Main {
         private static String BOLD_TEXT = "\033[0;1m";
 
         //IN DEVELOPMENT FLAG - this disables all animations for development acceleration purposes.
-        private static boolean IN_DEVELOPMENT = false;
+        private static boolean IN_DEVELOPMENT = true;
 
 
     //Function to render "All Commands" table when necessary
     public static void renderAllCommands() {
-        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------------------------ ALL COMMANDS ------------------------------------------\n" +
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n-------------------------- ALL COMMANDS --------------------------\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nMEMBER CLASS:\n\n" +
                     GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
@@ -47,11 +47,12 @@ public class Main {
                     GREEN_COLOUR + "'atg' OR 'addtournamentgame': Adds game to the tournament.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nGAME CLASS:\n\n" +
-                    GREEN_COLOUR + "'ag' OR 'addgame': Adds a game to the database.\n" +
+                    GREEN_COLOUR + "'sg' OR 'startgame': Starts a game and adds it to the database.\n" +
+                    GREEN_COLOUR + "'eg' OR 'endgame': Ends a game.\n" +
                     GREEN_COLOUR + "'ar' OR 'addround': Adds a round to the game.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nSTATISTICS CLASS:\n\n" +
-                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu to manage data regarding game performance.\n" +
+                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu.\n" +
 
                     DEFAULT_COLOUR + BOLD_TEXT + "\nHELP COMMAND:\n\n" +
                     BLUE_COLOUR + "'h' OR 'help': Brings up a commands list.\n" +
@@ -59,7 +60,7 @@ public class Main {
                     DEFAULT_COLOUR + BOLD_TEXT + "\nEXIT COMMAND:\n\n" +
                     RED_COLOUR + "'e' OR 'exit': Exits the database." +
 
-                    PURPLE_COLOUR + "\n--------------------------------------------------------------------------------------------------\n");
+                    PURPLE_COLOUR + "\n-----------------------------------------------------------------\n");
     }
 
     //Custom "Delay" function for rendering objects to the terminal in an aesthetically pleasing manner
@@ -513,8 +514,7 @@ public class Main {
             //Handle exceptions
             catch (Exception e) {e.printStackTrace();}
         }
-        
-        System.out.println("Goodbye!");
+
         input.close();
     }
 }
