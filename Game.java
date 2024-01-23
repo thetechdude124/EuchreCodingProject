@@ -8,6 +8,7 @@ public class Game {
     private Member player4;
     private int p1p2Points;
     private int p3p4Points;
+    private boolean p1p2Win;
     private boolean onGoing;
     private HashMap<Integer, Round> rounds;
     private static int roundIDGen;
@@ -34,6 +35,7 @@ public class Game {
         this.player4 = player4; 
         this.p1p2Points = p1p2Points;
         this.p3p4Points = p3p4Points;
+        this.p1p2Win = (p1p2Points > p3p4Points) ? true : false; 
         this.onGoing = false;
         this.rounds = rounds;
     }
@@ -46,30 +48,28 @@ public class Game {
     public Member getPlayer4() {return player4;}
     public int getp1p2Points() {return p1p2Points;}
     public int getp3p4Points() {return p3p4Points;}
+    public boolean getp1p2Win() {return p1p2Win;}
     public boolean getOnGoing() {return onGoing;}
     public HashMap<Integer, Round> getRounds() {return rounds;}
+    public Round getRound(int roundID) {return rounds.get(roundID);}
 
     public void setGameID(int gameID) {this.gameID = gameID;}
 
-    // Overload addRound for on going and completed rounds
-
-    // Ongoing rounds
-    public void addRound(Member p1p2Player1, Member p1p2Player2, Member p3p4Player1, Member p3p4Player2, Member dealer) {
-        rounds.put(roundIDGen, new Round(roundIDGen++,p1p2Player1, p1p2Player2, p3p4Player1, p3p4Player2, dealer));
-    }
-
-    public void endRound(int roundID) {
-        if (rounds.get(roundID).getOnGoing()) {}
-    }
-
     // Completed rounds
-    public void addRound(Member p1p2Player1, Member p1p2Player2, Member p3p4Player1, Member p3p4Player2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int p1p2Tricks, int p3p4Tricks, boolean p1p2Win, int pointsAwarded) {
-        rounds.put(roundIDGen, new Round(roundIDGen++, p1p2Player1, p1p2Player2, p3p4Player1, p3p4Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, p1p2Tricks, p3p4Tricks, p1p2Win, pointsAwarded));
-        if (p1p2Points >= 10 || p3p4Points >= 10) {endGame();}
+    public void addRound(boolean p1p2Offence, Member p1p2Player1, Member p1p2Player2, Member p3p4Player1, Member p3p4Player2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int p1p2Tricks, int p3p4Tricks, boolean p1p2Win, int pointsAwarded) {
+        if (p1p2Offence) {rounds.put(roundIDGen, new Round(roundIDGen++, p1p2Player1, p1p2Player2, p3p4Player1, p3p4Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, p1p2Tricks, p3p4Tricks, p1p2Win, pointsAwarded));}
+        else {rounds.put(roundIDGen, new Round(roundIDGen++, p3p4Player1, p3p4Player2, p1p2Player1, p1p2Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, p3p4Tricks, p1p2Tricks, !p1p2Win, pointsAwarded));}
+        if (p1p2Win) {this.p1p2Points += pointsAwarded;}
+        else {this.p3p4Points += pointsAwarded;}
+        if (p1p2Points >= 10) {endGame(true);} 
+        else if (p3p4Points >= 10) {endGame(false);}
     }
 
-    public void endGame() {
-        if (onGoing) {}
+    public void endGame(boolean p1p2Win) {
+        if (onGoing) {
+            this.p1p2Win = p1p2Win;
+            onGoing = false;
+        }
     }
 
 }

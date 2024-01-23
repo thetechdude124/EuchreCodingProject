@@ -67,16 +67,12 @@ public class Database {
 
     public void addMember(Member member) {
         allMembers.put(member.getUserID(), member);
-        for (Node i : memberStats) {
-            i = new Node(member.getUserID(), null, i);
-        }
+        for (int i = 0; i < 9; i++) {memberStats[i] = new Node(member.getUserID(), null, memberStats[i]);}
     }
 
     public void addPartnership(Partnership partnership) {
         allPartnerships.put(partnership.getUserID(), partnership);
-        for (Node i : partnershipStats) {
-            i = new Node(partnership.getUserID(), null, i);
-        }
+        for (int i = 0; i < 9; i++) {partnershipStats[i] = new Node(partnership.getUserID(), null, partnershipStats[i]);}
     }
 
     public void addGame(Game game) {allGames.put(game.getGameID(), game);}
@@ -130,11 +126,19 @@ public class Database {
     }
 
     public Node getMemberRanksByStat(int stat) {
+        if (memberStats[stat] == null) {
+            System.out.println("There are no members to display");
+            return null;
+        }
         memberStats[stat] = memberMergeSort(memberStats[stat], memberStats.length, stat);
         return memberStats[stat];
     }
 
     public Node getPartnershipRanksByStat(int stat) {
+        if (partnershipStats[stat] == null) {
+            System.out.println("There are no partnerships to display");
+            return null;
+        }
         partnershipStats[stat] = partnershipMergeSort(partnershipStats[stat], partnershipStats.length, stat);
         return partnershipStats[stat];
     }
