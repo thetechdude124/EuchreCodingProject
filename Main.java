@@ -4,26 +4,67 @@ import java.util.concurrent.TimeUnit;
 //The main class
 public class Main {
 
-    public static void main(String args[]) {
-
         //Set all terminal colours beforehand.
         //The scheme is as follows (also set a constant to revert to default terminal style when needed)
-        String DEFAULT_COLOUR = "\u001B[0m";
+        private static String DEFAULT_COLOUR = "\u001B[0m";
         //GREEN - add an object.
-        String GREEN_COLOUR = "\u001B[32m";
+        private static String GREEN_COLOUR = "\u001B[32m";
         //RED - remove an object.
-        String RED_COLOUR = "\u001B[31m";
+        private static String RED_COLOUR = "\u001B[31m";
         //BLUE - view an object.
-        String BLUE_COLOUR = "\u001B[34m";
+        private static String BLUE_COLOUR = "\u001B[34m";
         //WHITE - help and administrative commands.
-        String WHITE_COLOUR = "\u001B[37m";
+        private static String WHITE_COLOUR = "\u001B[37m";
         //PURPLE - all headers and command interfaces.
-        String PURPLE_COLOUR = "\u001B[35m";
+        private static String PURPLE_COLOUR = "\u001B[35m";
         
         //Set bold and plain text markers
-        String PLAIN_TEXT = "\033[0;0m";
-        String BOLD_TEXT = "\033[0;1m";
+        private static String PLAIN_TEXT = "\033[0;0m";
+        private static String BOLD_TEXT = "\033[0;1m";
 
+        //IN DEVELOPMENT FLAG - this disables all animations for development acceleration purposes.
+        private static boolean IN_DEVELOPMENT = false;
+
+
+    //Function to render "All Commands" table when necessary
+    public static void renderAllCommands() {
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "\n------------------------------------------ ALL COMMANDS ------------------------------------------\n" +
+
+                    DEFAULT_COLOUR + BOLD_TEXT + "\nMEMBER CLASS:\n\n" +
+                    GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
+                    RED_COLOUR + "'rm' OR 'removemember': Removes a member from the database.\n" +
+                    BLUE_COLOUR + "'vm' OR 'viewmember': Searches for a member in the database.\n" +
+
+                    DEFAULT_COLOUR + BOLD_TEXT + "\nTOURNAMENT CLASS:\n\n" +
+                    GREEN_COLOUR + "'at' OR 'addtournament': Adds a tournament to the database.\n" +
+                    GREEN_COLOUR + "'atg' OR 'addtournamentgame': Adds game to the tournament.\n" +
+
+                    DEFAULT_COLOUR + BOLD_TEXT + "\nGAME CLASS:\n\n" +
+                    GREEN_COLOUR + "'ag' OR 'addgame': Adds a game to the database.\n" +
+                    GREEN_COLOUR + "'ar' OR 'addround': Adds a round to the game.\n" +
+
+                    DEFAULT_COLOUR + BOLD_TEXT + "\nSTATISTICS CLASS:\n\n" +
+                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu to manage data regarding game performance.\n" +
+
+                    DEFAULT_COLOUR + BOLD_TEXT + "\nHELP COMMAND:\n\n" +
+                    BLUE_COLOUR + "'h' OR 'help': Brings up a commands list.\n" +
+
+                    DEFAULT_COLOUR + BOLD_TEXT + "\nEXIT COMMAND:\n\n" +
+                    RED_COLOUR + "'e' OR 'exit': Exits the database." +
+
+                    PURPLE_COLOUR + "\n--------------------------------------------------------------------------------------------------\n");
+    }
+
+    //Custom "Delay" function for rendering objects to the terminal in an aesthetically pleasing manner
+    //If in development, do not institute a delay.
+    public static void delay(int seconds) {
+        if (!IN_DEVELOPMENT) {
+            try {TimeUnit.SECONDS.sleep(seconds);}
+            catch (Exception e) {}
+        }
+    }
+
+    public static void main(String args[]) {
 
         //Display application header.
         System.out.println();
@@ -41,62 +82,56 @@ public class Main {
         );
         System.out.println("==============================================================================================================================================================" + DEFAULT_COLOUR);
 
+        //Display initial instructions with a 2 second delay for animation purposes.
         System.out.println("\n");
-        // System.out.println( "-------------------------------------------------------------------------------------------------------\n");
-        try {TimeUnit.SECONDS.sleep(2);}
-        catch (Exception e) {}
+        delay(2);
         System.out.println(BOLD_TEXT + "👋 Hey there! Welcome to the EUCHRE CLUB MANAGER (ECM)," + " where you can manage your Euchre club with ease." + PLAIN_TEXT);
         
-        try {TimeUnit.SECONDS.sleep(2);}
-        catch (Exception e) {}
+        //Describe the ECM after a 3 second delay.
+        delay(3);
         System.out.println("\n💡 ECM acts as a repository for all your members, tournaments, games, and player statistics.");
         System.out.println("📝 Start by adding a few players. Enter your commands next to the 🔍 symbol.\n");
-        try {TimeUnit.SECONDS.sleep(2);}
-        catch (Exception e) {}
-        // System.out.println("-------------------------------------------------------------------------------------------------------");
+        delay(3);
 
+        //On startup, display the help menu for user friendliness. Set to bold.
+        System.out.print(BOLD_TEXT);
+        System.out.println(PURPLE_COLOUR + "Before we begin, here's a list of all the command colours you'll need to know.\n" + DEFAULT_COLOUR);
+        delay(2);
 
-        System.out.println("Before we begin, here's a list of all the commands.");
+        //Prior to displaying the help menu, quickly walk through what each of the colours mean.
+        System.out.println(BOLD_TEXT + GREEN_COLOUR + "GREEN" + DEFAULT_COLOUR + " - this is for commands that add items.");
+        delay(2);
+        System.out.println(BOLD_TEXT + RED_COLOUR + "RED" + DEFAULT_COLOUR + " - this is for commands that remove items (as well as the exit command).");
+        delay(2);
+        System.out.println(BOLD_TEXT + BLUE_COLOUR + "BLUE" + DEFAULT_COLOUR + " - this is for commands that view/display items or statistics.");
+        delay(2);
+        System.out.println(BOLD_TEXT + PURPLE_COLOUR + "PURPLE" + DEFAULT_COLOUR + " - this is for general application headers and instructions.");
+        delay(3);
 
-        //Declare a new scanner and statistics object
+        //Display the menu
+        System.out.println("\nThat being said....here's the menu:");
+        delay(3);
+        renderAllCommands();
+
+        //Final message before allowing the user to enter commands
+        delay(3);
+        System.out.println("\n" + DEFAULT_COLOUR + "You're ready to begin! Thanks for choosing ECM. Let's get started!\n");
+        delay(3);
+
+        //Declare a new scanner and Database object
         Scanner input = new Scanner(System.in);
-
         Database statistics = new Database();
 
         //Repeat ad nauseum unless the application is quit
         while (true) {    
 
-            System.out.print("\nWhat would you like to do next? Press 'h' for help. \n\n🔍");
+            System.out.print(PURPLE_COLOUR + "\n-------------------------------------------------------------");
+            System.out.print(BOLD_TEXT + "\nWhat would you like to do next? Press 'h' for help." + DEFAULT_COLOUR + "\n🔍 ");
             String cmd = input.nextLine().toLowerCase();
+            System.out.println(PURPLE_COLOUR + "-------------------------------------------------------------\n" + DEFAULT_COLOUR);
     
-            // Help
-            if (cmd.equals("h")) {
-                System.out.print(   "\n-------------------------- ALL COMMANDS --------------------------\n" +
-
-                                    "\033[0;0m" + "\nMEMBER CLASS:\n\n" + "\033[0;1m" +
-                                    GREEN_COLOUR + "'am' OR 'addmember': Adds a member to the database.\n" +
-                                    RED_COLOUR + "'rm' OR 'removemember': Removes a member from the database.\n" +
-                                    BLUE_COLOUR + "'vm' OR 'viewmember': Searches for a member in the database.\n" +
-
-                                    DEFAULT_COLOUR + "\nTOURNAMENT CLASS:\n\n" +
-                                    GREEN_COLOUR + "'at' OR 'addtournament': Adds a tournament to the database.\n" +
-                                    GREEN_COLOUR + "'atg' OR 'addtournamentgame': Adds game to the tournament.\n" +
-
-                                    DEFAULT_COLOUR + "\nGAME CLASS:\n\n" +
-                                    GREEN_COLOUR + "'ag' OR 'addgame': Adds a game to the database.\n" +
-                                    GREEN_COLOUR + "'ar' OR 'addround': Adds a round to the game.\n" +
-
-                                    DEFAULT_COLOUR + "\nSTATISTICS CLASS:\n\n" +
-                                    BLUE_COLOUR + "'s' OR 'statistics': Open the statistics menu to manage data regarding game performance.\n" +
-
-                                    DEFAULT_COLOUR + "\nHELP COMMAND:\n\n" +
-                                    BLUE_COLOUR + "'h' OR 'help': Brings up a commands list.\n" +
-
-                                    DEFAULT_COLOUR + "\nEXIT COMMAND:\n\n" +
-                                    RED_COLOUR + "'e' OR 'exit': Exits the database." +
-
-                                    DEFAULT_COLOUR + "\n------------------------------------------------------------\n");
-            }
+            //For the help command
+            if (cmd.equals("h")) {renderAllCommands();}
 
             // MEMBERS
             // Add member
