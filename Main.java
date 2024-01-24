@@ -352,12 +352,13 @@ public class Main {
                     else {
                         Tournament tempT = database.getTournament(ID);
                         if (tempID >= 0) {
-                            tempID = tempT.nextGame(database, database.getGame(tempID));
+                            tempID = tempT.nextGame(database, tempID);
                         } 
                         else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
                         else {
                             int temp = tempID;
-                            tempID = tempT.nextGame(database, new Game(tempT.getPlayers().get(0), tempT.getPlayers().get(1), tempT.getPlayers().get(2), tempT.getPlayers().get(3)));
+                            Game game = new Game(tempT.getPlayers().get(0), tempT.getPlayers().get(1), tempT.getPlayers().get(2), tempT.getPlayers().get(3));
+                            tempID = tempT.nextGame(database, game.getGameID());
                             if (tempID == temp) {System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");}
                             else {
                                 System.out.println("Game successfully added.");
@@ -683,6 +684,10 @@ public class Main {
 
                     if (database.getGame(ID) == null) {
                         System.out.println("Invalid ID.");
+                    }
+
+                    else if (database.getGame(ID).getTeam1Points() >= 10 || database.getGame(ID).getTeam2Points() >= 10) {
+                        System.out.println("This game has already been completed.");
                     }
 
                     else {
