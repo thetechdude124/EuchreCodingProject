@@ -146,7 +146,7 @@ public class Database {
     public void printMemberTop5(int stat) {
         if (memberStats[stat] == null) {System.out.println("There are no members to print."); return;}
         System.out.println("Rank: |  Stat: |  Name:");
-        node = memberStats[stat];
+        node = getMemberRanksByStat(stat);
         for (int i = 1; i <= 5; i++) {
             System.out.println(i + ".       " + allMembers.get(node.getID()).getStats()[stat] + "       " + allMembers.get(node.getID()).getName());
             if (node.getNext() == null) {return;}
@@ -157,7 +157,7 @@ public class Database {
     public void printPartnershipTop5(int stat) {
         if (partnershipStats[stat] == null) {System.out.println("There are no partnerships to print."); return;}
         System.out.println("Rank: |  Stat: |  Name:");
-        node = partnershipStats[stat];
+        node = getPartnershipRanksByStat(stat);
         for (int i = 1; i <= 5; i++) {
             System.out.println(i + ".       " + allPartnerships.get(node.getID()).getStats()[stat] + "       " + allPartnerships.get(node.getID()).getName());
             if (node.getNext() == null) {return;}
