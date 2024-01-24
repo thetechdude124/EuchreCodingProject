@@ -189,7 +189,7 @@ public class Database {
     }
 
     private Node memberMerge(Node nodeA, Node nodeB, int stat) {
-        if (allMembers.get(nodeA.getID()).getStats()[stat] < allMembers.get(nodeB.getID()).getStats()[stat]) {
+        if (allMembers.get(nodeA.getID()).getStats()[stat] > allMembers.get(nodeB.getID()).getStats()[stat]) {
             node = new Node(nodeA.getID(), null, null); 
             nodeA = nodeA.getNext();
         } else {
@@ -198,7 +198,7 @@ public class Database {
         }
 
         while (nodeA != null && nodeB != null) {
-            if (allMembers.get(nodeA.getID()).getStats()[stat] < allMembers.get(nodeB.getID()).getStats()[stat]) {
+            if (allMembers.get(nodeA.getID()).getStats()[stat] > allMembers.get(nodeB.getID()).getStats()[stat]) {
                 addToEnd(node, nodeA.getID());
                 nodeA = nodeA.getNext();
             } else {
@@ -236,7 +236,7 @@ public class Database {
     }
 
     private Node partnershipMerge(Node nodeA, Node nodeB, int stat) {        
-        if (allPartnerships.get(nodeA.getID()).getStats()[stat] < allPartnerships.get(nodeB.getID()).getStats()[stat]) {
+        if (allPartnerships.get(nodeA.getID()).getStats()[stat] > allPartnerships.get(nodeB.getID()).getStats()[stat]) {
             node = new Node(nodeA.getID(), null, null); 
             nodeA = nodeA.getNext();
         } else {
@@ -245,7 +245,7 @@ public class Database {
         }
 
         while (nodeA != null && nodeB != null) {
-            if (allPartnerships.get(nodeA.getID()).getStats()[stat] < allPartnerships.get(nodeB.getID()).getStats()[stat]) {
+            if (allPartnerships.get(nodeA.getID()).getStats()[stat] > allPartnerships.get(nodeB.getID()).getStats()[stat]) {
                 addToEnd(node, nodeA.getID());
                 nodeA = nodeA.getNext();
             } else {
