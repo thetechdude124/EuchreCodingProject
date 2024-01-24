@@ -322,10 +322,10 @@ public class Main {
                     System.out.print("Enter the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
                     int numPlayers = Integer.parseInt(input.nextLine());
 
-                    System.out.println("Enter the ID number for each member playing in the tournament.");
+                    System.out.println("Enter the ID number for each member playing in the tournament (any key to exit).");
                     for (int i = 0; i < numPlayers; i++) {
                         while (true) {
-                            System.out.print("Member " + (i+1) + " ID (any key to exit):\n> ");
+                            System.out.print("Member " + (i+1) + " ID:\n> ");
                             ID = Integer.parseInt(input.nextLine());
                             if (database.getMember(ID) == null) {
                                 System.out.println("Invalid ID.");
@@ -402,7 +402,7 @@ public class Main {
                                     System.out.print("Team 1 Points:\n> ");
                                     team1Points = Integer.parseInt(input.nextLine());
                                     
-                                    if (team1Points < 0) {
+                                    if (team1Points < 0 || team1Points > 10) {
                                         System.out.println("Invalid input.");
                                     }
             
@@ -415,13 +415,21 @@ public class Main {
                                     System.out.print("Team 2 Points:\n> ");
                                     team2Points = Integer.parseInt(input.nextLine());
                                     
-                                    if (team2Points < 0) {
+                                    if (team2Points < 0 || team2Points > 10) {
                                         System.out.println("Invalid input.");
                                     }
             
                                     else {
                                         break;
                                     }
+                                }
+
+                                if (team1Points < 10 && team2Points < 10) {
+                                    System.out.println("Invalid points inputted.\nNo team has 10 points. Game end cancelled.");
+                                }
+
+                                else if (team1Points >= 10 && team2Points >= 10) {
+                                    System.out.println("Invalid points inputted.\nBoth teams have more than 9 points. Game end cancelled.");
                                 }
 
                                 database.getGame(tempID).setTeam1Points(team1Points);
