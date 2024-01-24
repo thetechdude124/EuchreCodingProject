@@ -351,37 +351,33 @@ public class Main {
 
                     else {
                         Tournament tempT = database.getTournament(ID);
-                        if (tempID >= 0) {
-                            tempID = tempT.nextGame(database, tempID);
+                        if (tempID == -1) {System.out.println("This tournament has already been completed.");}
+                        else if (tempID >= 0) {
                             int temp = tempID;
                             tempID = tempT.nextGame(database, tempID);
-                            if (tempID == temp) {System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");}
+                            if (tempID == temp) {System.out.println("The latest game is still ongoing, please end game first before proceeding to new game.");}
                             else {
                                 System.out.println("Game successfully added.");
                                 System.out.println( "GAME:" +
-                                                    "\nID: " + database.getGame(ID).getGameID() +
-                                                    "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
-                                                    "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
-                                                    "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
-                                                    "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName());
+                                                    "\nID: " + database.getGame(tempID).getGameID() +
+                                                    "\nPlayer 1: " + database.getGame(tempID).getPlayer1().getName() +
+                                                    "\nPlayer 2: " + database.getGame(tempID).getPlayer2().getName() +
+                                                    "\nPlayer 3: " + database.getGame(tempID).getPlayer3().getName() +
+                                                    "\nPlayer 4: " + database.getGame(tempID).getPlayer4().getName());
                             }
                         } 
-                        else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
                         else {
-                            int temp = tempID;
                             Game game = new Game(tempT.getPlayers().get(0), tempT.getPlayers().get(1), tempT.getPlayers().get(2), tempT.getPlayers().get(3));
-                            game.setGameID(tempID);
+                            tempID = game.getGameID();
+                            database.addGame(game);
                             tempID = tempT.nextGame(database, tempID);
-                            if (tempID == temp) {System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");}
-                            else {
-                                System.out.println("Game successfully added.");
-                                System.out.println( "GAME:" +
-                                                    "\nID: " + database.getGame(ID).getGameID() +
-                                                    "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
-                                                    "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
-                                                    "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
-                                                    "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName());
-                            }
+                            System.out.println("Game successfully added.");
+                            System.out.println( "GAME:" +
+                                                "\nID: " + database.getGame(tempID).getGameID() +
+                                                "\nPlayer 1: " + database.getGame(tempID).getPlayer1().getName() +
+                                                "\nPlayer 2: " + database.getGame(tempID).getPlayer2().getName() +
+                                                "\nPlayer 3: " + database.getGame(tempID).getPlayer3().getName() +
+                                                "\nPlayer 4: " + database.getGame(tempID).getPlayer4().getName());
                         }
                     }
                 }
