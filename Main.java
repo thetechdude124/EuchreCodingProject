@@ -656,6 +656,7 @@ public class Main {
                     }
 
                     else {
+                        String winningTeam = (database.getGame(ID).getWinningTeam() == 0) ? "none" : "team " + database.getGame(ID).getWinningTeam();
                         if (database.getGame(ID).getIsPartners()) {
                             System.out.println( "\nGAME:" +
                                                 "\nID: " + database.getGame(ID).getGameID() +
@@ -667,7 +668,7 @@ public class Main {
                                                 "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName() +
                                                 "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
                                                 "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
-                                                "\nTeam 1 Win: " + database.getGame(ID).getTeam1Win() +
+                                                "\nWinning Team: " + winningTeam +
                                                 "\nOngoing: " + database.getGame(ID).getOnGoing());
                         }
 
@@ -680,7 +681,7 @@ public class Main {
                                                 "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName() +
                                                 "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
                                                 "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
-                                                "\nTeam 1 Win: " + database.getGame(ID).getTeam1Win() +
+                                                "\nTeam 1 Win: " + winningTeam +
                                                 "\nOngoing: " + database.getGame(ID).getOnGoing());
                         }
                     }

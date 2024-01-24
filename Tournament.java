@@ -50,7 +50,7 @@ public class Tournament {
             }
             if (tempBool) {games.add(newGame);}
             if (newGame.getOnGoing()) {return newGame.getGameID();}
-            if (newGame.getTeam1Win()) {players.remove(index); players.remove(index); index += 2;}
+            if (newGame.getWinningTeam() == 1) {players.remove(index); players.remove(index); index += 2;}
             else {index += 2; players.remove(index); players.remove(index);}
             if (index >= players.size()) {index = 0;}
             if (games.size() == numGames) {onGoing = false; return -2;} 
