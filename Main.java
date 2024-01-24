@@ -494,7 +494,7 @@ public class Main {
                             System.out.print("Partnership 1 ID:\n> ");
                             team1 = Integer.parseInt(input.nextLine());
             
-                            if (database.getMember(team1) == null) {
+                            if (database.getPartnership(team1) == null) {
                                 System.out.println("Invalid ID.");
                             }
 
@@ -507,7 +507,7 @@ public class Main {
                             System.out.print("Partnership 2 ID:\n> ");
                             team2 = Integer.parseInt(input.nextLine());
                             
-                            if (database.getMember(team2) == null) {
+                            if (database.getPartnership(team2) == null) {
                                 System.out.println("Invalid ID.");
                             }
 
