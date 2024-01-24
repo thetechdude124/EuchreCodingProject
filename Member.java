@@ -73,7 +73,7 @@ public class Member {
     public int getLossesOnDefence() {return lossesOnDefence;}
     public float getWinLossRate() {return winLossRate;}
     public float getAverageScore() {return averageScore;}
-    public double[] getStats() {return stats;}
+    public double[] getStats() {stats = new double[] {numGames, gameWins, gameLosses, winsOnOffence, winsOnDefence, lossesOnOffence, lossesOnDefence, winLossRate, averageScore}; return stats;}
     public LinkedList<Tournament> getTournaments() {return tournaments;}
     public LinkedList<Game> getGamesPlayed() {return gamesPlayed;}
     public LinkedList<Partnership> getPartnershipHistory() {return partnershipHistory;}
