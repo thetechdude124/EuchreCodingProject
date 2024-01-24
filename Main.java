@@ -358,6 +358,7 @@ public class Main {
                             int temp = tempID;
                             tempID = tempT.nextGame(database, tempID);
                             if (tempID == temp) {System.out.println("The latest game is still ongoing, please end game first before proceeding to new game.");}
+                            else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
                             else {
                                 System.out.println("Game successfully added.");
                                 System.out.println( "GAME:" +
