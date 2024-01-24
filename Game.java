@@ -83,6 +83,7 @@ public class Game {
 
     // Getters
     public int getGameID() {return gameID;}
+    public boolean getIsPartners() {return partners;}
     public Member getPlayer1() {return player1;}
     public Member getPlayer2() {return player2;}
     public Member getPlayer3() {return player3;}
