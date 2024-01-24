@@ -335,7 +335,7 @@ public class Main {
                         }
                         players.add(database.getMember(ID));
                     }
-                    Tournament tempT = new Tournament(players, numPlayers);
+                    Tournament tempT = new Tournament(players, (numPlayers/2)-1);
                     database.addTournament(tempT);
                     System.out.println("Tournament successfully started.\nThe ID is: " + tempT.getTournamentID());
                 }
