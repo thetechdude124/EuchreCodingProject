@@ -213,9 +213,9 @@ public class Main {
 
                     else {
                         System.out.println( "\nMEMBER:" +
+                                            "\nID: " + database.getMember(ID).getUserID() +
                                             "\nName: " + database.getMember(ID).getName() +
                                             "\nUsername" + database.getMember(ID).getUsername() +
-                                            "\nID: " + database.getMember(ID).getUserID() +
                                             "\nNumber of Games: " + database.getMember(ID).getNumGames() +
                                             "\nTotal Wins: " + database.getMember(ID).getGameWins() +
                                             "\nTotal Losses: " + database.getMember(ID).getGameLosses() +
@@ -232,7 +232,7 @@ public class Main {
                 // Add partnership
                 else if (cmd.equals("ap") || cmd.equals("addpartnership")) {
 
-                    System.out.print("Enter a name for the new partnership:\n> ");
+                    System.out.print("Enter a name for the new partnership (any key to exit):\n> ");
                     String name = input.nextLine();
 
                     int player1;
@@ -299,8 +299,10 @@ public class Main {
                         System.out.println( "\nPARTNERSHIP:" +
                                             "\nName: " + database.getPartnership(ID).getName() +
                                             "\nID: " + database.getPartnership(ID).getUserID() +
-                                            "\nPartner 1: " + database.getPartnership(ID).getMember1() +
-                                            "\nPartner 2: " + database.getPartnership(ID).getMember2() +
+                                            "\nPartner 1 Name: " + database.getPartnership(ID).getMember1().getName() +
+                                            "\nPartner 1 Username: " + database.getPartnership(ID).getMember1().getUsername() +
+                                            "\nPartner 2 Name: " + database.getPartnership(ID).getMember2().getUsername() +
+                                            "\nPartner 2 Username: " + database.getPartnership(ID).getMember2().getName() +
                                             "\nNumber of Games: " + database.getPartnership(ID).getNumGames() +
                                             "\nTotal Wins: " + database.getPartnership(ID).getGameWins() +
                                             "\nTotal Losses: " + database.getPartnership(ID).getGameLosses() +
@@ -668,11 +670,15 @@ public class Main {
                             System.out.println( "\nGAME:" +
                                                 "\nID: " + database.getGame(ID).getGameID() +
                                                 "\nPartnership 1 (composed of Players 1 & 2): " + database.getGame(ID).getTeam1() +
-                                                "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
-                                                "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
+                                                "\nPlayer 1 Name: " + database.getGame(ID).getPlayer1().getName() +
+                                                "\nPlayer 1 Username: " + database.getGame(ID).getPlayer1().getUsername() +
+                                                "\nPlayer 2 Name: " + database.getGame(ID).getPlayer2().getName() +
+                                                "\nPlayer 2 Username: " + database.getGame(ID).getPlayer2().getUsername() +
                                                 "\nPartnership 2 (composed of Players 3 & 4): " + database.getGame(ID).getTeam2() +
-                                                "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
-                                                "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName() +
+                                                "\nPlayer 3 Name: " + database.getGame(ID).getPlayer3().getName() +
+                                                "\nPlayer 3 Username: " + database.getGame(ID).getPlayer3().getUsername() +
+                                                "\nPlayer 4 Name: " + database.getGame(ID).getPlayer4().getName() +
+                                                "\nPlayer 4 Username: " + database.getGame(ID).getPlayer4().getUsername() +
                                                 "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
                                                 "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
                                                 "\nTeam 1 Win: " + database.getGame(ID).getTeam1Win() +
@@ -682,10 +688,14 @@ public class Main {
                         else {
                             System.out.println( "\nGAME:" +
                                                 "\nID: " + database.getGame(ID).getGameID() +
-                                                "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
-                                                "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
-                                                "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
-                                                "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName() +
+                                                "\nPlayer 1 Name: " + database.getGame(ID).getPlayer1().getName() +
+                                                "\nPlayer 1 Username: " + database.getGame(ID).getPlayer1().getName() +
+                                                "\nPlayer 2 Name: " + database.getGame(ID).getPlayer2().getName() +
+                                                "\nPlayer 2 Username: " + database.getGame(ID).getPlayer2().getName() +
+                                                "\nPlayer 3 Name: " + database.getGame(ID).getPlayer3().getName() +
+                                                "\nPlayer 3 Username: " + database.getGame(ID).getPlayer3().getName() +
+                                                "\nPlayer 4 Name: " + database.getGame(ID).getPlayer4().getName() +
+                                                "\nPlayer 4 Username: " + database.getGame(ID).getPlayer4().getName() +
                                                 "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
                                                 "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
                                                 "\nTeam 1 Win: " + database.getGame(ID).getTeam1Win() +
