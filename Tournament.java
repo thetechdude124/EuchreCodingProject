@@ -36,9 +36,13 @@ public class Tournament {
 
     public void setNumGames(int numGames) {this.numGames = numGames;} 
     public int nextGame(Database database, int ID) {
-        if (database.getGame(ID) == null) {database.addGame(new Game(players.get(index), players.get(index+1), players.get(index+2), players.get(index+3)));}
-        Game newGame = database.getGame(ID);
         if (onGoing) {
+            if (database.getGame(ID) == null) {
+                Game game = new Game(players.get(index), players.get(index+1), players.get(index+2), players.get(index+3));
+                game.setGameID(ID);
+                database.addGame(game);
+            }
+            Game newGame = database.getGame(ID);
             database.addGame(newGame);
             games.add(newGame);
             if (newGame.getOnGoing()) {return newGame.getGameID();}
