@@ -353,21 +353,26 @@ public class Main {
                         Tournament tempT = database.getTournament(ID);
                         if (tempID >= 0) {
                             tempID = tempT.nextGame(database, tempID);
-                        }
-
-                        else if (tempID == -1) {
-                            System.out.println("This tournament has already been completed.");
-                        }
-                        
+                            int temp = tempID;
+                            tempID = tempT.nextGame(database, tempID);
+                            if (tempID == temp) {System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");}
+                            else {
+                                System.out.println("Game successfully added.");
+                                System.out.println( "GAME:" +
+                                                    "\nID: " + database.getGame(ID).getGameID() +
+                                                    "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
+                                                    "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
+                                                    "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
+                                                    "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName());
+                            }
+                        } 
+                        else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
                         else {
                             int temp = tempID;
                             Game game = new Game(tempT.getPlayers().get(0), tempT.getPlayers().get(1), tempT.getPlayers().get(2), tempT.getPlayers().get(3));
-                            tempID = tempT.nextGame(database, game.getGameID());
-                            
-                            if (tempID == temp) {
-                                System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");
-                            }
-                            
+                            game.setGameID(tempID);
+                            tempID = tempT.nextGame(database, tempID);
+                            if (tempID == temp) {System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");}
                             else {
                                 System.out.println("Game successfully added.");
                                 System.out.println( "GAME:" +
