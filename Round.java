@@ -28,7 +28,7 @@ public class Round {
     }
 
     // Completed games
-    public Round(int roundID, Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int offenceTricks, int defenceTricks, boolean offenceWin, int pointsAwarded) {
+    public Round(int roundID, Member offencePlayer1, Member offencePlayer2, Member defencePlayer1, Member defencePlayer2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int offenceTricks, int defenceTricks, boolean offenceWin) {
         this.roundID = roundID;
         this.offencePlayer1 = offencePlayer1;
         this.offencePlayer2 = offencePlayer2;
@@ -41,8 +41,8 @@ public class Round {
         this.offenceTricks = offenceTricks;
         this.defenceTricks = defenceTricks;
         this.offenceWin = offenceWin;
-        this.pointsAwarded = pointsAwarded;
-        this.onGoing = false; 
+        this.onGoing = true; 
+        endRound();
     }
 
     // Getters

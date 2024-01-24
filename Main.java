@@ -212,8 +212,8 @@ public class Main {
                     }
 
                     else {
-                        System.out.println( "MEMBER:\n" +
-                                            "Name: " + database.getMember(ID).getName() +
+                        System.out.println( "\nMEMBER:" +
+                                            "\nName: " + database.getMember(ID).getName() +
                                             "\nID: " + database.getMember(ID).getUserID() +
                                             "\nNumber of Games: " + database.getMember(ID).getNumGames() +
                                             "\nTotal Wins: " + database.getMember(ID).getTotalWins() +
@@ -295,8 +295,8 @@ public class Main {
                     }
 
                     else {
-                        System.out.println( "PARTNERSHIP:\n" +
-                                            "Name: " + database.getPartnership(ID).getName() +
+                        System.out.println( "\nPARTNERSHIP:" +
+                                            "\nName: " + database.getPartnership(ID).getName() +
                                             "\nID: " + database.getPartnership(ID).getUserID() +
                                             "\nPartner 1: " + database.getPartnership(ID).getMember1() +
                                             "\nPartner 2: " + database.getPartnership(ID).getMember2() +
@@ -316,20 +316,23 @@ public class Main {
                 // Add tournament
                 else if (cmd.equals("at") || cmd.equals("addtournament")) {
                     LinkedList<Member> players = new LinkedList<Member>();
+                    int ID;
+
                     System.out.print("Enter the number of players participating in the tournament (use powers of two like 4, 8, 16, etc.)\n> ");
                     int numPlayers = Integer.parseInt(input.nextLine());
+
                     System.out.println("Enter the ID number for each member playing in the tournament.");
                     for (int i = 0; i < numPlayers; i++) {
                         while (true) {
-                            System.out.print("Member " + i + " ID (any key to exit):\n> ");
-                            tempID = Integer.parseInt(input.nextLine());
-                            if (database.getMember(tempID) == null) {
+                            System.out.print("Member " + (i+1) + " ID (any key to exit):\n> ");
+                            ID = Integer.parseInt(input.nextLine());
+                            if (database.getMember(ID) == null) {
                                 System.out.println("Invalid ID.");
                             } else {
                                 break;
                             }
                         }
-                        players.add(database.getMember(tempID));
+                        players.add(database.getMember(ID));
                     }
                     Tournament tempT = new Tournament(players, numPlayers);
                     database.addTournament(tempT);
@@ -349,12 +352,21 @@ public class Main {
                         Tournament tempT = database.getTournament(ID);
                         if (tempID >= 0) {
                             tempID = tempT.nextGame(database, database.getGame(tempID));
-                        } else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
+                        } 
+                        else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
                         else {
                             int temp = tempID;
                             tempID = tempT.nextGame(database, new Game(tempT.getPlayers().get(0), tempT.getPlayers().get(1), tempT.getPlayers().get(2), tempT.getPlayers().get(3)));
                             if (tempID == temp) {System.out.println("The latest game is still ongoing, please endgame first before proceeding to new game.");}
-                            else {System.out.println("Game successfully added.");}
+                            else {
+                                System.out.println("Game successfully added.");
+                                System.out.println( "GAME:" +
+                                                    "\nID: " + database.getGame(ID).getGameID() +
+                                                    "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
+                                                    "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
+                                                    "\nPlayer 3: " + database.getGame(ID).getPlayer3().getName() +
+                                                    "\nPlayer 4: " + database.getGame(ID).getPlayer4().getName());
+                            }
                         }
                     }
 
@@ -412,7 +424,10 @@ public class Main {
                             else {
                                 System.out.println("This game has alreday been completed.");
                             }
-                        } else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
+                        } 
+                        
+                        else if (tempID == -1) {System.out.println("This tournament has already been completed.");}
+
                         else {
                             System.out.println("You need to start a game in this tournament before ending it.");
                         }
@@ -429,15 +444,17 @@ public class Main {
                     }
 
                     else {
-                        System.out.print(   "TOURNAMENT:\n" +
-                                            "\nID: " + database.getTournament(ID));
+                        System.out.println( "\nTOURNAMENT:" +
+                                            "\nID: " + database.getTournament(ID).getTournamentID() +
+                                            "\n# of Players: " + database.getTournament(ID).getPlayers().size() +
+                                            "\nGames:");
                         LinkedList<Game> games = database.getTournament(ID).getGames();
                         if (games == null) {
                             System.out.println("There are currently no games in this tournament.");
                         }
                         else {
-                            for (int i = 0; i < database.getTournament(ID).getNumGames(); i++) {
-                                System.out.println("Game " + (i + 1) + "ID: " + games.get(i).getGameID());
+                            for (int i = 0; i < games.size(); i++) {
+                                System.out.println("Game " + (i + 1) + " ID: " + games.get(i).getGameID());
                             }
                         }
                     }
@@ -582,47 +599,41 @@ public class Main {
                     else if (!database.getGame(ID).getOnGoing()) {System.out.println("This game has already been ended and recorded.");}
 
                     else {
-                        if (database.getGame(tempID).getOnGoing()) {
-                            int team1Points;
-                            int team2Points;
-                            
-                            System.out.println("Enter the game info (any key to exit):");
-                            
-                            while (true) {
-                                System.out.print("Team 1 Points:\n> ");
-                                team1Points = Integer.parseInt(input.nextLine());
-                                
-                                if (team1Points < 0) {
-                                    System.out.println("Invalid input.");
-                                }
-        
-                                else {
-                                    break;
-                                }
-                            }
-
-                            while (true) {
-                                System.out.print("Team 2 Points:\n> ");
-                                team2Points = Integer.parseInt(input.nextLine());
-                                
-                                if (team2Points < 0) {
-                                    System.out.println("Invalid input.");
-                                }
-        
-                                else {
-                                    break;
-                                }
-                            }
-
-                            database.getGame(tempID).setTeam1Points(team1Points);
-                            database.getGame(tempID).setTeam2Points(team2Points);
-                            database.getGame(tempID).endGame();
-                            System.out.println("Game saved successfully.");
-                        } 
+                        int team1Points;
+                        int team2Points;
                         
-                        else {
-                            System.out.println("This game has alreday been completed.");
+                        System.out.println("Enter the game info (any key to exit):");
+                        
+                        while (true) {
+                            System.out.print("Team 1 Points:\n> ");
+                            team1Points = Integer.parseInt(input.nextLine());
+                            
+                            if (team1Points < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
                         }
+
+                        while (true) {
+                            System.out.print("Team 2 Points:\n> ");
+                            team2Points = Integer.parseInt(input.nextLine());
+                            
+                            if (team2Points < 0) {
+                                System.out.println("Invalid input.");
+                            }
+    
+                            else {
+                                break;
+                            }
+                        }
+
+                        database.getGame(ID).setTeam1Points(team1Points);
+                        database.getGame(ID).setTeam2Points(team2Points);
+                        database.getGame(ID).endGame();
+                        System.out.println("Game saved successfully.");
                     }
                 }
 
@@ -637,7 +648,7 @@ public class Main {
 
                     else {
                         if (database.getGame(ID).getIsPartners()) {
-                            System.out.println( "GAME:\n" +
+                            System.out.println( "\nGAME:" +
                                                 "\nID: " + database.getGame(ID).getGameID() +
                                                 "\nPartnership 1 (composed of Players 1 & 2): " + database.getGame(ID).getTeam1() +
                                                 "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
@@ -652,7 +663,7 @@ public class Main {
                         }
 
                         else {
-                            System.out.println( "GAME:\n" +
+                            System.out.println( "\nGAME:" +
                                                 "\nID: " + database.getGame(ID).getGameID() +
                                                 "\nPlayer 1: " + database.getGame(ID).getPlayer1().getName() +
                                                 "\nPlayer 2: " + database.getGame(ID).getPlayer2().getName() +
@@ -688,9 +699,9 @@ public class Main {
                         boolean goingAlone;
                         String trumpSuit;
                         int team1Tricks;
-                        int team2Tricks;
+                        // int team2Tricks;
                         boolean team1Win;
-                        int pointsAwarded;
+                        // int pointsAwarded;
                         
                         System.out.println("Enter the game info (any key to exit):");
 
@@ -818,7 +829,7 @@ public class Main {
                             System.out.print("Team 1 Number of Tricks:\n> ");
                             team1Tricks = Integer.parseInt(input.nextLine());
                             
-                            if (team1Tricks < 0) {
+                            if (team1Tricks < 0 || team1Tricks > 5) {
                                 System.out.println("Invalid input.");
                             }
     
@@ -827,6 +838,7 @@ public class Main {
                             }
                         }
 
+                        /* 
                         while (true) {
                             System.out.print("Team 2 Number of Tricks:\n> ");
                             team2Tricks = Integer.parseInt(input.nextLine());
@@ -839,9 +851,11 @@ public class Main {
                                 break;
                             }
                         }
+                        */
 
-                        team1Win = (team1Tricks > team2Tricks) ? true : false;
+                        team1Win = (team1Tricks > 2) ? true : false;
 
+                        /* 
                         while (true) {
                             System.out.print("Points Awarded:\n> ");
                             pointsAwarded = Integer.parseInt(input.nextLine());
@@ -854,9 +868,10 @@ public class Main {
                                 break;
                             }
                         }
+                        */
 
                         System.out.println("Round successfully added.");
-                        database.getGame(ID).addRound(team1Offence, database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), database.getMember(dealer), database.getMember(trumpEstablisher), goingAlone, trumpSuit, team1Tricks, team2Tricks, team1Win, pointsAwarded);
+                        database.getGame(ID).addRound(team1Offence, database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), database.getMember(dealer), database.getMember(trumpEstablisher), goingAlone, trumpSuit, team1Tricks, 5 - team1Tricks, team1Win);
                     }
                 }
                 
