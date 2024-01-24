@@ -75,7 +75,7 @@ public class Database {
         for (int i = 0; i < 9; i++) {partnershipStats[i] = new Node(partnership.getUserID(), null, partnershipStats[i]);}
     }
 
-    public void addGame(Game game) {allGames.put(game.getGameID(), game);}
+    public void addGame(Game game) {if (!allGames.containsValue(game)) {allGames.put(game.getGameID(), game);}}
 
     public void addTournament(Tournament tournament) {allTournaments.put(tournament.getTournamentID(), tournament);}
 

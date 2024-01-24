@@ -43,8 +43,12 @@ public class Tournament {
                 database.addGame(game);
             }
             Game newGame = database.getGame(ID);
+            boolean tempBool = true;
+            for (Game i : games) {
+                if (i.equals(newGame)) {tempBool = false; break;}
+            }
+            if (tempBool) {games.add(newGame);}
             if (newGame.getOnGoing()) {return newGame.getGameID();}
-            games.add(newGame);
             if (newGame.getTeam1Win()) {players.remove(index); players.remove(index); index += 2;}
             else {index += 2; players.remove(index); players.remove(index);}
             if (index >= players.size()) {index = 0;}
