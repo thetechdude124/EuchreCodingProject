@@ -178,7 +178,7 @@ public class Database {
         if (sortSize == 1) {return nodeA;} 
  
         node = nodeA;
-        for(int i = 1; i < sortSize/2; i++) {node = node.getNext();}
+        for(int i = 0; i < sortSize/2; i++) {node = node.getNext();}
         Node nodeB = node.getNext();
         node.setNext(null);
 
@@ -225,7 +225,7 @@ public class Database {
         if (sortSize == 1) {return nodeA;} 
  
         node = nodeA;
-        for(int i = 1; i < sortSize/2; i++) {node = node.getNext();}
+        for(int i = 0; i < sortSize/2; i++) {node = node.getNext();}
         Node nodeB = node.getNext();
         node.setNext(null);
 
