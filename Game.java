@@ -120,12 +120,12 @@ public class Game {
             boolean team1Win = (team1Points > team2Points) ? true : false;
             if (partners) {
                 team1.newGame(this, team1Win, team1Points);
-                team2.newGame(this, team1Win, team2Points);
+                team2.newGame(this, !team1Win, team2Points);
             }
             player1.newGame(this, team1Win, team1Points);
             player2.newGame(this, team1Win, team1Points);
-            player3.newGame(this, team1Win, team2Points);
-            player4.newGame(this, team1Win, team2Points);
+            player3.newGame(this, !team1Win, team2Points);
+            player4.newGame(this, !team1Win, team2Points);
             onGoing = false;
         }
     }
@@ -135,12 +135,12 @@ public class Game {
             this.winningTeam = (team1Win) ? 1 : 2;
             if (partners) {
                 team1.newGame(this, team1Win, team1Points);
-                team2.newGame(this, team1Win, team2Points);
+                team2.newGame(this, !team1Win, team2Points);
             }
             player1.newGame(this, team1Win, team1Points);
             player2.newGame(this, team1Win, team1Points);
-            player3.newGame(this, team1Win, team2Points);
-            player4.newGame(this, team1Win, team2Points);
+            player3.newGame(this, !team1Win, team2Points);
+            player4.newGame(this, !team1Win, team2Points);
             onGoing = false;
         }
     }

@@ -826,13 +826,14 @@ public class Main {
 
                         while (true) {
                             System.out.print("Going Alone (true/false):\n> ");
-                            goingAlone = Boolean.parseBoolean(input.nextLine());
+                            cmd = input.nextLine().toLowerCase();
                             
-                            if (goingAlone != true && goingAlone != false) {
+                            if (!cmd.equals("true") && !cmd.equals("false")) {
                                 System.out.println("Invalid input.");
                             }
     
                             else {
+                                goingAlone = Boolean.parseBoolean(cmd);
                                 break;
                             }
                         }
