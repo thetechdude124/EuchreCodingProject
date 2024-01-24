@@ -72,14 +72,33 @@ public class Round {
             if (offenceTricks > defenceTricks) {
                 offenceWin = true; 
                 if (goingAlone) {
-                    if (offenceTricks == 5) {pointsAwarded = 4;} else {pointsAwarded = 2;}
+                    if (offenceTricks == 5) {
+                        pointsAwarded = 4;
+                    } else {
+                        pointsAwarded = 2;
+                    }
                 } else {
-                    if (offenceTricks == 5) {pointsAwarded = 2;} else {pointsAwarded = 1;}
+                    if (offenceTricks == 5) {
+                        pointsAwarded = 2;
+                    } else {
+                        pointsAwarded = 1;
+                    }
                 }
-                
+                offencePlayer1.incrWinsOnOffence();
+                offencePlayer2.incrWinsOnOffence();
+                defencePlayer1.incrLossesOnDefence();
+                defencePlayer2.incrLossesOnDefence();
             } else {
                 offenceWin = false;
-                if (defenceTricks == 5) {pointsAwarded = 2;} else {pointsAwarded = 4;}
+                if (defenceTricks == 5) {
+                    pointsAwarded = 4;
+                } else {
+                    pointsAwarded = 2;
+                }
+                offencePlayer1.incrLossesOnOffence();
+                offencePlayer2.incrLossesOnOffence();
+                defencePlayer1.incrWinsOnDefence();
+                defencePlayer2.incrWinsOnDefence();
             } 
             onGoing = false;
         }

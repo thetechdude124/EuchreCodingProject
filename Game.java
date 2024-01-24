@@ -118,10 +118,10 @@ public class Game {
         if (onGoing) {
             if (team1Points >= 10 || team2Points >= 10) {this.team1Win = (team1Points > team2Points) ? true : false;}
             if (partners) {
-                team1.newGame(this, team1Win, onGoing, gameID);
-                team2.newGame(this, team1Win, onGoing, gameID);
+                team1.newGame(this, team1Win, gameID);
+                team2.newGame(this, team1Win, gameID);
             }
-            for (Member i : players) {i.newGame(this, team1Win, onGoing, gameID);}
+            for (Member i : players) {i.newGame(this, team1Win, gameID);}
             onGoing = false;
         }
     }
@@ -130,10 +130,10 @@ public class Game {
         if (onGoing) {
             this.team1Win = team1Win;
             if (partners) {
-                team1.newGame(this, team1Win, onGoing, gameID);
-                team2.newGame(this, team1Win, onGoing, gameID);
+                team1.newGame(this, team1Win, gameID);
+                team2.newGame(this, team1Win, gameID);
             }
-            for (Member i : players) {i.newGame(this, team1Win, onGoing, gameID);}
+            for (Member i : players) {i.newGame(this, team1Win, gameID);}
             onGoing = false;
         }
     }
