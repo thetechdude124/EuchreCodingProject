@@ -214,6 +214,7 @@ public class Main {
                     else {
                         System.out.println( "\nMEMBER:" +
                                             "\nName: " + database.getMember(ID).getName() +
+                                            "\nUsername" + database.getMember(ID).getUsername() +
                                             "\nID: " + database.getMember(ID).getUserID() +
                                             "\nNumber of Games: " + database.getMember(ID).getNumGames() +
                                             "\nTotal Wins: " + database.getMember(ID).getGameWins() +
@@ -449,7 +450,7 @@ public class Main {
                                             "\n# of Players: " + database.getTournament(ID).getPlayers().size() +
                                             "\nGames:");
                         LinkedList<Game> games = database.getTournament(ID).getGames();
-                        if (games == null) {
+                        if (games.isEmpty()) {
                             System.out.println("There are currently no games in this tournament.");
                         }
                         else {
