@@ -383,7 +383,7 @@ public class Main {
                 }
 
                 else if (cmd.equals("etg") || cmd.equals("endtournamentgame")) {
-                    System.out.println("Enter the ID number for the tournament:\n> ");
+                    System.out.print("Enter the ID number for the tournament:\n> ");
                     int ID = Integer.parseInt(input.nextLine());
                     
                     if (database.getTournament(ID) == null) {
