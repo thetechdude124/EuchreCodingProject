@@ -104,9 +104,9 @@ public class Game {
     public void setTeam2Points(int team2Points) {this.team2Points = team2Points;}
 
     // Completed rounds
-    public void addRound(boolean team1Offence, Member team1Player1, Member team1Player2, Member team2Player1, Member team2Player2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int team1Tricks, int team2Tricks, boolean team1Win) {
-        if (team1Offence) {tempRound = new Round(roundIDGen++, team1Player1, team1Player2, team2Player1, team2Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, team1Tricks, team2Tricks, team1Win);}
-        else {tempRound = new Round(roundIDGen++, team2Player1, team2Player2, team1Player1, team1Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, team2Tricks, team1Tricks, !team1Win);}
+    public void addRound(boolean team1Offence, Member team1Player1, Member team1Player2, Member team2Player1, Member team2Player2, Member dealer, Member trumpEstablisher, boolean goingAlone, String trumpSuit, int team1Tricks, boolean team1Win) {
+        if (team1Offence) {tempRound = new Round(roundIDGen++, team1Player1, team1Player2, team2Player1, team2Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, team1Tricks, team1Win);}
+        else {tempRound = new Round(roundIDGen++, team2Player1, team2Player2, team1Player1, team1Player2, dealer, trumpEstablisher, goingAlone, trumpSuit, 5-team1Tricks, !team1Win);}
         rounds.put(tempRound.getRoundID(), tempRound);
         if (team1Win) {this.team1Points += tempRound.getPointsAwarded();}
         else {this.team2Points += tempRound.getPointsAwarded();}

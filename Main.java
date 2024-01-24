@@ -871,7 +871,7 @@ public class Main {
                         */
 
                         System.out.println("Round successfully added.");
-                        database.getGame(ID).addRound(team1Offence, database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), database.getMember(dealer), database.getMember(trumpEstablisher), goingAlone, trumpSuit, team1Tricks, 5 - team1Tricks, team1Win);
+                        database.getGame(ID).addRound(team1Offence, database.getGame(ID).getPlayer1(), database.getGame(ID).getPlayer2(), database.getGame(ID).getPlayer3(), database.getGame(ID).getPlayer4(), database.getMember(dealer), database.getMember(trumpEstablisher), goingAlone, trumpSuit, team1Tricks, team1Win);
                     }
                 }
                 
