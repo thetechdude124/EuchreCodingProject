@@ -130,7 +130,7 @@ public class Database {
             System.out.println("There are no members to display.");
             return null;
         }
-        memberStats[stat] = memberMergeSort(memberStats[stat], memberStats.length, stat);
+        memberStats[stat] = memberMergeSort(memberStats[stat], allMembers.size(), stat);
         return memberStats[stat];
     }
 
@@ -139,7 +139,7 @@ public class Database {
             System.out.println("There are no partnerships to display.");
             return null;
         }
-        partnershipStats[stat] = partnershipMergeSort(partnershipStats[stat], partnershipStats.length, stat);
+        partnershipStats[stat] = partnershipMergeSort(partnershipStats[stat], allMembers.size(), stat);
         return partnershipStats[stat];
     }
 
@@ -178,7 +178,7 @@ public class Database {
         if (sortSize == 1) {return nodeA;} 
  
         node = nodeA;
-        for(int i = 0; i < sortSize/2; i++) {node = node.getNext();}
+        for(int i = 1; i < sortSize/2; i++) {node = node.getNext();}
         Node nodeB = node.getNext();
         node.setNext(null);
 
@@ -225,7 +225,7 @@ public class Database {
         if (sortSize == 1) {return nodeA;} 
  
         node = nodeA;
-        for(int i = 0; i < sortSize/2; i++) {node = node.getNext();}
+        for(int i = 1; i < sortSize/2; i++) {node = node.getNext();}
         Node nodeB = node.getNext();
         node.setNext(null);
 
