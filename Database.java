@@ -98,14 +98,14 @@ public class Database {
         }
     }
 
-    public void removePartnership(int userID) {
-        if (allPartnerships.containsKey(userID)) {
-            allPartnerships.remove(userID);
+    public void removePartnership(int partnershipID) {
+        if (allPartnerships.containsKey(partnershipID)) {
+            allPartnerships.remove(partnershipID);
             for (Node i : partnershipStats) {
                 node = i;
                 if (node != null) {
                     while (node.getNext() != null) {
-                        if (node.getID() == userID) {
+                        if (node.getID() == partnershipID) {
                             node.getPrevious().setNext(node.getNext());
                             node.getNext().setPrevious(node.getPrevious());
                             break;
