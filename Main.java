@@ -266,7 +266,7 @@ public class Main {
                     
                     Partnership newPartnership = new Partnership(name, database.getMember(player1), database.getMember(player2));
                     database.addPartnership(newPartnership);
-                    System.out.println("Member successfully added.\nThe member ID is: " + newPartnership.getPartnershipID());
+                    System.out.println("Partnership successfully added.\nThe partnership ID is: " + newPartnership.getPartnershipID());
 
                     // print out the information
                 }
