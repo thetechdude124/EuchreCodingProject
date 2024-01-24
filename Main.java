@@ -216,8 +216,8 @@ public class Main {
                                             "\nName: " + database.getMember(ID).getName() +
                                             "\nID: " + database.getMember(ID).getUserID() +
                                             "\nNumber of Games: " + database.getMember(ID).getNumGames() +
-                                            "\nTotal Wins: " + database.getMember(ID).getTotalWins() +
-                                            "\nTotal Losses: " + database.getMember(ID).getTotalLosses() +
+                                            "\nTotal Wins: " + database.getMember(ID).getGameWins() +
+                                            "\nTotal Losses: " + database.getMember(ID).getGameLosses() +
                                             "\nWins on Offence: " + database.getMember(ID).getWinsOnOffence() +
                                             "\nWins on Defence: " + database.getMember(ID).getWinsOnDefence() +
                                             "\nLosses on Offence: " + database.getMember(ID).getLossesOnOffence() +
@@ -301,8 +301,8 @@ public class Main {
                                             "\nPartner 1: " + database.getPartnership(ID).getMember1() +
                                             "\nPartner 2: " + database.getPartnership(ID).getMember2() +
                                             "\nNumber of Games: " + database.getPartnership(ID).getNumGames() +
-                                            "\nTotal Wins: " + database.getPartnership(ID).getTotalWins() +
-                                            "\nTotal Losses: " + database.getPartnership(ID).getTotalLosses() +
+                                            "\nTotal Wins: " + database.getPartnership(ID).getGameWins() +
+                                            "\nTotal Losses: " + database.getPartnership(ID).getGameLosses() +
                                             "\nWins on Offence: " + database.getPartnership(ID).getWinsOnOffence() +
                                             "\nWins on Defence: " + database.getPartnership(ID).getWinsOnDefence() +
                                             "\nLosses on Offence: " + database.getPartnership(ID).getLossesOnOffence() +
