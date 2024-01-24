@@ -215,7 +215,7 @@ public class Main {
                         System.out.println( "\nMEMBER:" +
                                             "\nID: " + database.getMember(ID).getUserID() +
                                             "\nName: " + database.getMember(ID).getName() +
-                                            "\nUsername" + database.getMember(ID).getUsername() +
+                                            "\nUsername: " + database.getMember(ID).getUsername() +
                                             "\nNumber of Games: " + database.getMember(ID).getNumGames() +
                                             "\nTotal Wins: " + database.getMember(ID).getGameWins() +
                                             "\nTotal Losses: " + database.getMember(ID).getGameLosses() +
@@ -362,10 +362,10 @@ public class Main {
                                 System.out.println("Game successfully added.");
                                 System.out.println( "GAME:" +
                                                     "\nID: " + database.getGame(tempID).getGameID() +
-                                                    "\nPlayer 1: " + database.getGame(tempID).getPlayer1().getName() +
-                                                    "\nPlayer 2: " + database.getGame(tempID).getPlayer2().getName() +
-                                                    "\nPlayer 3: " + database.getGame(tempID).getPlayer3().getName() +
-                                                    "\nPlayer 4: " + database.getGame(tempID).getPlayer4().getName());
+                                                    "\nPlayer 1: " + database.getGame(tempID).getPlayer1().getUsername() +
+                                                    "\nPlayer 2: " + database.getGame(tempID).getPlayer2().getUsername() +
+                                                    "\nPlayer 3: " + database.getGame(tempID).getPlayer3().getUsername() +
+                                                    "\nPlayer 4: " + database.getGame(tempID).getPlayer4().getUsername());
                             }
                         } 
                         else {
@@ -376,10 +376,10 @@ public class Main {
                             System.out.println("Game successfully added.");
                             System.out.println( "GAME:" +
                                                 "\nID: " + database.getGame(tempID).getGameID() +
-                                                "\nPlayer 1: " + database.getGame(tempID).getPlayer1().getName() +
-                                                "\nPlayer 2: " + database.getGame(tempID).getPlayer2().getName() +
-                                                "\nPlayer 3: " + database.getGame(tempID).getPlayer3().getName() +
-                                                "\nPlayer 4: " + database.getGame(tempID).getPlayer4().getName());
+                                                "\nPlayer 1: " + database.getGame(tempID).getPlayer1().getUsername() +
+                                                "\nPlayer 2: " + database.getGame(tempID).getPlayer2().getUsername() +
+                                                "\nPlayer 3: " + database.getGame(tempID).getPlayer3().getUsername() +
+                                                "\nPlayer 4: " + database.getGame(tempID).getPlayer4().getUsername());
                         }
                     }
                 }
@@ -671,15 +671,11 @@ public class Main {
                             System.out.println( "\nGAME:" +
                                                 "\nID: " + database.getGame(ID).getGameID() +
                                                 "\nPartnership 1 (composed of Players 1 & 2): " + database.getGame(ID).getTeam1() +
-                                                "\nPlayer 1 Name: " + database.getGame(ID).getPlayer1().getName() +
-                                                "\nPlayer 1 Username: " + database.getGame(ID).getPlayer1().getUsername() +
-                                                "\nPlayer 2 Name: " + database.getGame(ID).getPlayer2().getName() +
-                                                "\nPlayer 2 Username: " + database.getGame(ID).getPlayer2().getUsername() +
+                                                "\nPlayer 1: " + database.getGame(ID).getPlayer1().getUsername() +
+                                                "\nPlayer 2: " + database.getGame(ID).getPlayer2().getUsername() +
                                                 "\nPartnership 2 (composed of Players 3 & 4): " + database.getGame(ID).getTeam2() +
-                                                "\nPlayer 3 Name: " + database.getGame(ID).getPlayer3().getName() +
-                                                "\nPlayer 3 Username: " + database.getGame(ID).getPlayer3().getUsername() +
-                                                "\nPlayer 4 Name: " + database.getGame(ID).getPlayer4().getName() +
-                                                "\nPlayer 4 Username: " + database.getGame(ID).getPlayer4().getUsername() +
+                                                "\nPlayer 3: " + database.getGame(ID).getPlayer3().getUsername() +
+                                                "\nPlayer 4: " + database.getGame(ID).getPlayer4().getUsername() +
                                                 "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
                                                 "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
                                                 "\nWinning Team: " + winningTeam +
@@ -689,17 +685,13 @@ public class Main {
                         else {
                             System.out.println( "\nGAME:" +
                                                 "\nID: " + database.getGame(ID).getGameID() +
-                                                "\nPlayer 1 Name: " + database.getGame(ID).getPlayer1().getName() +
-                                                "\nPlayer 1 Username: " + database.getGame(ID).getPlayer1().getName() +
-                                                "\nPlayer 2 Name: " + database.getGame(ID).getPlayer2().getName() +
-                                                "\nPlayer 2 Username: " + database.getGame(ID).getPlayer2().getName() +
-                                                "\nPlayer 3 Name: " + database.getGame(ID).getPlayer3().getName() +
-                                                "\nPlayer 3 Username: " + database.getGame(ID).getPlayer3().getName() +
-                                                "\nPlayer 4 Name: " + database.getGame(ID).getPlayer4().getName() +
-                                                "\nPlayer 4 Username: " + database.getGame(ID).getPlayer4().getName() +
+                                                "\nPlayer 1: " + database.getGame(ID).getPlayer1().getUsername() +
+                                                "\nPlayer 2: " + database.getGame(ID).getPlayer2().getUsername() +
+                                                "\nPlayer 3: " + database.getGame(ID).getPlayer3().getUsername() +
+                                                "\nPlayer 4: " + database.getGame(ID).getPlayer4().getUsername() +
                                                 "\nTeam 1 Points: " + database.getGame(ID).getTeam1Points() +
                                                 "\nTeam 2 Points: " + database.getGame(ID).getTeam2Points() +
-                                                "\nTeam 1 Win: " + winningTeam +
+                                                "\nWinning team: " + winningTeam +
                                                 "\nOngoing: " + database.getGame(ID).getOnGoing());
                         }
                     }
