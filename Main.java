@@ -687,6 +687,10 @@ public class Main {
                         System.out.println("Invalid ID.");
                     }
 
+                    else if (database.getGame(ID).getTeam1Points() >= 10 || database.getGame(ID).getTeam2Points() >= 10) {
+                        System.out.println("This game has already been completed.");
+                    }
+
                     else {
                         boolean team1Offence;
                         /*
