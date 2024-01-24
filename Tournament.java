@@ -54,8 +54,6 @@ public class Tournament {
             else {index += 2; players.remove(index); players.remove(index);}
             if (index >= players.size()) {index = 0;}
             if (games.size() == numGames) {onGoing = false; return -2;} 
-            newGame = new Game(players.get(index), players.get(index+1), players.get(index+2), players.get(index+3));
-            database.addGame(newGame);
             return nextGame(database, ID+1);
         } 
         return -1;
